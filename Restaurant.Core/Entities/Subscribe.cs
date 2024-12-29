@@ -6,6 +6,5 @@ namespace Restaurant.Core.Entities
     {
         public string Email { get; set; } = null!;
         public bool IsSubscribed { get; set; } = false;
-        public bool isDeleted { get; set; } = false;
     }
 }

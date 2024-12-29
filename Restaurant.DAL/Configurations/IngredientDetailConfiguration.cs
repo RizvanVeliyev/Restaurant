@@ -10,7 +10,7 @@ namespace Restaurant.DAL.Configurations
         {
             builder.Property(x => x.Name).IsRequired().HasMaxLength(32);
 
-            //builder.HasIndex(x => new { x.LanguageId}).IsUnique();
+            builder.HasIndex(x => new { x.LanguageId,x.IngredientId }).IsUnique();
 
         }
     }

@@ -2,14 +2,12 @@
 
 namespace Restaurant.Core.Entities
 {
-    public class BlogDetail:BaseEntity
+    public class BlogCategoryDetail:BaseEntity
     {
         public string Name { get; set; } = null!;
-        public string Description { get; set; } = null!;
-        public Blog Blog { get; set; } = null!;
-        public int BlogId { get; set; }
+        public BlogCategory BlogCategory { get; set; } = null!;
+        public int BlogCategoryId { get; set; }
         public Language Language { get; set; } = null!;
         public int LanguageId { get; set; }
-
     }
 }
