@@ -1,8 +1,10 @@
-﻿namespace Restaurant.Core.Entities
+﻿using Restaurant.Core.Entities.Commons;
+
+namespace Restaurant.Core.Entities
 {
-    public class Category:BaseEntity
+    public class Category:BaseAuditableEntity
     {
-        public string Name { get; set; } // Məsələn: Yemək, İçki, Dessert
-        public ICollection<Product> Products { get; set; }
+        public ICollection<CategoryDetail> CategoryDetails { get; set; } = [];
+        public ICollection<Product> Products { get; set; } = [];
     }
 }

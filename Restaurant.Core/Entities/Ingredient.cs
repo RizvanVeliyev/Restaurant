@@ -1,8 +1,10 @@
-﻿namespace Restaurant.Core.Entities
+﻿using Restaurant.Core.Entities.Commons;
+
+namespace Restaurant.Core.Entities
 {
-    public class Ingredient:BaseEntity
+    public class Ingredient : BaseEntity
     {
-        public string? Name { get; set; } 
-        public ICollection<Product>? Products { get; set; }
+        public ICollection<IngredientDetail> IngredientDetails { get; set; } = [];
+        public ICollection<Product> Products { get; set; } = [];
     }
 }

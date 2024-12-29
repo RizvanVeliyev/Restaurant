@@ -1,15 +1,16 @@
-﻿namespace Restaurant.Core.Entities
+﻿using Restaurant.Core.Entities.Commons;
+
+namespace Restaurant.Core.Entities
 {
-    public class Comment
+    public class Comment:BaseAuditableEntity
     {
-        public int Id { get; set; }
-        public string? Content { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public int UserId { get; set; }
-        //public User User { get; set; }
+        public string Text { get; set; } = null!;
+        public string AppUserId { get; set; } = null!;
+        public AppUser AppUser { get; set; } = null!;
         public int? ProductId { get; set; }
-        public Product? Product { get; set; }
-        public int? BlogId { get; set; }
-        public Blog? Blog { get; set; }
+        public Product? Product { get; set; } = null!;
+        public int Rating { get; set; } 
+        //public int? BlogId { get; set; }
+        //public Blog? Blog { get; set; }
     }
 }
