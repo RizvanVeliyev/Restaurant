@@ -4,12 +4,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Restaurant.Core.Entities;
 using Restaurant.DAL.DataContexts;
+using Restaurant.DAL.Repositories.Abstractions;
+using Restaurant.DAL.Repositories.Implementations;
 
 namespace Restaurant.DAL
 {
     public static class DataAccessLayerServicesRegistration
     {
-        public static IServiceCollection AddDalServices(this IServiceCollection services,IConfiguration configuration) 
+        public static IServiceCollection AddDalServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("Default"),
@@ -19,7 +21,36 @@ namespace Restaurant.DAL
             }));
 
 
+            _addRepositories(services);
+            _addIdentity(services);
 
+            return services;
+        }
+
+
+        private static void _addRepositories(IServiceCollection services)
+        {
+            services.AddScoped<IAboutRepository, AboutRepository>();
+            services.AddScoped<IAvailableTimeRepository, AvailableTimeRepository>();
+            services.AddScoped<IBlogRepository, BlogRepository>();
+            services.AddScoped<ICartRepository, CartRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<ICheckoutRepository, CheckoutRepository>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<IContactRepository, ContactRepository>();
+            services.AddScoped<IIngredientRepository, IngredientRepository>();
+            services.AddScoped<ILanguageRepository, LanguageRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IReservationRepository, ReservationRepository>();
+            services.AddScoped<ISubscribeRepository, SubscribeRepository>();
+
+        }
+
+
+
+        private static void _addIdentity(IServiceCollection services)
+        {
             services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = true;
@@ -33,9 +64,6 @@ namespace Restaurant.DAL
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
 
             }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
-
-
-            return services;
         }
     }
 }
