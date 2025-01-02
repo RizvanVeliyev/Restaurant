@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Restaurant.BLL.Abstractions.Dtos;
 
 namespace Restaurant.BLL.Dtos.BlogDetailDtos
 {
-    internal class BlogDetailUpdateDto
+    public class BlogDetailUpdateDto:IDto
     {
+        public string Name { get; set; } = null!;
+        public string Description { get; set; } = null!;
+        public int LanguageId { get; set; }
     }
 }

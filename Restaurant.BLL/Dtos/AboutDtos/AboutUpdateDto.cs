@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
+using Restaurant.BLL.Abstractions.Dtos;
+using Restaurant.BLL.Dtos.AboutDetailDtos;
 
 namespace Restaurant.BLL.Dtos.AboutDtos
 {
-    internal class AboutUpdateDto
+    public class AboutUpdateDto : IDto
     {
+        public int Id { get; set; }
+        public string? ImagePath { get; set; } = null!;
+        public IFormFile? Image { get; set; } = null!;
+        public List<AboutDetailUpdateDto> AboutDetails { get; set; } = [];
     }
 }

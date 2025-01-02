@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Restaurant.Core.Entities;
-using Restaurant.DAL.Enums;
+using Restaurant.Core.Enums;
 
 namespace Restaurant.DAL.DataContexts
 {

@@ -1,11 +1,10 @@
 ﻿using Restaurant.BLL.Abstractions.Dtos;
 
-namespace Restaurant.BLL.Dtos.BlogDetailDtos
+namespace Restaurant.BLL.Dtos.CategoryDetailDtos
 {
-    public class BlogDetailCreateDto:IDto
+    public class CategoryDetailCreateDto:IDto
     {
         public string Name { get; set; } = null!;
-        public string Description { get; set; } = null!;
         public int LanguageId { get; set; }
     }
 }

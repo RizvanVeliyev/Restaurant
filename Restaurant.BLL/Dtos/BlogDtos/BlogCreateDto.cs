@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Microsoft.AspNetCore.Http;
+using Restaurant.BLL.Abstractions.Dtos;
+using Restaurant.BLL.Dtos.BlogDetailDtos;
+using Restaurant.BLL.Dtos.BlogCategoryDtos;
 namespace Restaurant.BLL.Dtos.BlogDtos
 {
-    internal class BlogCreateDto
+    public class BlogCreateDto:IDto
     {
+        //public List<BlogCategoryGetDto> BlogCategories { get; set; }
+        public int BlogCategoryId { get; set; }
+        public IFormFile Image { get; set; } = null!;
+        public List<IFormFile> Images { get; set; } = [];
+        public List<BlogDetailCreateDto> ProductDetails { get; set; } = [];
+
     }
 }

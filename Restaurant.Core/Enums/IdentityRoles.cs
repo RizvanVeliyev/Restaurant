@@ -1,4 +1,4 @@
-﻿namespace Restaurant.DAL.Enums
+﻿namespace Restaurant.Core.Enums
 {
     public enum IdentityRoles
     {

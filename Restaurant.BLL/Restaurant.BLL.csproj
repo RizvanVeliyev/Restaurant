@@ -10,30 +10,20 @@
     <Folder Include="Abstractions\Exceptions\" />
     <Folder Include="AutoMapper\" />
     <Folder Include="Constants\" />
-    <Folder Include="Dtos\AvailableTimeDtos\" />
-    <Folder Include="Dtos\CartDtos\" />
-    <Folder Include="Dtos\CategoryDtos\" />
-    <Folder Include="Dtos\CheckoutDtos\" />
-    <Folder Include="Dtos\CommentDtos\" />
-    <Folder Include="Dtos\ContactDtos\" />
-    <Folder Include="Dtos\IngredientDtos\" />
     <Folder Include="Dtos\LanguageDtos\" />
-    <Folder Include="Dtos\CartItemDtos\" />
-    <Folder Include="Dtos\BlogCategoryDtos\" />
-    <Folder Include="Dtos\BlogCategoryDetailDtos\" />
-    <Folder Include="Dtos\CategoryDetailDtos\" />
-    <Folder Include="Dtos\IngredientDetailDtos\" />
-    <Folder Include="Dtos\ProductDetailDtos\" />
-    <Folder Include="Dtos\OrderItemDtos\" />
-    <Folder Include="Dtos\SubscribeDtos\" />
-    <Folder Include="Dtos\ReservationDtos\" />
-    <Folder Include="Dtos\ProductDtos\" />
-    <Folder Include="Dtos\OrderDtos\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Extensions\" />
     <Folder Include="UI\" />
-    <Folder Include="Services\Contracts\" />
     <Folder Include="Services\Implementations\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.1.38" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Restaurant.Core\Restaurant.Core.csproj" />
   </ItemGroup>
 
 </Project>
