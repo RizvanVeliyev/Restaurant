@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Restaurant.BLL.Dtos.CategoryDtos;
 using Restaurant.BLL.Exceptions;
 using Restaurant.BLL.Extensions;
@@ -82,49 +83,156 @@ namespace Restaurant.BLL.Services.Implementations
             await _repository.SaveChangesAsync();
         }
 
-        public Task<List<CategoryGetDto>> GetAllAsync(Languages language = Languages.Azerbaijan)
+        public async Task<List<CategoryGetDto>> GetAllAsync(Languages language = Languages.Azerbaijan)
         {
-            throw new NotImplementedException();
+            LanguageHelper.CheckLanguageId(ref language);
+            var categories = await _repository.GetAll(x => x.Include(x => x.CategoryDetails.
+            Where(x => x.LanguageId == (int)language)).ThenInclude(x => x.Language).
+            Include(x => x.Products)).ToListAsync();
+
+            var dtos = _mapper.Map<List<CategoryGetDto>>(categories);
+
+            return dtos;
         }
 
-        public Task<CategoryGetDto> GetAsync(int id, Languages language = Languages.Azerbaijan)
+        public async Task<CategoryGetDto> GetAsync(int id, Languages language = Languages.Azerbaijan)
         {
-            throw new NotImplementedException();
+            LanguageHelper.CheckLanguageId(ref language);
+            var category = await _repository.GetAsync(id, x => x.Include(x => x.CategoryDetails.Where(x => x.LanguageId == (int)language)));
+
+            if (category is null)
+                throw new NotFoundException(_errorLocalizer.GetValue(nameof(NotFoundException)));
+
+            var dto = _mapper.Map<CategoryGetDto>(category);
+
+            return dto;
         }
+
+
 
         public Task<List<CategoryGetDto>> GetCategoriesAsync(Languages language = Languages.Azerbaijan)
         {
             throw new NotImplementedException();
         }
 
-        public Task<CategoryCreateDto> GetCreateDtoAsync()
+        public async Task<CategoryCreateDto> GetCreateDtoAsync()
         {
-            throw new NotImplementedException();
+            var categories = await _repository.GetAll(x => x.Include(x => x.CategoryDetails)).ToListAsync();
+
+            var dtos = _mapper.Map<List<CategoryGetDto>>(categories);
+
+            var dto = new CategoryCreateDto() { Categories = dtos, CategoryDetails = [new(), new(), new()] };
+
+            return dto;
         }
 
-        public Task<CategoryCreateDto> GetCreateDtoAsync(CategoryCreateDto dto)
+
+        public async Task<CategoryCreateDto> GetCreateDtoAsync(CategoryCreateDto dto)
         {
-            throw new NotImplementedException();
+            var categories = await _repository.GetAll(x => x.Include(x => x.CategoryDetails)).ToListAsync();
+
+            var dtos = _mapper.Map<List<CategoryGetDto>>(categories);
+
+            dto.Categories = dtos;
+
+            return dto;
         }
 
-        public Task<CategoryUpdateDto> GetUpdatedDtoAsync(CategoryUpdateDto dto)
+
+
+
+        public async Task<CategoryUpdateDto> GetUpdatedDtoAsync(CategoryUpdateDto dto)
         {
-            throw new NotImplementedException();
+            var category = await _repository.GetAsync(dto.Id, x => x.Include(x => x.CategoryDetails));
+
+            if (category is null)
+                throw new NotFoundException(_errorLocalizer.GetValue(nameof(NotFoundException)));
+
+
+            var categories = await _repository.GetAll(x => x.Include(x => x.CategoryDetails)).ToListAsync();
+
+            var dtos = _mapper.Map<List<CategoryGetDto>>(categories);
+
+            dto.Categories = dtos;
+
+            return dto;
         }
 
-        public Task<CategoryUpdateDto> GetUpdatedDtoAsync(int id)
+
+        public async Task<CategoryUpdateDto> GetUpdatedDtoAsync(int id)
         {
-            throw new NotImplementedException();
+            var category = await _repository.GetAsync(id, x => x.Include(x => x.CategoryDetails));
+
+            if (category is null)
+                throw new NotFoundException(_errorLocalizer.GetValue(nameof(NotFoundException)));
+
+            var dto = _mapper.Map<CategoryUpdateDto>(category);
+
+            
+
+            var categories = await _repository.GetAll(x => x.Include(x => x.CategoryDetails)).ToListAsync();
+
+            var dtos = _mapper.Map<List<CategoryGetDto>>(categories);
+
+            dto.Categories = dtos;
+
+            return dto;
         }
 
-        public Task<bool> IsExistAsync(int id)
+
+        public async Task<bool> IsExistAsync(int id)
         {
-            throw new NotImplementedException();
+            var isExist = await _repository.IsExistAsync(x => x.Id == id);
+            return isExist;
         }
 
-        public Task<bool> UpdateAsync(CategoryUpdateDto dto, ModelStateDictionary ModelState)
+        public async Task<bool> UpdateAsync(CategoryUpdateDto dto, ModelStateDictionary ModelState)
         {
-            throw new NotImplementedException();
+            if (!ModelState.IsValid)
+                return false;
+
+            var existCategory = await _repository.GetAsync(x => x.Id == dto.Id, x => x.Include(x => x.CategoryDetails).Include(x => x.Products));
+
+            if (existCategory is null)
+                throw new NotFoundException(_errorLocalizer.GetValue(nameof(NotFoundException)));
+
+           
+
+            foreach (var detail in dto.CategoryDetails)
+            {
+                var isExistLanguage = LanguageHelper.CheckLanguageId(detail.LanguageId);
+
+                if (!isExistLanguage)
+                {
+                    ModelState.AddModelError("", "Nə isə yanlış oldu, yenidən sınayın");
+                    return false;
+                }
+
+                isExistLanguage = dto.CategoryDetails.Any(x => x.LanguageId == detail.LanguageId && x != detail);
+
+                if (isExistLanguage)
+                {
+                    ModelState.AddModelError("", "Nə isə yanlış oldu, yenidən sınayın");
+                    return false;
+                }
+            }
+
+            
+            existCategory = _mapper.Map(dto, existCategory);
+
+            _repository.Update(existCategory);
+            await _repository.SaveChangesAsync();
+
+            return true;
+        }
+
+
+
+
+        private Func<IQueryable<Category>, IIncludableQueryable<Category, object>> _getIncludeFunc(Languages language)
+        {
+            LanguageHelper.CheckLanguageId(ref language);
+            return x => x.Include(x => x.CategoryDetails.Where(x => x.LanguageId == (int)language)).ThenInclude(x => x.Language);
         }
     }
 }
