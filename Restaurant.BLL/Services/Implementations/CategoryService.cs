@@ -10,15 +10,10 @@ using Restaurant.Core.Entities;
 using Restaurant.Core.Enums;
 using Restaurant.DAL.Localizers;
 using Restaurant.DAL.Repositories.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Restaurant.BLL.Services.Implementations
 {
-    internal class CategoryService : ICategoryService
+    public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _repository;
         private readonly IMapper _mapper;

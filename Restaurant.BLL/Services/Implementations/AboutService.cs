@@ -13,7 +13,7 @@ using Restaurant.BLL.Exceptions;
 
 namespace Restaurant.BLL.Services.Implementations
 {
-    internal class AboutService : IAboutService
+    public class AboutService : IAboutService
     {
         private readonly IAboutRepository _repository;
         private readonly ICloudinaryService _cloudinaryService;
