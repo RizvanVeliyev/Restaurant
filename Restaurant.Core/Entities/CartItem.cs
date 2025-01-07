@@ -10,8 +10,11 @@ namespace Restaurant.Core.Entities
         public int CartId { get; set; }
         public Cart Cart { get; set; } = null!;
 
-        public int Quantity { get; set; } 
-        public decimal TotalPrice => Product.Price * Quantity;
+        public AppUser AppUser { get; set; } = null!;
+        public string AppUserId { get; set; } = null!;
+
+        public int Count { get; set; } 
+        public decimal TotalPrice => Product.Price * Count;
 
     }
 }

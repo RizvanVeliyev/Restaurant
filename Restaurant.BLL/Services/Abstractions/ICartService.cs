@@ -10,10 +10,10 @@ namespace Restaurant.BLL.Services.Abstractions
 {
     public interface ICartService
     {
-        Task<bool> AddToBasketAsync(int id, int count = 1);
-        Task<bool> DecreaseToBasketAsync(int id);
-        Task RemoveToBasketAsync(int id);
-        Task<CartGetDto> GetBasketAsync(Languages language = Languages.Azerbaijan);
-        Task ClearBasketAsync();
+        Task<bool> AddToCartAsync(int id, int count = 1);
+        Task<bool> DecreaseToCartAsync(int id);
+        Task RemoveToCartAsync(int id);
+        Task<CartGetDto> GetCartAsync(Languages language = Languages.Azerbaijan);
+        Task ClearCartAsync();
     }
 }
