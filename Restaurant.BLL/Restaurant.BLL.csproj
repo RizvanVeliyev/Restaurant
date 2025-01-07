@@ -7,12 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstractions\Exceptions\" />
     <Folder Include="AutoMapper\" />
     <Folder Include="Constants\" />
     <Folder Include="Dtos\LanguageDtos\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Extensions\" />
     <Folder Include="UI\" />
   </ItemGroup>
 
