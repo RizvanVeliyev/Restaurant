@@ -17,7 +17,7 @@ using Restaurant.DAL.Localizers;
 
 namespace Restaurant.BLL.Services.Implementations
 {
-    internal class AuthService : IAuthService
+    public class AuthService : IAuthService
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
@@ -126,7 +126,6 @@ namespace Restaurant.BLL.Services.Implementations
 
             await _userManager.AddToRoleAsync(user, IdentityRoles.Member.ToString());
 
-            //await _sendConfirmEmailToken(user);
 
             await _signInManager.SignInAsync(user, isPersistent: false);
 
@@ -173,7 +172,7 @@ namespace Restaurant.BLL.Services.Implementations
 
             for (int i = 0; i < dtos.Count; i++)
             {
-                dtos[i].Role = (await _userManager.GetRolesAsync(users[i])).FirstOrDefault() ?? "undifiend";
+                dtos[i].Role = (await _userManager.GetRolesAsync(users[i])).FirstOrDefault() ?? "undefined";
             }
 
             return dtos;
@@ -231,7 +230,7 @@ namespace Restaurant.BLL.Services.Implementations
             {
                 Body = emailBody,
                 Subject = "Email Təsdiqləmə",
-                ToEmail = user.Email ?? "undifined@undifined.com"
+                ToEmail = user.Email ?? "undefined@undefined.com"
             };
 
             await _emailService.SendEmailAsync(emailSendDto);

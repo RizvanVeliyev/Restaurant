@@ -8,11 +8,6 @@ using Restaurant.BLL.Services.Abstractions;
 using Restaurant.Core.Entities;
 using Restaurant.DAL.Localizers;
 using Restaurant.DAL.Repositories.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Restaurant.BLL.Services.Implementations
 {
