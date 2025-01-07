@@ -6,7 +6,7 @@ using Restaurant.Core.Enums;
 
 namespace Restaurant.BLL.Services.Implementations
 {
-    internal class LanguageService : ILanguageService
+    public class LanguageService : ILanguageService
     {
         private readonly IHttpContextAccessor _contextAccessor;
         private const string COOKIE_KEY = "SelectedLanguage";
