@@ -566,19 +566,19 @@ namespace Restaurant.DAL.Migrations
             column: x => x.AppUserId,
             principalTable: "AspNetUsers",
             principalColumn: "Id",
-            onDelete: ReferentialAction.Restrict); // Cascade kaldırıldı
+            onDelete: ReferentialAction.Restrict); 
         table.ForeignKey(
             name: "FK_CartItems_Carts_CartId",
             column: x => x.CartId,
             principalTable: "Carts",
             principalColumn: "Id",
-            onDelete: ReferentialAction.Cascade); // Cascade bırakıldı
+            onDelete: ReferentialAction.Cascade); 
         table.ForeignKey(
             name: "FK_CartItems_Products_ProductId",
             column: x => x.ProductId,
             principalTable: "Products",
             principalColumn: "Id",
-            onDelete: ReferentialAction.Restrict); // Cascade kaldırıldı
+            onDelete: ReferentialAction.Restrict); 
     });
 
 

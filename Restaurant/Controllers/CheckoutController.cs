@@ -2,13 +2,9 @@
 
 namespace Restaurant.Controllers
 {
-    public class ShopController : Controller
+    public class CheckoutController : Controller
     {
         public IActionResult Index()
-        {
-            return View();
-        }
-        public IActionResult Details()
         {
             return View();
         }

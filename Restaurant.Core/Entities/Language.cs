@@ -9,4 +9,6 @@ namespace Restaurant.Core.Entities
         public string ImagePath { get; set; } = null!;
         public ICollection<CategoryDetail> CategoryDetails { get; set; } = [];
     }
+
+    
 }
