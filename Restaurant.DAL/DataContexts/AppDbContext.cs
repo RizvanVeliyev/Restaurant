@@ -48,6 +48,8 @@ namespace Restaurant.DAL.DataContexts
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
+        public DbSet<Status> Statuses { get; set; }
+        public DbSet<StatusDetail> StatusDetails { get; set; }
 
 
 

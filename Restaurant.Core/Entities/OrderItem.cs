@@ -10,7 +10,7 @@ namespace Restaurant.Core.Entities
         public int ProductId { get; set; }
         public Product Product { get; set; } = null!;
 
-        public int Quantity { get; set; }
+        public int Count { get; set; }
         public decimal TotalPrice { get; set; }
     }
 }
