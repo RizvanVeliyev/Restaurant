@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Restaurant.BLL.Dtos.ProductDetailDtos;
+using Restaurant.Core.Entities;
 
 namespace Restaurant.BLL.AutoMapper
 {
-    internal class ProductDetailAutoMapper
+    internal class ProductDetailAutoMapper : Profile
     {
+        public ProductDetailAutoMapper()
+        {
+            CreateMap<ProductDetail, ProductDetailCreateDto>().ReverseMap();
+            CreateMap<ProductDetail, ProductDetailUpdateDto>().ReverseMap();
+        }
     }
 }
