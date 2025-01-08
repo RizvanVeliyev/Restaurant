@@ -25,14 +25,13 @@ namespace Restaurant.DAL.DataContexts
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Product> Products { get; set; }
-        public DbSet<ProductDetail> ProductDetails { get; set; }
-        public DbSet<ProductImage> ProductImages { get; set; }
-        public DbSet<ProductIngredient> ProductIngredients { get; set; }
+
         public DbSet<About> Abouts { get; set; }
+        public DbSet<AboutDetail> AboutDetails { get; set; }
         public DbSet<AvailableTime> AvailableTimes { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
+        public DbSet<BlogCategoryDetail> BlogCategoryDetails { get; set; }
         public DbSet<BlogDetail> BlogDetails { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
@@ -46,10 +45,15 @@ namespace Restaurant.DAL.DataContexts
         public DbSet<Language> Languages { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductDetail> ProductDetails { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<ProductIngredient> ProductIngredients { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
-        public DbSet<Subscribe> Subscribes { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<StatusDetail> StatusDetails { get; set; }
+        public DbSet<Subscribe> Subscribes { get; set; }
+       
 
 
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Restaurant.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class INIT : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -97,10 +97,6 @@ namespace Restaurant.DAL.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -130,8 +126,7 @@ namespace Restaurant.DAL.Migrations
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
-                    Message = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    isDeleted = table.Column<bool>(type: "bit", nullable: false)
+                    Message = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -156,20 +151,6 @@ namespace Restaurant.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OrderedTime = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Reservations",
                 columns: table => new
                 {
@@ -186,6 +167,18 @@ namespace Restaurant.DAL.Migrations
                     table.PrimaryKey("PK_Reservations", x => x.Id);
                     table.CheckConstraint("CK_Contact_PhoneNumber", "PhoneNumber LIKE '+%' AND LEN(PhoneNumber) >= 10 AND LEN(PhoneNumber) <= 15");
                     table.CheckConstraint("CK_Reservation_People_Range", "[NumberOfPeople] >= 1 AND [NumberOfPeople] <= 10");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Statuses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Statuses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -351,7 +344,7 @@ namespace Restaurant.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AboutDetail",
+                name: "AboutDetails",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -363,15 +356,15 @@ namespace Restaurant.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AboutDetail", x => x.Id);
+                    table.PrimaryKey("PK_AboutDetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AboutDetail_Abouts_AboutId",
+                        name: "FK_AboutDetails_Abouts_AboutId",
                         column: x => x.AboutId,
                         principalTable: "Abouts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AboutDetail_Languages_LanguageId",
+                        name: "FK_AboutDetails_Languages_LanguageId",
                         column: x => x.LanguageId,
                         principalTable: "Languages",
                         principalColumn: "Id",
@@ -379,7 +372,7 @@ namespace Restaurant.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BlogCategoryDetail",
+                name: "BlogCategoryDetails",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -390,15 +383,15 @@ namespace Restaurant.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BlogCategoryDetail", x => x.Id);
+                    table.PrimaryKey("PK_BlogCategoryDetails", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BlogCategoryDetail_BlogCategories_BlogCategoryId",
+                        name: "FK_BlogCategoryDetails_BlogCategories_BlogCategoryId",
                         column: x => x.BlogCategoryId,
                         principalTable: "BlogCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BlogCategoryDetail_Languages_LanguageId",
+                        name: "FK_BlogCategoryDetails_Languages_LanguageId",
                         column: x => x.LanguageId,
                         principalTable: "Languages",
                         principalColumn: "Id",
@@ -466,6 +459,67 @@ namespace Restaurant.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrderNo = table.Column<int>(type: "int", nullable: false),
+                    StatusId = table.Column<int>(type: "int", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UpdatedBy = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Orders_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Orders_Statuses_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "Statuses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StatusDetails",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LanguageId = table.Column<int>(type: "int", nullable: false),
+                    StatusId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StatusDetails", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StatusDetails_Languages_LanguageId",
+                        column: x => x.LanguageId,
+                        principalTable: "Languages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_StatusDetails_Statuses_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "Statuses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BlogDetails",
                 columns: table => new
                 {
@@ -494,31 +548,39 @@ namespace Restaurant.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CartItems",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    CartId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CartItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_CartItems_Carts_CartId",
-                        column: x => x.CartId,
-                        principalTable: "Carts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CartItems_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+    name: "CartItems",
+    columns: table => new
+    {
+        Id = table.Column<int>(type: "int", nullable: false)
+            .Annotation("SqlServer:Identity", "1, 1"),
+        ProductId = table.Column<int>(type: "int", nullable: false),
+        CartId = table.Column<int>(type: "int", nullable: false),
+        AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+        Count = table.Column<int>(type: "int", nullable: false)
+    },
+    constraints: table =>
+    {
+        table.PrimaryKey("PK_CartItems", x => x.Id);
+        table.ForeignKey(
+            name: "FK_CartItems_AspNetUsers_AppUserId",
+            column: x => x.AppUserId,
+            principalTable: "AspNetUsers",
+            principalColumn: "Id",
+            onDelete: ReferentialAction.Restrict); // Cascade kaldırıldı
+        table.ForeignKey(
+            name: "FK_CartItems_Carts_CartId",
+            column: x => x.CartId,
+            principalTable: "Carts",
+            principalColumn: "Id",
+            onDelete: ReferentialAction.Cascade); // Cascade bırakıldı
+        table.ForeignKey(
+            name: "FK_CartItems_Products_ProductId",
+            column: x => x.ProductId,
+            principalTable: "Products",
+            principalColumn: "Id",
+            onDelete: ReferentialAction.Restrict); // Cascade kaldırıldı
+    });
+
 
             migrationBuilder.CreateTable(
                 name: "Comments",
@@ -560,34 +622,6 @@ namespace Restaurant.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderItems",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    OrderId = table.Column<int>(type: "int", nullable: false),
-                    ProductId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OrderItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_OrderItems_Orders_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_OrderItems_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "ProductDetails",
                 columns: table => new
                 {
@@ -595,14 +629,12 @@ namespace Restaurant.DAL.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(5,2)", precision: 5, scale: 2, nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     LanguageId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductDetails", x => x.Id);
-                    table.CheckConstraint("CK_Product_Price1", "[Price] >= 0");
                     table.ForeignKey(
                         name: "FK_ProductDetails_Languages_LanguageId",
                         column: x => x.LanguageId,
@@ -632,6 +664,34 @@ namespace Restaurant.DAL.Migrations
                     table.PrimaryKey("PK_ProductImages", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ProductImages_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    Count = table.Column<int>(type: "int", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderItems_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -734,13 +794,13 @@ namespace Restaurant.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AboutDetail_AboutId",
-                table: "AboutDetail",
+                name: "IX_AboutDetails_AboutId",
+                table: "AboutDetails",
                 column: "AboutId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AboutDetail_LanguageId_AboutId",
-                table: "AboutDetail",
+                name: "IX_AboutDetails_LanguageId_AboutId",
+                table: "AboutDetails",
                 columns: new[] { "LanguageId", "AboutId" },
                 unique: true);
 
@@ -784,13 +844,13 @@ namespace Restaurant.DAL.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlogCategoryDetail_BlogCategoryId",
-                table: "BlogCategoryDetail",
+                name: "IX_BlogCategoryDetails_BlogCategoryId",
+                table: "BlogCategoryDetails",
                 column: "BlogCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BlogCategoryDetail_LanguageId_BlogCategoryId",
-                table: "BlogCategoryDetail",
+                name: "IX_BlogCategoryDetails_LanguageId_BlogCategoryId",
+                table: "BlogCategoryDetails",
                 columns: new[] { "LanguageId", "BlogCategoryId" },
                 unique: true);
 
@@ -809,6 +869,11 @@ namespace Restaurant.DAL.Migrations
                 name: "IX_Blogs_BlogCategoryId",
                 table: "Blogs",
                 column: "BlogCategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CartItems_AppUserId",
+                table: "CartItems",
+                column: "AppUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CartItems_CartId_ProductId",
@@ -885,6 +950,16 @@ namespace Restaurant.DAL.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Orders_AppUserId",
+                table: "Orders",
+                column: "AppUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_StatusId",
+                table: "Orders",
+                column: "StatusId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProductDetails_LanguageId_ProductId",
                 table: "ProductDetails",
                 columns: new[] { "LanguageId", "ProductId" },
@@ -921,13 +996,23 @@ namespace Restaurant.DAL.Migrations
                 name: "IX_Products_ReservationId",
                 table: "Products",
                 column: "ReservationId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StatusDetails_LanguageId",
+                table: "StatusDetails",
+                column: "LanguageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StatusDetails_StatusId",
+                table: "StatusDetails",
+                column: "StatusId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AboutDetail");
+                name: "AboutDetails");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -948,7 +1033,7 @@ namespace Restaurant.DAL.Migrations
                 name: "AvailableTimes");
 
             migrationBuilder.DropTable(
-                name: "BlogCategoryDetail");
+                name: "BlogCategoryDetails");
 
             migrationBuilder.DropTable(
                 name: "BlogDetails");
@@ -984,6 +1069,9 @@ namespace Restaurant.DAL.Migrations
                 name: "ProductIngredients");
 
             migrationBuilder.DropTable(
+                name: "StatusDetails");
+
+            migrationBuilder.DropTable(
                 name: "Subscribes");
 
             migrationBuilder.DropTable(
@@ -1005,10 +1093,13 @@ namespace Restaurant.DAL.Migrations
                 name: "Ingredients");
 
             migrationBuilder.DropTable(
+                name: "BlogCategories");
+
+            migrationBuilder.DropTable(
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "BlogCategories");
+                name: "Statuses");
 
             migrationBuilder.DropTable(
                 name: "ProductDetails");

@@ -12,8 +12,8 @@ using Restaurant.DAL.DataContexts;
 namespace Restaurant.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241229132952_Init")]
-    partial class Init
+    [Migration("20250108114752_INIT")]
+    partial class INIT
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -222,7 +222,7 @@ namespace Restaurant.DAL.Migrations
                     b.HasIndex("LanguageId", "AboutId")
                         .IsUnique();
 
-                    b.ToTable("AboutDetail");
+                    b.ToTable("AboutDetails");
                 });
 
             modelBuilder.Entity("Restaurant.Core.Entities.AppUser", b =>
@@ -388,7 +388,7 @@ namespace Restaurant.DAL.Migrations
                     b.HasIndex("LanguageId", "BlogCategoryId")
                         .IsUnique();
 
-                    b.ToTable("BlogCategoryDetail");
+                    b.ToTable("BlogCategoryDetails");
                 });
 
             modelBuilder.Entity("Restaurant.Core.Entities.BlogDetail", b =>
@@ -452,16 +452,22 @@ namespace Restaurant.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Count")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("ProductId");
 
@@ -479,22 +485,8 @@ namespace Restaurant.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -632,9 +624,6 @@ namespace Restaurant.DAL.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
-                    b.Property<bool>("isDeleted")
-                        .HasColumnType("bit");
-
                     b.HasKey("Id");
 
                     b.ToTable("Contacts", t =>
@@ -728,14 +717,48 @@ namespace Restaurant.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("OrderNo")
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("OrderedTime")
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("OrderNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("UpdatedBy")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("StatusId");
 
                     b.ToTable("Orders");
                 });
@@ -748,13 +771,13 @@ namespace Restaurant.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
                     b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalPrice")
@@ -843,10 +866,6 @@ namespace Restaurant.DAL.Migrations
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
 
-                    b.Property<decimal>("Price")
-                        .HasPrecision(5, 2)
-                        .HasColumnType("decimal(5,2)");
-
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -857,11 +876,7 @@ namespace Restaurant.DAL.Migrations
                     b.HasIndex("LanguageId", "ProductId")
                         .IsUnique();
 
-                    b.ToTable("ProductDetails", t =>
-                        {
-                            t.HasCheckConstraint("CK_Product_Price", "[Price] >= 0")
-                                .HasName("CK_Product_Price1");
-                        });
+                    b.ToTable("ProductDetails");
                 });
 
             modelBuilder.Entity("Restaurant.Core.Entities.ProductImage", b =>
@@ -953,6 +968,46 @@ namespace Restaurant.DAL.Migrations
 
                             t.HasCheckConstraint("CK_Reservation_People_Range", "[NumberOfPeople] >= 1 AND [NumberOfPeople] <= 10");
                         });
+                });
+
+            modelBuilder.Entity("Restaurant.Core.Entities.Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Statuses");
+                });
+
+            modelBuilder.Entity("Restaurant.Core.Entities.StatusDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LanguageId");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("StatusDetails");
                 });
 
             modelBuilder.Entity("Restaurant.Core.Entities.Subscribe", b =>
@@ -1081,7 +1136,7 @@ namespace Restaurant.DAL.Migrations
             modelBuilder.Entity("Restaurant.Core.Entities.BlogCategoryDetail", b =>
                 {
                     b.HasOne("Restaurant.Core.Entities.BlogCategory", "BlogCategory")
-                        .WithMany()
+                        .WithMany("BlogCategoryDetails")
                         .HasForeignKey("BlogCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1129,6 +1184,12 @@ namespace Restaurant.DAL.Migrations
 
             modelBuilder.Entity("Restaurant.Core.Entities.CartItem", b =>
                 {
+                    b.HasOne("Restaurant.Core.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Restaurant.Core.Entities.Cart", "Cart")
                         .WithMany("CartItems")
                         .HasForeignKey("CartId")
@@ -1140,6 +1201,8 @@ namespace Restaurant.DAL.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("AppUser");
 
                     b.Navigation("Cart");
 
@@ -1210,6 +1273,23 @@ namespace Restaurant.DAL.Migrations
                     b.Navigation("Ingredient");
 
                     b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("Restaurant.Core.Entities.Order", b =>
+                {
+                    b.HasOne("Restaurant.Core.Entities.AppUser", "AppUser")
+                        .WithMany()
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("Restaurant.Core.Entities.Status", "Status")
+                        .WithMany("Orders")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Status");
                 });
 
             modelBuilder.Entity("Restaurant.Core.Entities.OrderItem", b =>
@@ -1295,6 +1375,25 @@ namespace Restaurant.DAL.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Restaurant.Core.Entities.StatusDetail", b =>
+                {
+                    b.HasOne("Restaurant.Core.Entities.Language", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Restaurant.Core.Entities.Status", "Status")
+                        .WithMany("StatusDetails")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Language");
+
+                    b.Navigation("Status");
+                });
+
             modelBuilder.Entity("Restaurant.Core.Entities.About", b =>
                 {
                     b.Navigation("AboutDetails");
@@ -1305,6 +1404,11 @@ namespace Restaurant.DAL.Migrations
                     b.Navigation("BlogDetails");
 
                     b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("Restaurant.Core.Entities.BlogCategory", b =>
+                {
+                    b.Navigation("BlogCategoryDetails");
                 });
 
             modelBuilder.Entity("Restaurant.Core.Entities.Cart", b =>
@@ -1351,6 +1455,13 @@ namespace Restaurant.DAL.Migrations
             modelBuilder.Entity("Restaurant.Core.Entities.Reservation", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Restaurant.Core.Entities.Status", b =>
+                {
+                    b.Navigation("Orders");
+
+                    b.Navigation("StatusDetails");
                 });
 #pragma warning restore 612, 618
         }
