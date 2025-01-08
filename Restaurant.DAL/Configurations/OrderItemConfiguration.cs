@@ -9,7 +9,7 @@ namespace Restaurant.DAL.Configurations
     {
         public void Configure(EntityTypeBuilder<OrderItem> builder) 
         {
-            builder.Property(x => x.Quantity).IsRequired();
+            builder.Property(x => x.Count).IsRequired();
 
             builder.HasIndex(x => new { x.ProductId, x.OrderId }).IsUnique();
         }

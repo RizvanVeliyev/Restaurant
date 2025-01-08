@@ -12,7 +12,6 @@ namespace Restaurant.DAL.Configurations
             builder.Property(x => x.Name).IsRequired().HasMaxLength(128);
             builder.Property(x => x.Description).IsRequired().HasMaxLength(256);
 
-            builder.Property(p => p.Price).IsRequired().HasPrecision(5, 2);
             builder.ToTable(t => t.HasCheckConstraint("CK_Product_Price", "[Price] >= 0"));
 
             builder.HasIndex(x => new { x.LanguageId, x.ProductId }).IsUnique();
