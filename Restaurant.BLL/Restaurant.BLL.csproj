@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AutoMapper\" />
     <Folder Include="Constants\" />
     <Folder Include="Dtos\LanguageDtos\" />
     <Folder Include="Validators\" />

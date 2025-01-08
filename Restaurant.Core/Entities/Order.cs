@@ -2,7 +2,7 @@
 
 namespace Restaurant.Core.Entities
 {
-    public class Order : BaseEntity
+    public class Order : BaseAuditableEntity
     {
         public AppUser? AppUser { get; set; } = null!;
         public string? AppUserId { get; set; } = null!;

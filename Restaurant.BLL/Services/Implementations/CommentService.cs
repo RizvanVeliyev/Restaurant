@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Restaurant.BLL.Dtos.CommentDtos;
 using Restaurant.BLL.Exceptions;
 using Restaurant.BLL.Services.Abstractions;
+using Restaurant.Core.Entities;
 using Restaurant.Core.Enums;
 using Restaurant.DAL.Localizers;
 using Restaurant.DAL.Repositories.Abstractions;
@@ -31,7 +32,62 @@ namespace Restaurant.BLL.Services.Implementations
             _orderService = orderService;
         }
 
-        
+        public async Task<bool> CreateAsync(CommentCreateDto dto, ModelStateDictionary ModelState)
+        {
+            if (!ModelState.IsValid)
+                return false;
+
+            if (!_checkAuthorized())
+                throw new UnAuthorizedException(_errorLocalizer.GetValue(nameof(UnAuthorizedException)));
+
+            var product = await _productService.GetAsync(dto.ProductId);
+
+            var orders = await _orderService.GetAllAsync();
+
+            var userId = _getUserId();
+
+
+            var isExist = await _repository.IsExistAsync(x => x.ProductId == dto.ProductId && x.AppUserId == userId);
+
+            if (isExist)
+                throw new AlreadyExistException(_errorLocalizer.GetValue(nameof(AlreadyExistException)));
+
+            var isBought = orders.Any(x => x.AppUserId == userId && x.OrderItems.Any(x => x.Product.Id == product.Id));
+
+            if (!isBought)
+                throw new UnAuthorizedException(_errorLocalizer.GetValue(nameof(UnAuthorizedException)));
+
+            var comment = _mapper.Map<Comment>(dto);
+
+            comment.AppUserId = userId;
+
+            await _repository.CreateAsync(comment);
+            await _repository.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> CheckIsAllowCommentAsync(int productId)
+        {
+            var product = await _productService.GetAsync(productId);
+
+            var orders = await _orderService.GetAllAsync();
+
+            var userId = _getUserId();
+
+
+            var isExist = await _repository.IsExistAsync(x => x.ProductId == productId && x.AppUserId == userId);
+
+            if (isExist)
+                return false;
+
+            var isBought = orders.Any(x => x.AppUserId == userId && x.OrderItems.Any(x => x.Product.Id == product.Id));
+
+            if (!isBought)
+                return false;
+
+            return true;
+        }
 
         public async Task DeleteAsync(int id)
         {
@@ -91,16 +147,6 @@ namespace Restaurant.BLL.Services.Implementations
         private bool _isAdmin()
         {
             return _contextAccessor.HttpContext?.User.IsInRole(IdentityRoles.Admin.ToString()) ?? false;
-        }
-
-        public Task<bool> CheckIsAllowCommentAsync(int productId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> CreateAsync(CommentCreateDto dto, ModelStateDictionary ModelState)
-        {
-            throw new NotImplementedException();
         }
     }
 }

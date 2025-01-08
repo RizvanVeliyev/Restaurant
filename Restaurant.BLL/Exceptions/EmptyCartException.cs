@@ -3,9 +3,9 @@ using System.Net;
 
 namespace Restaurant.BLL.Exceptions
 {
-    public class EmptyBasketException : Exception, IBaseException
+    public class EmptyCartException : Exception, IBaseException
     {
-        public EmptyBasketException(string message = "Səbətiniz boşdur") : base(message)
+        public EmptyCartException(string message = "Səbətiniz boşdur") : base(message)
         {
 
         }
