@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Restaurant.Core.Entities;
 using Restaurant.DAL.DataContexts;
+using Restaurant.DAL.Localizers;
 using Restaurant.DAL.Repositories.Abstractions;
 using Restaurant.DAL.Repositories.Implementations;
 
@@ -23,6 +24,8 @@ namespace Restaurant.DAL
 
             _addRepositories(services);
             _addIdentity(services);
+            _addLocalizers(services);
+
 
             return services;
         }
@@ -49,6 +52,12 @@ namespace Restaurant.DAL
             services.AddScoped<IStatusRepository, StatusRepository>();
 
 
+        }
+
+        private static void _addLocalizers(IServiceCollection services)
+        {
+            
+            services.AddSingleton<ErrorLocalizer>();
         }
 
 

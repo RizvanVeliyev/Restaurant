@@ -13,7 +13,7 @@ namespace Restaurant.DAL.Localizers
 
         public ErrorLocalizer(IStringLocalizerFactory factory)
         {
-            _localizer = factory.Create("Errors", "MotorDoctor.Presentation");
+            _localizer = factory.Create("Errors", "Restaurant");
         }
 
         public string GetValue(string key)

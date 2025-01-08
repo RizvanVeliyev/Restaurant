@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Restaurant.BLL.Services.Abstractions;
 
 namespace Restaurant.BLL.Services.Implementations
 {
-    internal class CheckoutService
+    public class CheckoutService:ICheckoutService
     {
     }
 }

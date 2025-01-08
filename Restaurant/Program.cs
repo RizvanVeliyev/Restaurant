@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Mvc.Razor;
+using Restaurant.BLL;
 using Restaurant.DAL;
 namespace Restaurant
 {
@@ -8,8 +10,18 @@ namespace Restaurant
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+
+            builder.Services.AddHttpContextAccessor();
+
+
+            builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            //builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
+
             builder.Services.AddDalServices(builder.Configuration);
+            builder.Services.AddBusinessServices();
+
 
 
             var app = builder.Build();
