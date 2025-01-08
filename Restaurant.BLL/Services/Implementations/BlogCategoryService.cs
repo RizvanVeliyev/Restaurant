@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using Restaurant.BLL.Dtos.BlogCategoryDtos;
+using Restaurant.BLL.Dtos.CategoryDtos;
 using Restaurant.BLL.Exceptions;
 using Restaurant.BLL.Extensions;
 using Restaurant.BLL.Services.Abstractions;
@@ -81,6 +82,7 @@ namespace Restaurant.BLL.Services.Implementations
         public async Task<List<BlogCategoryGetDto>> GetAllAsync(Languages language = Languages.Azerbaijan)
         {
             LanguageHelper.CheckLanguageId(ref language);
+
             var blogCategories = await _repository.GetAll(x => x.Include(x => x.BlogCategoryDetails.
             Where(x => x.LanguageId == (int)language)).ThenInclude(x => x.Language).
             Include(x => x.Blogs)).ToListAsync();
@@ -103,10 +105,7 @@ namespace Restaurant.BLL.Services.Implementations
             return dto;
         }
 
-        public Task<List<BlogCategoryGetDto>> GetBlogBlogCategoriesAsync(Languages language = Languages.Azerbaijan)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         public Task<List<BlogCategoryGetDto>> GetBlogCategoriesAsync(Languages language = Languages.Azerbaijan)
         {

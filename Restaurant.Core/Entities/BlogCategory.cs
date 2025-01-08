@@ -6,6 +6,6 @@ namespace Restaurant.Core.Entities
     {
         public ICollection<BlogCategoryDetail> BlogCategoryDetails { get; set; } = [];
 
-        public ICollection<Blog> Blogs = [];
+        public ICollection<Blog> Blogs { get; set; } = [];
     }
 }
