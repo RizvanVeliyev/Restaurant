@@ -10,8 +10,6 @@
     <Folder Include="Constants\" />
     <Folder Include="Dtos\LanguageDtos\" />
     <Folder Include="Validators\" />
-    <Folder Include="UI\Dtos\" />
-    <Folder Include="UI\Services\" />
   </ItemGroup>
 
   <ItemGroup>

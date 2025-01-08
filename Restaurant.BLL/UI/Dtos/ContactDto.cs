@@ -1,8 +1,6 @@
-﻿using Restaurant.Core.Entities.Commons;
-
-namespace Restaurant.Core.Entities
+﻿namespace Restaurant.BLL.UI.Dtos
 {
-    public class Contact : BaseEntity
+    public class ContactDto
     {
         public string Name { get; set; } = null!;
         public string Email { get; set; } = null!;
