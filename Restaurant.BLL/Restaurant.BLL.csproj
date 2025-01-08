@@ -9,12 +9,20 @@
   <ItemGroup>
     <Folder Include="Constants\" />
     <Folder Include="Dtos\LanguageDtos\" />
-    <Folder Include="Validators\" />
+    <Folder Include="Validators\AvaiabletimeValidators\" />
+    <Folder Include="Validators\CheckoutValidators\" />
+    <Folder Include="Validators\ContactValidators\" />
+    <Folder Include="Validators\IngredientValidators\" />
+    <Folder Include="Validators\IngredientDetailValidators\" />
+    <Folder Include="Validators\SubscribeValidators\" />
+    <Folder Include="Validators\ReservationValidators\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="CloudinaryDotNet" Version="1.26.2" />
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.0" />
     <PackageReference Include="MailKit" Version="4.8.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
     <PackageReference Include="Microsoft.AspNetCore.Localization" Version="2.1.1" />
