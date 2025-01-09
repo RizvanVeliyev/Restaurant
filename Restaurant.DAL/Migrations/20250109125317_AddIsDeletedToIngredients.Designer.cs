@@ -12,8 +12,8 @@ using Restaurant.DAL.DataContexts;
 namespace Restaurant.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250108114752_INIT")]
-    partial class INIT
+    [Migration("20250109125317_AddIsDeletedToIngredients")]
+    partial class AddIsDeletedToIngredients
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -642,12 +642,10 @@ namespace Restaurant.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ProductDetailId")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductDetailId");
 
                     b.ToTable("Ingredients");
                 });
@@ -1125,7 +1123,7 @@ namespace Restaurant.DAL.Migrations
             modelBuilder.Entity("Restaurant.Core.Entities.Blog", b =>
                 {
                     b.HasOne("Restaurant.Core.Entities.BlogCategory", "BlogCategory")
-                        .WithMany()
+                        .WithMany("Blogs")
                         .HasForeignKey("BlogCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1247,13 +1245,6 @@ namespace Restaurant.DAL.Migrations
                     b.Navigation("AppUser");
 
                     b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("Restaurant.Core.Entities.Ingredient", b =>
-                {
-                    b.HasOne("Restaurant.Core.Entities.ProductDetail", null)
-                        .WithMany("Ingredients")
-                        .HasForeignKey("ProductDetailId");
                 });
 
             modelBuilder.Entity("Restaurant.Core.Entities.IngredientDetail", b =>
@@ -1409,6 +1400,8 @@ namespace Restaurant.DAL.Migrations
             modelBuilder.Entity("Restaurant.Core.Entities.BlogCategory", b =>
                 {
                     b.Navigation("BlogCategoryDetails");
+
+                    b.Navigation("Blogs");
                 });
 
             modelBuilder.Entity("Restaurant.Core.Entities.Cart", b =>
@@ -1445,11 +1438,6 @@ namespace Restaurant.DAL.Migrations
                     b.Navigation("ProductDetails");
 
                     b.Navigation("ProductImages");
-                });
-
-            modelBuilder.Entity("Restaurant.Core.Entities.ProductDetail", b =>
-                {
-                    b.Navigation("Ingredients");
                 });
 
             modelBuilder.Entity("Restaurant.Core.Entities.Reservation", b =>

@@ -6,5 +6,7 @@ namespace Restaurant.Core.Entities
     {
         public ICollection<IngredientDetail> IngredientDetails { get; set; } = [];
         public ICollection<Product> Products { get; set; } = [];
+
+        public bool IsDeleted { get; set; } = false;
     }
 }

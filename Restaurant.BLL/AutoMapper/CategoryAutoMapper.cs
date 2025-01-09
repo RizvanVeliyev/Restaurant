@@ -12,11 +12,10 @@ namespace Restaurant.BLL.AutoMapper
             CreateMap<Category, CategoryGetDto>()
                                 .ForMember(x => x.Name, x => x.MapFrom(x => x.CategoryDetails.FirstOrDefault() != null ? x.CategoryDetails.FirstOrDefault()!.Name : string.Empty));
 
-            
-                ;
+            CreateMap<Category, CategoryUpdateDto>().ReverseMap();
 
-            CreateMap<Category, CategoryGetDto>()
-                .ForMember(x => x.Name, x => x.MapFrom(x => x.CategoryDetails.FirstOrDefault() != null ? x.CategoryDetails.FirstOrDefault()!.Name : string.Empty));
+            
+
         }
     }
 }
