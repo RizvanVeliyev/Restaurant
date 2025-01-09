@@ -107,9 +107,13 @@ namespace Restaurant.BLL.Services.Implementations
 
        
 
-        public Task<List<BlogCategoryGetDto>> GetBlogCategoriesAsync(Languages language = Languages.Azerbaijan)
+        public async Task<List<BlogCategoryGetDto>> GetBlogCategoriesAsync(Languages language = Languages.Azerbaijan)
         {
-            throw new NotImplementedException();
+            var blogCategories = await _repository.GetAll(_getIncludeFunc(Languages.Azerbaijan)).ToListAsync();
+
+            var dtos = _mapper.Map<List<BlogCategoryGetDto>>(blogCategories);
+
+            return dtos;
         }
 
         public async Task<BlogCategoryCreateDto> GetCreateDtoAsync()

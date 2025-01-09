@@ -7,5 +7,7 @@ namespace Restaurant.Core.Entities
         public ICollection<BlogCategoryDetail> BlogCategoryDetails { get; set; } = [];
 
         public ICollection<Blog> Blogs { get; set; } = [];
+
+        public bool IsDeleted { get; set; } = false;
     }
 }
