@@ -28,29 +28,29 @@
                     <nav>
                         <ul>
                             <li>
-                                <a href="/home.html"> Home </a>
+                                <a asp-controller="Home" asp-action="Index"> Home </a>
                             </li>
                             <li>
-                                <a href="/menu.html"> Menu </a>
+                                <a asp-controller="Menu" asp-action="Index"> Menu </a>
                             </li>
                             <li>
-                                <a href="/reservation.html"> Reservation </a>
+                                <a asp-controller="Reservation" asp-action="Index"> Reservation </a>
                             </li>
                             <li>
-                                <a href="/blog.html"> Blog </a>
+                                <a asp-controller="Blog" asp-action="Index"> Blog </a>
                             </li>
                             <li>
-                                <a href="/shop.html"> Shop </a>
+                                <a asp-controller="Shop" asp-action="Index"> Shop </a>
                             </li>
                             <li>
-                                <a href="/contact.html"> Contact </a>
+                                <a asp-controller="Contact" asp-action="Index"> Contact </a>
                             </li>
                         </ul>
                     </nav>
                 </div>
                 <div class="header-right">
                     <div class="header-cart">
-                        <a class="headercartbtn" href="">
+                        <a class="headercartbtn" asp-controller="Cart">
                             <span class="cart-btn-block cart-btn-icon">
                                 <i class="fa-solid fa-bag-shopping"></i>
                             </span>
@@ -70,8 +70,8 @@
                         </a>
                         <!-- Dropdown -->
                         <div class="log-reg">
-                            <a href="/login.html" class="btn-login">LogIn</a>
-                            <a href="/register.html" class="btn-register">Register</a>
+                            <a asp-controller="Account" asp-action="login" class="btn-login">LogIn</a>
+                            <a asp-controller="Account" asp-action="register" class="btn-register">Register</a>
                         </div>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                         <div class="input-group stylish-input-group">
                             <input type="text" class="form-control" placeholder="Your@mail.com" />
                             <div class="btn-default">
-                                <button type="submit">subscribe</button>
+                                <button type="submit" asp-controller="Home" asp-action="AddSubscriber">subscribe</button>
                             </div>
                         </div>
                         <div class="dn__newsletter-message"></div>
@@ -122,31 +122,41 @@
                         <div class="col-sm-12 col-md-2 col-lg-1">
                             <div class="f-nav">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="menu–stretched.html">menu</a></li>
                                     <li>
-                                        <a href="reservation-form-and-content.html">Reservation</a>
+                                        <a asp-controller="Home" asp-action="Index"> Home </a>
                                     </li>
-                                    <li><a href="blog-main.html">blog</a></li>
-                                    <li><a href="full-shop-width.html">Shop</a></li>
-                                    <li><a href="contact-google-map.html">Contact</a></li>
+                                    <li>
+                                        <a asp-controller="Menu" asp-action="Index"> Menu </a>
+                                    </li>
+                                    <li>
+                                        <a asp-controller="Reservation" asp-action="Index"> Reservation </a>
+                                    </li>
+                                    <li>
+                                        <a asp-controller="Blog" asp-action="Index"> Blog </a>
+                                    </li>
+                                    <li>
+                                        <a asp-controller="Shop" asp-action="Index"> Shop </a>
+                                    </li>
+                                    <li>
+                                        <a asp-controller="Contact" asp-action="Index"> Contact </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-4 col-lg-4">
                             <div class="f-social-follower">
-                                <a class="btn btn-default" href="reservation-form.html" role="button">online reservation</a>
+                                <a class="btn btn-default" asp-controller="Reservation" asp-action="Index" role="button">online reservation</a>
                                 <div class="f-follower">
                                     <h6>follow</h6>
                                     <ul>
                                         <li>
-                                            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                            <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                                            <a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
                                         </li>
                                         <li>
-                                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                                            <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
                                         </li>
                                         <li>
                                             <a href="#"><i class="fa fa-bell" aria-hidden="true"></i></a>

@@ -1,4 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Restaurant.BLL.Dtos.SubscribeDtos;
+using Restaurant.BLL.Services.Abstractions;
+using Restaurant.BLL.UI.Services.Abstractions;
+using Restaurant.Core.Enums;
+using Restaurant.Extensions;
 using Restaurant.Models;
 using System.Diagnostics;
 
@@ -6,16 +11,33 @@ namespace Restaurant.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IHomeService _homeService;
+        private readonly ILanguageService _languageService;
+        private readonly ISubscribeService _subscribeService;
+        private readonly Languages _language;
+        public HomeController(IHomeService homeService, ILanguageService languageService, ISubscribeService subscribeService)
         {
-            _logger = logger;
+            _homeService = homeService;
+            _languageService = languageService;
+            _subscribeService = subscribeService;
+            _language = _languageService.RenderSelectedLanguage();
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+
+            var dto = await _homeService.GetHomeDtoAsync(_language);
+
+            return View(dto);
+        }
+
+        public IActionResult SelectCulture(string culture)
+        {
+            _languageService.SelectCulture(culture);
+
+            string returnUrl = Request.GetReturnUrl();
+
+            return Redirect(returnUrl);
         }
 
         public IActionResult Privacy()
@@ -27,6 +49,16 @@ namespace Restaurant.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+
+        public async Task<IActionResult> AddSubscriber(SubscribeCreateDto dto)
+        {
+            var result = await _subscribeService.CreateAsync(dto, ModelState);
+
+            string returnUrl = Request.GetReturnUrl();
+
+            return Redirect(returnUrl);
         }
     }
 }
