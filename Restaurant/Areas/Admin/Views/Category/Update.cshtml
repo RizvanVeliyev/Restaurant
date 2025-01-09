@@ -1,0 +1,58 @@
+﻿@model CategoryUpdateDto
+<div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <p class="card-description">
+                Kategoriya dəyişdir
+            </p>
+            <form method="post" class="forms-sample" enctype="multipart/form-data">
+
+                <div class="text-danger" asp-validation-summary="All"></div>
+
+                <div class="form-group">
+
+                    <input asp-for="@Model.CategoryDetails[0].LanguageId" value="1" type="hidden" />
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Azərbaycanca ad</label>
+                        <input class="form-control" required asp-for="@Model.CategoryDetails[0].Name" placeholder="Ad daxil edin">
+                        <span asp-validation-for="@Model.CategoryDetails[0].Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <hr />
+                <br />
+                <br />
+
+                <div class="form-group">
+
+                    <input asp-for="@Model.CategoryDetails[1].LanguageId" value="2" type="hidden" />
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">İngiliscə ad</label>
+                        <input class="form-control" required asp-for="@Model.CategoryDetails[1].Name" placeholder="Ad daxil edin">
+                        <span asp-validation-for="@Model.CategoryDetails[1].Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <hr />
+                <br />
+                <br />
+
+                <div class="form-group">
+
+                    <input asp-for="@Model.CategoryDetails[2].LanguageId" value="3" type="hidden" />
+                    <div class="form-group">
+                        <label for="exampleInputUsername1">Rusca ad</label>
+                        <input class="form-control" required asp-for="@Model.CategoryDetails[2].Name" placeholder="Ad daxil edin">
+                        <span asp-validation-for="@Model.CategoryDetails[2].Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <hr />
+                <br />
+                <br />
+                <button type="submit" class="btn btn-primary mr-2">Dəyişdir</button>
+                <a class="btn btn-light" asp-action="Index">Ləğv et</a>
+            </form>
+        </div>
+    </div>
+</div>

@@ -6,7 +6,7 @@ using Restaurant.BLL.Services.Abstractions;
 namespace Restaurant.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class OrderController : Controller
     {
         private readonly IOrderService _service;
