@@ -17,8 +17,8 @@ namespace Restaurant.DAL.Configurations
                   .IsRequired()
                   .HasMaxLength(15);
 
-            builder.ToTable(t => t.HasCheckConstraint("CK_Contact_PhoneNumber", "PhoneNumber LIKE '+%' AND LEN(PhoneNumber) >= 10 AND LEN(PhoneNumber) <= 15"));
-
+            //builder.ToTable(t => t.HasCheckConstraint("CK_Contact_PhoneNumber", "PhoneNumber LIKE '+%' AND LEN(PhoneNumber) >= 10 AND LEN(PhoneNumber) <= 15"));
+            //contact yox reservation olmalidi sehv gedib
         }
     }
 }
