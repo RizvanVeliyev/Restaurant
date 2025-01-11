@@ -38,7 +38,6 @@ namespace Restaurant.DAL
             services.AddScoped<IBlogRepository, BlogRepository>();
             services.AddScoped<IBlogCategoryRepository, BlogCategoryRepository>();
             services.AddScoped<ICartItemRepository, CartItemRepository>();
-            services.AddScoped<ICartRepository, CartRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICheckoutRepository, CheckoutRepository>();
             services.AddScoped<ICommentRepository, CommentRepository>();
@@ -60,6 +59,7 @@ namespace Restaurant.DAL
             services.AddSingleton<ErrorLocalizer>();
             services.AddSingleton<ContactLocalizer>();
             services.AddSingleton<OrderLocalizer>();
+            services.AddSingleton<CartLocalizer>();
 
         }
 

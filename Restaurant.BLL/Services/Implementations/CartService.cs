@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using Restaurant.BLL.Dtos.CartDtos;
 using Restaurant.BLL.Dtos.CartItemDtos;
 using Restaurant.BLL.Exceptions;
 using Restaurant.BLL.Extensions;

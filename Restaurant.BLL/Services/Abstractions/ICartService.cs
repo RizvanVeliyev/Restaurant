@@ -1,10 +1,5 @@
-﻿using Restaurant.BLL.Dtos.CartDtos;
+﻿using Restaurant.BLL.Dtos.CartItemDtos;
 using Restaurant.Core.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Restaurant.BLL.Services.Abstractions
 {

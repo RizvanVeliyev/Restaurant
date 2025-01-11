@@ -1,4 +1,4 @@
-﻿using Restaurant.BLL.Dtos.CartDtos;
+﻿using Restaurant.BLL.Dtos.CartItemDtos;
 
 namespace Restaurant.BLL.UI.Services.Abstractions
 {
