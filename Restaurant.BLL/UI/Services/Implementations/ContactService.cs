@@ -15,10 +15,19 @@ namespace Restaurant.BLL.UI.Services.Implementations
 
         }
 
-        public Task<ContactDto> GetContactDtoAsync(Languages language = Languages.Azerbaijan)
+        public async Task<ContactDto> GetContactDtoAsync(Languages language = Languages.Azerbaijan)
         {
-            throw new NotImplementedException();
+            var dto = new ContactDto
+            {
+                Name = "",
+                Email = "",
+                Phone = "",
+                Message = "",
+            };
+
+            return await Task.FromResult(dto);
         }
+
 
         public async Task<bool> SendEmailAsync(ContactDto dto, ModelStateDictionary ModelState)
         {

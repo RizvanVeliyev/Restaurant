@@ -58,6 +58,8 @@ namespace Restaurant.DAL
         {
             
             services.AddSingleton<ErrorLocalizer>();
+            services.AddSingleton<ContactLocalizer>();
+
         }
 
 

@@ -22,7 +22,7 @@ namespace Restaurant.DAL.Configurations
                    .IsRequired()
                    .HasMaxLength(15);
 
-            builder.ToTable(t => t.HasCheckConstraint("CK_Contact_Phone", "Phone LIKE '+%' AND LEN(Phone) >= 10 AND LEN(Phone) <= 15"));
+            //builder.ToTable(t => t.HasCheckConstraint("CK_Contact_Phone", "Phone LIKE '+%' AND LEN(Phone) >= 10 AND LEN(Phone) <= 15"));
 
             builder.Property(c => c.Message)
                    .IsRequired()
