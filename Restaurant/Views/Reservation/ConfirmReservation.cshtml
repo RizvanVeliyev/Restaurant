@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ReservationDto
+@{
     Layout = null;
 }
 <style>
@@ -56,43 +57,44 @@
     }
 </style>
 
+
 <div class="email-container">
     <div class="email-header">
         <h1>Reservation Confirmation</h1>
     </div>
     <div class="email-body">
-        <h2>Dear [User Name],</h2>
+        <h2>Dear @Model.Name,</h2>
         <p>Thank you for your reservation. Below are the details of your booking:</p>
         <div class="reservation-details">
             <table>
                 <tr>
                     <th>Reservation Number</th>
-                    <td>[Reservation Number]</td>
+                    <td>@Model.ReservationNumber</td>
                 </tr>
                 <tr>
                     <th>Date</th>
-                    <td>[Reservation Date]</td>
+                    <td>@Model.Date.ToShortDateString()</td>
                 </tr>
                 <tr>
                     <th>Time</th>
-                    <td>[Reservation Time]</td>
-                </tr>
-                <tr>
-                    <th>Table</th>
-                    <td>[Reservation Table]</td>
+                    <td>@Model.Time</td>
                 </tr>
                 <tr>
                     <th>Guests</th>
-                    <td>[Number of Guests]</td>
+                    <td>@Model.NumberOfPeople</td>
+                </tr>
+                <tr>
+                    <th>Products</th>
+                    <td>
+                        <ul>
+                            @foreach (var product in Model.Products)
+                            {
+                                <li>@product.Name</li>
+                            }
+                        </ul>
+                    </td>
                 </tr>
             </table>
         </div>
-        <p>If you have any questions or need to make changes to your reservation, please feel free to contact us.</p>
-        <p>We look forward to serving you!</p>
-        <p>Best regards,<br>The Dannys Team</p>
-    </div>
-    <div class="email-footer">
-        <p>&copy; 2003 Dannys Restaurant. All rights reserved.</p>
     </div>
 </div>
-

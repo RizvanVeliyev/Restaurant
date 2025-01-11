@@ -21,17 +21,30 @@ namespace Restaurant.Controllers
         [HttpPost]
         public async Task<IActionResult> ReserveTable(ReservationCreateDto dto)
         {
-            var result = await _service.CreateAsync(dto, ModelState);
-
-            if (result is false)
+            if (!ModelState.IsValid)
                 return View(dto);
 
-            return RedirectToAction(nameof(ConfirmReservation));
+            var result = await _service.CreateAsync(dto, ModelState);
+
+            if (!result)
+                return View(dto);
+
+            // Ən son rezervasiyanı əldə et
+            var latestReservation = await _service.GetLatestReservationAsync(dto.Name, dto.PhoneNumber);
+
+            if (latestReservation == null)
+                return RedirectToAction(nameof(ReserveTable)); // Əgər tapılmadısa, rezervasiya səhifəsinə geri qayıt
+
+            return RedirectToAction(nameof(ConfirmReservation), new { id = latestReservation.ReservationNumber });
         }
 
-        public IActionResult ConfirmReservation()
+
+        public async Task<IActionResult> ConfirmReservation(int id)
         {
-            return View();
+            var reservation = await _service.GetReservationAsync(id);
+
+            // Təsdiq səhifəsinə göndərilir
+            return View(reservation);
         }
     }
 }
