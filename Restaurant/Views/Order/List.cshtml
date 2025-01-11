@@ -1,211 +1,72 @@
-﻿<main class="order">
-    <section id="News-banner">
+﻿@model List<OrderGetDto>
+@inject OrderLocalizer _localizer
 
+<main class="order">
+    <section id="News-banner">
         <div class="banner-part">
             <div class="banner-content">
                 <h3>Danny's</h3>
-                <h1 class="bannerTitle">Orders</h1>
+                <h1>@_localizer.GetValue("Orders")</h1>
                 <h3>Restaurant</h3>
             </div>
             <div class="overlay"></div>
         </div>
     </section>
-
     <div class="content">
         <div class="container">
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <div class="accordion-header" id="headingOne">
-                        <div class="accordion-button collapsed"
-                             type="button"
-                             data-bs-toggle="collapse"
-                             data-bs-target="#collapse1"
-                             aria-expanded="true"
-                             aria-controls="collapse1">
-                            <a>
-                                <p>[Order No]</p>
-                                <p>[Ordered time]</p>
-                                <p>[Order Items]</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div id="collapse1"
-                         class="accordion-collapse collapse "
-                         aria-labelledby="headingOne"
-                         data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Image</th>
-                                            <th>Name</th>
-                                            <th>Count</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+            @if (!Model.Any())
+            {
+                <p>@_localizer.GetValue("NoOrdersFound")</p>
+            }
+            else
+            {
+                <div class="accordion" id="accordionExample">
+                    @foreach (var order in Model)
+                    {
+                        <div class="accordion-item">
+                            <div class="accordion-header" id="heading@order.Id">
+                                <div class="accordion-button collapsed"
+                                     type="button"
+                                     data-bs-toggle="collapse"
+                                     data-bs-target="#collapse@order.Id"
+                                     aria-expanded="false"
+                                     aria-controls="collapse@order.Id">
+                                    <p>@_localizer.GetValue("OrderNo"): @order.Id</p>
+                                    <p>@_localizer.GetValue("OrderedTime"): @order.CreatedAt</p>
+                                    <p>@_localizer.GetValue("OrderItemsCount"): @order.OrderItems.Count</p>
+                                </div>
+                            </div>
+                            <div id="collapse@order.Id" class="accordion-collapse collapse" aria-labelledby="heading@order.Id">
+                                <div class="accordion-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>@_localizer.GetValue("ProductName")</th>
+                                                    <th>@_localizer.GetValue("Count")</th>
+                                                    <th>@_localizer.GetValue("Price")</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in order.OrderItems)
+                                                {
+                                                    <tr>
+                                                        <td>@item.Id</td>
+                                                        <td>@item.Product.Name</td>
+                                                        <td>@item.Count</td>
+                                                        <td>₼@item.TotalPrice</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                 </div>
-
-
-                <div class="accordion-item">
-                    <div class="accordion-header" id="headingAsiman">
-                        <div class="accordion-button collapsed"
-                             type="button"
-                             data-bs-toggle="collapse"
-                             data-bs-target="#collapse2"
-                             aria-expanded="true"
-                             aria-controls="collapse2">
-                            <a>
-                                <p>[Order No]</p>
-                                <p>[Ordered time]</p>
-                                <p>[Order Items]</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div id="collapse2"
-                         class="accordion-collapse collapse "
-                         aria-labelledby="headingAsiman"
-                         data-bs-parent="#accordionExample">
-                        <div class="accordion-body ">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Image</th>
-                                            <th>Name</th>
-                                            <th>Count</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </main>
-

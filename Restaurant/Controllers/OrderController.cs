@@ -41,7 +41,7 @@ namespace Restaurant.Controllers
 
             return RedirectToAction("Index", "Shop");
         }
-        [Authorize]
+        //[Authorize]
         public async Task<IActionResult> List()
         {
             var result = await _orderService.GetUserOrdersAsync(_language);
