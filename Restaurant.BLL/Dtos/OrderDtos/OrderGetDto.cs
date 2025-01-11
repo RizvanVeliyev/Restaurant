@@ -11,6 +11,12 @@ namespace Restaurant.BLL.Dtos.OrderDtos
         public string AppUserId { get; set; } = null!;
         public List<OrderItemGetDto> OrderItems { get; set; } = [];
         public decimal TotalPrice { get; set; }
+        public string City { get; set; } = null!;
+        public string? Apartment { get; set; }
+        public string? CompanyName { get; set; }
+        public string Street { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
+        public string Email { get; set; } = null!;
         public StatusGetDto Status { get; set; } = null!;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public UserGetDto AppUser { get; set; } = null!;

@@ -1,210 +1,106 @@
-﻿<main class="order">
-    <section id="News-banner">
+﻿@using Restaurant.BLL.Dtos.OrderDtos
+@model OrderCreateDto
+@inject OrderLocalizer _localizer
 
+<main>
+    <section id="News-banner">
         <div class="banner-part">
             <div class="banner-content">
-                <h3>Danny's</h3>
-                <h1 class="bannerTitle">Orders</h1>
                 <h3>Restaurant</h3>
+                <h1>Shop</h1>
+                <p class="yellow">Danny's</p>
             </div>
             <div class="overlay"></div>
         </div>
     </section>
-
-    <div class="content">
-        <div class="container">
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <div class="accordion-header" id="headingOne">
-                        <div class="accordion-button collapsed"
-                             type="button"
-                             data-bs-toggle="collapse"
-                             data-bs-target="#collapse1"
-                             aria-expanded="true"
-                             aria-controls="collapse1">
-                            <a>
-                                <p>[Order No]</p>
-                                <p>[Ordered time]</p>
-                                <p>[Order Items]</p>
-                            </a>
-                        </div>
-                    </div>
-                    <div id="collapse1"
-                         class="accordion-collapse collapse "
-                         aria-labelledby="headingOne"
-                         data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Image</th>
-                                            <th>Name</th>
-                                            <th>Count</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+    <section id="Checkout">
+        <form asp-action="Index" asp-controller="Order" method="post">
+            <div class="row">
+                <div class="col-12 col-md-12 col-lg-12 content-primary">
+                    <div class="col2-set" id="customer_details">
+                        <div class="col-1">
+                            <div class="woocommerce-billing-fields">
+                                <h3>@_localizer.GetValue("BillingDetails")</h3>
+                                <div class="field">
+                                    <p style="flex: 0 0 50%; max-width: 50%"
+                                       class="form-row form-row-first validate-required">
+                                        <label for="Name">@_localizer.GetValue("FirstName")&nbsp;<abbr class="required" title="required">*</abbr></label>
+                                        <span class="woocommerce-input-wrapper">
+                                            <input type="text" asp-for="Name" class="input-text" required />
+                                            <span asp-validation-for="Name" class="text-danger"></span>
+                                        </span>
+                                    </p>
+                                    <p style="flex: 0 0 50%; max-width: 50%"
+                                       class="form-row form-row-last validate-required">
+                                        <label for="Surname">@_localizer.GetValue("LastName")&nbsp;<abbr class="required" title="required">*</abbr></label>
+                                        <span class="woocommerce-input-wrapper">
+                                            <input type="text" asp-for="Surname" class="input-text" required />
+                                            <span asp-validation-for="Surname" class="text-danger"></span>
+                                        </span>
+                                    </p>
+                                    <p class="form-row form-row-wide">
+                                        <label for="CompanyName">@_localizer.GetValue("CompanyName")&nbsp;<span class="optional">(optional)</span></label>
+                                        <span class="woocommerce-input-wrapper">
+                                            <input type="text" asp-for="CompanyName" class="input-text" />
+                                        </span>
+                                    </p>
+                                    <p class="form-row address-field validate-required form-row-wide">
+                                        <label for="Street">@_localizer.GetValue("StreetAddress")&nbsp;<abbr class="required" title="required">*</abbr></label>
+                                        <span class="woocommerce-input-wrapper">
+                                            <input type="text" asp-for="Street" class="input-text" required />
+                                            <span asp-validation-for="Street" class="text-danger"></span>
+                                        </span>
+                                    </p>
+                                    <p class="form-row address-field form-row-wide">
+                                        <label for="Apartment">@_localizer.GetValue("Apartment")&nbsp;<span class="optional">(optional)</span></label>
+                                        <span class="woocommerce-input-wrapper">
+                                            <input type="text" asp-for="Apartment" class="input-text" />
+                                        </span>
+                                    </p>
+                                    <p class="form-row address-field validate-required form-row-wide">
+                                        <label for="City">@_localizer.GetValue("City")&nbsp;<abbr class="required" title="required">*</abbr></label>
+                                        <span class="woocommerce-input-wrapper">
+                                            <input type="text" asp-for="City" class="input-text" required />
+                                            <span asp-validation-for="City" class="text-danger"></span>
+                                        </span>
+                                    </p>
+                                    <p style="flex: 0 0 50%; max-width: 50%"
+                                       class="form-row form-row-wide validate-required validate-phone">
+                                        <label for="PhoneNumber">@_localizer.GetValue("Phone")&nbsp;<abbr class="required" title="required">*</abbr></label>
+                                        <span class="woocommerce-input-wrapper">
+                                            <input type="tel" asp-for="PhoneNumber" class="input-text" required />
+                                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                        </span>
+                                    </p>
+                                    <p style="flex: 0 0 50%; max-width: 50%"
+                                       class="form-row form-row-wide validate-required validate-email">
+                                        <label for="Email">@_localizer.GetValue("EmailAddress")&nbsp;<abbr class="required" title="required">*</abbr></label>
+                                        <span class="woocommerce-input-wrapper">
+                                            <input type="email" asp-for="Email" class="input-text" required />
+                                            <span asp-validation-for="Email" class="text-danger"></span>
+                                        </span>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-
-                <div class="accordion-item">
-                    <div class="accordion-header" id="headingAsiman">
-                        <div class="accordion-button collapsed"
-                             type="button"
-                             data-bs-toggle="collapse"
-                             data-bs-target="#collapse2"
-                             aria-expanded="true"
-                             aria-controls="collapse2">
-                            <a>
-                                <p>[Order No]</p>
-                                <p>[Ordered time]</p>
-                                <p>[Order Items]</p>
-                            </a>
+                    <div class="order-review-wrapper">
+                        <h3>@_localizer.GetValue("OrderReview")</h3>
+                        <div>
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                <p>@item.Product.Name × @item.Count - @* ₼@item.TotalPrice *@</p>
+                            }
                         </div>
-                    </div>
-                    <div id="collapse2"
-                         class="accordion-collapse collapse "
-                         aria-labelledby="headingAsiman"
-                         data-bs-parent="#accordionExample">
-                        <div class="accordion-body ">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Image</th>
-                                            <th>Name</th>
-                                            <th>Count</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                        <tr class="orderRow">
-                                            <td>1</td>
-                                            <td>
-                                                <a href="/shop-detail.html">
-
-                                                    <img class="orderImg"
-                                                         src="~/assets/images/menu/img_10.jpg"
-                                                         alt="" />
-                                                </a>
-                                            </td>
-                                            <td><a href="/shop-detail.html">WHITEBAIT & DILL MAYO</a></td>
-                                            <td>1</td>
-                                            <td>$ 12</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div>
+                            <p>@_localizer.GetValue("Total") - ₼@(Model.OrderItems.Sum(x => x.Count*x.Product.Price))</p>
+                        </div>
+                        <div id="payment" class="woocommerce-checkout-payment">
+                            <button type="submit" class="button alt">@_localizer.GetValue("PlaceOrder")</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </form>
+    </section>
 </main>
