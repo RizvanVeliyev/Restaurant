@@ -181,7 +181,7 @@ namespace Restaurant.BLL.Services.Implementations
                                x => x.Include(x => x.Product)
                                           .ThenInclude(x => x.ProductDetails.Where(x => x.LanguageId == (int)language))
                                           .Include(x => x.Product.Category.CategoryDetails.Where(x => x.LanguageId == (int)language))
-                                          .Include(x => x.Product.ProductImages)).ToListAsync();
+                                          .Include(x => x.Product.ProductImages)).ToListAsync() ?? new List<CartItem>();
 
                 var dtos = _mapper.Map<List<CartItemGetDto>>(cartItems);
 

@@ -3,6 +3,9 @@
 @{
     var basket = await _layoutService.GetCartAsync();
 }
+@{
+    Layout = "_Layout"; 
+}
 
 
 <main class="cart">
@@ -37,15 +40,15 @@
                         {
                             <tr>
                                 <td asp-action="RemoveToBasket" asp-controller="Basket" asp-route-id="@item.ProductId" class="remove-basket removeToBasketButton" class="product-remove">
-                                    <a href="#" class="remove">X</a>
+                                    <a  class="remove">X</a>
                                 </td>
                                 <td class="product-thumbnail">
-                                    <a class="imageCol" href="#">
+                                    <a class="imageCol" >
                                         <img class="img-responsive" src="@item.Product.MainImagePath" alt="Product" />
                                     </a>
                                 </td>
                                 <td class="product-name" data-title="Product">
-                                    <a asp-action="Detail" asp-controller="Shop" asp-route-id="@item.Product.Id" href="#">@item.Product.Name</a>
+                                    <a asp-action="Detail" asp-controller="Shop" asp-route-id="@item.Product.Id" >@item.Product.Name</a>
                                 </td>
                                 <td class="product-price" data-title="Price">
                                     <span>₼@item.Product.Price</span>
@@ -85,7 +88,7 @@
                                 </div>
 
                                 <div class="update-cart">
-                                    <a href="#" class="btn btn-default">Update Cart</a>
+                                    <a asp-action="GetCartSection" asp-controller="Cart" class="btn btn-default">Update Cart</a>
                                 </div>
                             </td>
                         </tr>

@@ -33,7 +33,7 @@
                     </td>
                     <td class="right-side-wishlist" style="display:flex; justify-content:space-around; text-align:center;">
                         <div class="product-price" style="width:200px">
-                                <span>₼<span class="productSizePrice">@cartItem.Product.Price</span></span>
+                            <span>₼<span class="productSizePrice">@cartItem.Product.Price</span></span>
                         </div>
 
                         <div class="counter-container" style="min-width:200px;display:flex;justify-content:space-around">
@@ -69,7 +69,7 @@
                 <!-- Subtotal -->
                 <div class="totals-item">
                     <span class="label">@_localizer.GetValue("Discount")</span>
-                    <span class="value">₼@(Model.Subtotal-Model.Discount)</span>
+                    <span class="value">₼@(Model.Subtotal - Model.Discount)</span>
                 </div>
 
                 <!-- Total -->
@@ -128,3 +128,4 @@
     }
     renderCartSection();
 </script>
+

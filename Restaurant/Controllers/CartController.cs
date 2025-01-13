@@ -25,8 +25,8 @@ namespace Restaurant.Controllers
         }
         public async Task<IActionResult> GetCartSection()
         {
-            var basket = await _service.GetCartAsync(_language);
-            return PartialView("_basketSectionPartial", basket);
+            var cart = await _service.GetCartAsync(_language);
+            return PartialView("_cartSectionPartial", cart);
         }
         public async Task<IActionResult> RemoveToCart(int id)
         {
@@ -46,7 +46,7 @@ namespace Restaurant.Controllers
         public IActionResult RedirectForCart()
         {
             _languageService.RenderSelectedLanguage();
-            return PartialView("_basketModalPartial");
+            return PartialView("_cartModalPartial");
         }
 
         public async Task<IActionResult> DecreaseToCart(int id)
