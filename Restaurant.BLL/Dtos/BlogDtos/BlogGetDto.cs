@@ -1,4 +1,6 @@
 ﻿using Restaurant.BLL.Abstractions.Dtos;
+using Restaurant.BLL.Dtos.BlogCategoryDtos;
+using Restaurant.BLL.Dtos.CategoryDtos;
 
 namespace Restaurant.BLL.Dtos.BlogDtos
 {
@@ -9,6 +11,7 @@ namespace Restaurant.BLL.Dtos.BlogDtos
         public string Description { get; set; } = null!;
         public string Author { get; set; } = null!;
         //public BlogCategoryGetDto Category { get; set; } = null!;
+        public List<BlogCategoryGetDto> BlogCategories { get; set; } = null!;
 
         public string ImagePath { get; set; } = null!;
         public List<string> ImagePaths { get; set; } = [];

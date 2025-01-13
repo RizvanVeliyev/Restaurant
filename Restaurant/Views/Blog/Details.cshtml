@@ -1,4 +1,7 @@
-﻿<main class="blog-detail">
+﻿@model BlogGetDto
+@inject BlogLocalizer _localizer
+
+<main class="blog-detail">
     <section id="News-banner">
         <div class="banner-part">
             <div class="banner-content">
@@ -18,38 +21,21 @@
                 <div class="col-12 col-md-12 col-lg-8">
                     <div class="left-part">
                         <div class="detial-header">
-                            <h2>SPECIAL DEAL IF YOU OREDER 3+ PIZZA’S</h2>
+                            <h2>@Model.Name</h2>
                             <div class="detail-meta">
-                                <p>JUNE 15, 2016 by <a href="#">MARIUS H </a>in PHOTOGRAPHY</p>
+                                <p>JUNE 15, 2016 by <a href="#">@Model.Author </a>in PHOTOGRAPHY</p>
                             </div>
                         </div>
                         <div class="detail-img">
-                            <a href=""><img src="/assets/images/blog/postimg_04.jpg" alt=""></a>
+                            <a href=""><img src="@Model.ImagePath" alt=""></a>
                         </div>
                         <div class="detail-content">
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet rutrum
-                                lorem. Donec non dolor lacus. Fusce semper, augue nec mollis molestie, lacus diam
-                                venenatis ligula, et bibendum massa nunc bibendum nisl. Etiam leo nunc, euismod non
-                                dui at, mollis vehicula velit. Maecenas sagittis arcu turpis, a consequat ex dictum
-                                tristique. Phasellus felis eros, bibendum vel ex sit amet, congue porttitor est.
-                                Pellentesque tempus risus sed finibus aliquam. Pellentesque finibus, quam lobortis
-                                condimentum dictum, enim quam porta eros, sit amet tincidunt enim orci vel diam. Nam
-                                et blandit risus. Cras ultrices ultrices ultricies. Ut at semper ligula. Ut in
-                                ultricies lorem. Pellentesque ac nibh blandit, hendrerit ipsum eu, tempor sem.
-                                Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-                                Curae; Mauris volutpat orci in porta volutpat.
+                               @Model.Description
                             </p>
                             <p>
-                                Quisque placerat risus non ornare posuere. Cras pretium volutpat pulvinar. Morbi
-                                imperdiet lectus vitae lorem semper, non iaculis nulla finibus. Suspendisse iaculis
-                                orci enim, ut posuere magna sodales ut. Duis imperdiet lorem vel orci consectetur,
-                                ut interdum diam vestibulum. Vestibulum orci sem, tincidunt sit amet venenatis a,
-                                pretium et odio. Phasellus tempus dignissim aliquet. Praesent pellentesque dictum
-                                ligula eget sodales. Cras in purus justo. Sed orci elit, scelerisque sit amet
-                                pharetra in, pretium eget erat. Aenean efficitur diam odio, ut mollis arcu dictum
-                                vel. Nam cursus posuere neque, placerat scelerisque risus tincidunt ac. Curabitur
-                                massa orci, luctus ac ligula eu, vestibulum
+                                @Model.Description
+
                             </p>
 
                         </div>
