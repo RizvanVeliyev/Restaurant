@@ -35,17 +35,17 @@ namespace Restaurant.Controllers
             return View(blogDto);
         }
 
-        public async Task<IActionResult> Detail(string? slug, int id)
+        public async Task<IActionResult> Details(string? slug, int id)
         {
             var blog = await _blogService.GetAsync(id, _language);
-            var comments = await _commentService.GetProductCommentsAsync(id);
-            var isAllowComment = await _commentService.CheckIsAllowCommentAsync(id);
+            //var comments = await _commentService.GetProductCommentsAsync(id);
+            //var isAllowComment = await _commentService.CheckIsAllowCommentAsync(id);
 
             BlogDetailDto dto = new()
             {
                 Blog = blog,
-                Comments = comments,
-                IsAllowComment = isAllowComment
+                //Comments = comments,
+                //IsAllowComment = isAllowComment
             };
 
             return View(dto);

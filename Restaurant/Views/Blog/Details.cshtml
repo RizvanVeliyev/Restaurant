@@ -1,4 +1,4 @@
-﻿@model BlogGetDto
+﻿@model BlogDetailDto
 @inject BlogLocalizer _localizer
 
 <main class="blog-detail">
@@ -6,7 +6,7 @@
         <div class="banner-part">
             <div class="banner-content">
                 <h3>Restaurant</h3>
-                <h1>Blog</h1>
+                <h1>@_localizer.GetValue("Blog")</h1>
                 <p class="white">We Cook & Blog to your liking</p>
                 <p class="yellow">Danny's</p>
             </div>
@@ -21,20 +21,20 @@
                 <div class="col-12 col-md-12 col-lg-8">
                     <div class="left-part">
                         <div class="detial-header">
-                            <h2>@Model.Name</h2>
+                            <h2>@Model.Blog.Name</h2>
                             <div class="detail-meta">
-                                <p>JUNE 15, 2016 by <a href="#">@Model.Author </a>in PHOTOGRAPHY</p>
+                                <p>JUNE 15, 2016 by <a href="#">@Model.Blog.Author </a>in PHOTOGRAPHY</p>
                             </div>
                         </div>
                         <div class="detail-img">
-                            <a href=""><img src="@Model.ImagePath" alt=""></a>
+                            <a href=""><img src="@Model.Blog.ImagePath" alt=""></a>
                         </div>
                         <div class="detail-content">
                             <p>
-                               @Model.Description
+                                @Model.Blog.Description
                             </p>
                             <p>
-                                @Model.Description
+                                @Model.Blog.Description
 
                             </p>
 
@@ -237,3 +237,4 @@
         </div>
     </section>
 </main>
+
