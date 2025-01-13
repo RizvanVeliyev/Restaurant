@@ -1,4 +1,5 @@
-﻿@{
+﻿@model HomeDto
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -14,7 +15,9 @@
     </section>
 
 
-
+    @{
+        //about section start
+    }
     <section id="Restaurant">
         <div class="container">
             <div class="row">
@@ -23,12 +26,12 @@
                         <div style="margin-top: 80px;z-index: 99;position:relative"
                              class="multilayers-item margin-top-80 position-relative">
                             <div class="img-item">
-                                <img src="~/assets/images/home/restaurant-img-1.jpg" alt="">
+                                <img src="@Model.About.ImagePath" alt="">
                             </div>
                         </div>
                         <div style="padding-left: 250px;" class="multilayers-item padding-left-250">
                             <div class="img-item">
-                                <img src="~/assets/images/home/restaurant-img-2.jpg" alt="">
+                                <img src="@Model.About.ImagePath" alt="">
                             </div>
                         </div>
                     </div>
@@ -40,13 +43,10 @@
                             <h3>danny’s restaurant</h3>
                         </div>
                         <h6 class="small-headline">
-                            “Action ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate”.
+                           @Model.About.Name
                         </h6>
                         <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.
+                            @Model.About.Description
                         </p>
                         <a href="#dannys" class="btn btn-primary scroll">about us</a>
                     </div>
@@ -54,6 +54,8 @@
             </div>
         </div>
     </section>
+
+
     <section id="Menu">
         <div class="container">
             <div class="row">
