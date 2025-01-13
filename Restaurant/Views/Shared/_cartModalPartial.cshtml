@@ -1,0 +1,130 @@
+﻿@inject ILayoutService _layoutService
+@inject LayoutLocalizer _localizer;
+@{
+    var basket = await _layoutService.GetCartAsync();
+}
+
+
+<main class="cart">
+    <section id="News-banner">
+        <div class="banner-part">
+            <div class="banner-content">
+                <h3>Restaurant</h3>
+                <h1>@_localizer.GetValue("CartTitle")</h1>
+                <p class="yellow">Danny's</p>
+            </div>
+            <div class="overlay"></div>
+        </div>
+    </section>
+
+    <div class="content inner-pg cart-pg clearfix">
+        <!-- <div class="container"> -->
+        <form action="" class="woocommerce-cart-form">
+            <div class="table-responsive">
+                <table class="table cart-table table-hover">
+                    <thead>
+                        <tr>
+                            <th class="product-thumbnail"></th>
+                            <th class="product-thumbnail"></th>
+                            <th class="product-name">Product</th>
+                            <th class="product-price">Price</th>
+                            <th class="product-quantity">Quantity</th>
+                            <th class="product-subtotal">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in basket.Items)
+                        {
+                            <tr>
+                                <td asp-action="RemoveToBasket" asp-controller="Basket" asp-route-id="@item.ProductId" class="remove-basket removeToBasketButton" class="product-remove">
+                                    <a href="#" class="remove">X</a>
+                                </td>
+                                <td class="product-thumbnail">
+                                    <a class="imageCol" href="#">
+                                        <img class="img-responsive" src="@item.Product.MainImagePath" alt="Product" />
+                                    </a>
+                                </td>
+                                <td class="product-name" data-title="Product">
+                                    <a asp-action="Detail" asp-controller="Shop" asp-route-id="@item.Product.Id" href="#">@item.Product.Name</a>
+                                </td>
+                                <td class="product-price" data-title="Price">
+                                    <span>₼@item.Product.Price</span>
+                                </td>
+                                <td class="product-quantity" data-title="Quantity">
+                                    <div class="quantity">
+                                        @* <input type="number"
+                                               class="input-text qty text"
+                                               value="1" /> *@
+                                        <span>@item.Count</span>
+                                    </div>
+                                </td>
+                                <td class="product-subtotal" data-title="Total">
+                                    <span> ₼@item.Product.Price x @item.Count</span>
+                                </td>
+                            </tr>
+                            
+                        }
+                        
+
+                        
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="6" class="act">
+                                <div class="coupon">
+                                    <input type="text"
+                                           name="coupon_code"
+                                           class="input-text"
+                                           id="coupon_code"
+                                           value=""
+                                           placeholder="Coupon code" />
+                                    <input type="submit"
+                                           class="btn"
+                                           name="apply_coupon"
+                                           value="Apply coupon" />
+                                </div>
+
+                                <div class="update-cart">
+                                    <a href="#" class="btn btn-default">Update Cart</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-sm-push-4 col-sm-8 col-md-push-6 col-md-6 col-lg-4 col-lg-push-8">
+                <div class="cart-totals calculated-shipping">
+                    <h2>Cart totals</h2>
+                    <table class="shop-table shop-table-responsive">
+                        <tbody>
+                            <tr class="cart-subtotal">
+                                <th>Subtotal</th>
+                                <td data-title="Subtotal">
+                                    <span class="woocommerce-Price-amount amount">@_localizer.GetValue("Subtotal"):</span>
+                                </td>
+                            </tr>
+                            <tr class="order-total">
+                                <th>Total</th>
+                                <td data-title="Total">
+                                    <strong>
+                                        <span class="woocommerce-Price-amount amount">
+                                            <span class="woocommerce-Price-currencySymbol">$</span>@basket.Discount
+                                        </span>
+                                    </strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="proceed-to-checkout">
+                        <a asp-action="Index" asp-controller="Order" class="btn btn-default">Proceed to checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+    </div>
+</main>
+

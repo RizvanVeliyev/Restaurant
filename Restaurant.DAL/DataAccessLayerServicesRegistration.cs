@@ -60,6 +60,7 @@ namespace Restaurant.DAL
             services.AddSingleton<ContactLocalizer>();
             services.AddSingleton<OrderLocalizer>();
             services.AddSingleton<CartLocalizer>();
+            services.AddSingleton<LayoutLocalizer>();
 
         }
 

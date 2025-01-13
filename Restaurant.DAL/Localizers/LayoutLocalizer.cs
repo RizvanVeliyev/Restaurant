@@ -1,19 +1,15 @@
 ﻿using Microsoft.Extensions.Localization;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Restaurant.DAL.Localizers
 {
-    public class CartLocalizer
+    public class LayoutLocalizer
     {
         private readonly IStringLocalizer _localizer;
 
-        public CartLocalizer(IStringLocalizerFactory factory)
+        public LayoutLocalizer(IStringLocalizerFactory factory)
         {
-            _localizer = factory.Create("Basket", "Restaurant");
+            _localizer = factory.Create("Layout", "Restaurant");
         }
 
         public string GetValue(string key)

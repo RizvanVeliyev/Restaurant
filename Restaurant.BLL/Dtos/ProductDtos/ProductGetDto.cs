@@ -10,7 +10,7 @@ namespace Restaurant.BLL.Dtos.ProductDtos
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
         public decimal Price { get; set; }
-        public CategoryGetDto Category { get; set; } = null!;
+        public List<CategoryGetDto> Categories { get; set; } = null!;
         public string MainImagePath { get; set; } = null!;
         public List<string> ImagePaths { get; set; } = [];
 

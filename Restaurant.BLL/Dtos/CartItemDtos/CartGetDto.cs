@@ -8,6 +8,7 @@ namespace Restaurant.BLL.Dtos.CartItemDtos
         public decimal Subtotal { get; set; }
         public decimal Discount { get; set; }
         public decimal Total { get; set; }
+
         public List<CartItemGetDto> Items { get; set; } = [];
     }
 }
