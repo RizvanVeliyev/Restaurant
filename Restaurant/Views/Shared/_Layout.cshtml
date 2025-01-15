@@ -72,8 +72,22 @@
                         </a>
                         <!-- Dropdown -->
                         <div class="log-reg">
-                            <a asp-controller="Account" asp-action="login" class="btn-login">LogIn</a>
-                            <a asp-controller="Account" asp-action="register" class="btn-register">Register</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <!-- İstifadəçi adı -->
+                                <span class="user-name">Hello, @User.Identity.Name</span>
+
+                                <!-- LogOut düyməsi -->
+                                <form asp-controller="Account" asp-action="Logout" method="post" class="btn-login btn-logout">
+                                    <button type="submit" class="btn btn-logout">LogOut</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <!-- LogIn və Register düymələri -->
+                                <a asp-controller="Account" asp-action="Login" class="btn-login">LogIn</a>
+                                <a asp-controller="Account" asp-action="Register" class="btn-register">Register</a>
+                            }
                         </div>
                     </div>
                 </div>

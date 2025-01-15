@@ -10,6 +10,7 @@ using Restaurant.Core.Entities;
 using Restaurant.Core.Enums;
 using Restaurant.DAL.Localizers;
 using Restaurant.DAL.Repositories.Abstractions;
+using Microsoft.Extensions.Configuration;
 
 namespace Restaurant.BLL.Services.Implementations
 {
@@ -20,14 +21,16 @@ namespace Restaurant.BLL.Services.Implementations
         private readonly ICloudinaryService _cloudinaryService;
         private readonly ICategoryService _categoryService;
         private readonly ErrorLocalizer _errorLocalizer;
+        private readonly IConfiguration _configuration;
 
-        public ProductService(IProductRepository repository, IMapper mapper, ICloudinaryService cloudinaryService, ICategoryService categoryService, ErrorLocalizer errorLocalizer)
+        public ProductService(IProductRepository repository, IMapper mapper, ICloudinaryService cloudinaryService, ICategoryService categoryService, ErrorLocalizer errorLocalizer, IConfiguration configuration)
         {
             _repository = repository;
             _mapper = mapper;
             _cloudinaryService = cloudinaryService;
             _categoryService = categoryService;
             _errorLocalizer = errorLocalizer;
+            _configuration = configuration;
         }
 
         public async Task<bool> CreateAsync(ProductCreateDto dto, ModelStateDictionary ModelState)
@@ -98,12 +101,20 @@ namespace Restaurant.BLL.Services.Implementations
 
             var product = _mapper.Map<Product>(dto);
 
+            var adminUserName = _configuration["AdminSettings:UserName"] ?? "admin";
+
+            product.CreatedBy = adminUserName;
+            product.UpdatedBy = adminUserName;
+
             product.ProductImages = [];
 
 
             string mainImagePath = await _cloudinaryService.FileCreateAsync(dto.MainImage);
             ProductImage mainImage = new() { Path = mainImagePath, IsMain = true };
             product.ProductImages.Add(mainImage);
+
+            product.ImageUrl = mainImagePath;
+
 
             foreach (var file in dto.Images)
             {
