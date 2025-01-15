@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Restaurant.Core.Entities;
 using Restaurant.DAL.DataContexts;
+using Restaurant.DAL.Helpers;
 using Restaurant.DAL.Localizers;
 using Restaurant.DAL.Repositories.Abstractions;
 using Restaurant.DAL.Repositories.Implementations;
@@ -20,6 +21,9 @@ namespace Restaurant.DAL
             {
                 builder.MigrationsAssembly("Restaurant.DAL");
             }));
+
+            services.AddScoped<DataInit>();
+
 
 
             _addRepositories(services);
@@ -83,7 +87,9 @@ namespace Restaurant.DAL
                 options.Lockout.MaxFailedAccessAttempts = 7;
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
 
-            }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+            }).AddEntityFrameworkStores<AppDbContext>()
+            .AddDefaultTokenProviders()
+            .AddErrorDescriber<CustomIdentityErrorDescriber>();
         }
     }
 }

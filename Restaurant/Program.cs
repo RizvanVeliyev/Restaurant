@@ -1,11 +1,13 @@
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Restaurant.BLL;
 using Restaurant.DAL;
+using Restaurant.Extensions;
 namespace Restaurant
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,40 @@ namespace Restaurant
 
 
             var app = builder.Build();
+
+            var supportedCultures = new[] { "az", "en", "ru" };
+
+            var localizationOptions = new RequestLocalizationOptions()
+                                                            .SetDefaultCulture(supportedCultures[0])
+                                                            .AddSupportedCultures(supportedCultures)
+                                                            .AddSupportedUICultures(supportedCultures);
+
+
+            localizationOptions.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
+            {
+                var cultureCookie = context.Request.Cookies[".AspNetCore.Culture"];
+
+                if (!string.IsNullOrEmpty(cultureCookie))
+                {
+                    return new ProviderCultureResult(cultureCookie);
+                }
+
+                return new ProviderCultureResult("az", "az");
+            }));
+
+
+            if (!app.Environment.IsDevelopment())
+                app.UseMiddleware<GlobalExceptionHandler>();
+
+
+
+            app.UseRequestLocalization(localizationOptions);
+
+            app.RenderSelectedLanguage();
+
+            await app.InitDatabaseAsync();
+
+
 
 
             // Configure the HTTP request pipeline.
@@ -50,7 +86,7 @@ namespace Restaurant
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            app.Run();
+            await app.RunAsync();
         }
     }
 }

@@ -8,52 +8,58 @@ namespace Restaurant.DAL.DataContexts
 {
     public class DataInit
     {
-        private readonly AppDbContext _appDbContext;
+        private readonly AppDbContext _context;
         private readonly UserManager<AppUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
         private readonly AppUser _admin;
-        private readonly string _adminPassword;
 
-        public DataInit(AppDbContext appDbContext, UserManager<AppUser> userManager,
-            RoleManager<IdentityRole> roleManager, IConfiguration configuration,
-            AppUser admin, string password)
+        public DataInit(AppDbContext context, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
-            _appDbContext = appDbContext;
+            _context = context;
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
-            _admin = admin;
-            _adminPassword = password;
+
+            _admin = _configuration.GetSection("AdminSettings").Get<AppUser>() ?? new();
         }
 
-        public async Task SeedDataAsync()
+
+        public async Task InitDatabaseAsync()
         {
-            await _appDbContext.Database.MigrateAsync();
-            await _addRolesAsync();
-            await _addAdminAsync();
+            await _context.Database.MigrateAsync();
+
+            await _createRolesAsync();
+
+            await _createAdminAsync();
         }
 
-        private async Task _addRolesAsync()
+        private async Task _createAdminAsync()
         {
-            foreach (var r in Enum.GetNames(typeof(IdentityRoles)))
+            var isExist = await _userManager.Users.AnyAsync(x => x.UserName == _admin.UserName);
+
+            if (isExist)
+                return;
+
+            await _userManager.CreateAsync(_admin, _configuration["AdminSettings:Password"]!);
+
+            await _userManager.AddToRoleAsync(_admin, IdentityRoles.Admin.ToString());
+
+        }
+        private async Task _createRolesAsync()
+        {
+            foreach (string role in Enum.GetNames(typeof(IdentityRoles)))
             {
-                if (await _roleManager.Roles.AnyAsync(x => x.Name == r))//Tostring() lazim  olmadi!, onsuzda enum.getnames() bize string deyerler qaytarir.
+                var isExist = await _roleManager.Roles.AnyAsync(x => x.Name == role);
+
+                if (isExist)
                     continue;
 
-                IdentityRole role = new() { Name = r };
+                IdentityRole identityRole = new() { Name = role };
 
-                await _roleManager.CreateAsync(role);
+                await _roleManager.CreateAsync(identityRole);
             }
         }
 
-        private async Task _addAdminAsync()
-        {
-            var existUser = await _userManager.FindByNameAsync(_admin.UserName ?? "");
-            if (existUser is not null)
-                return;
-            await _userManager.CreateAsync(_admin, _adminPassword);
-            await _userManager.AddToRoleAsync(_admin, IdentityRoles.Admin.ToString());
-        }
     }
 }
