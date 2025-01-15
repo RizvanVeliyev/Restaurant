@@ -117,22 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Contact" xml:space="preserve">
-    <value>Bizimlə Əlaqə Saxlayın</value>
+  <data name="Welcome at" xml:space="preserve">
+    <value>Добро пожаловать в</value>
   </data>
-  <data name="Submit" xml:space="preserve">
-    <value>Göndər</value>
+  <data name="Danny's Restaurant" xml:space="preserve">
+    <value>Ресторан Дэнни</value>
   </data>
-  <data name="EmailInput" xml:space="preserve">
-    <value>E-poçtunuz</value>
-  </data>
-  <data name="MessageInput" xml:space="preserve">
-    <value>Mesajınız</value>
-  </data>
-  <data name="Phone" xml:space="preserve">
-    <value>Telefon</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>Adınız</value>
+  <data name="About us" xml:space="preserve">
+    <value>о нас</value>
   </data>
 </root>

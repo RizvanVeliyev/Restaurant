@@ -117,22 +117,67 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Contact" xml:space="preserve">
-    <value>Bizimlə Əlaqə Saxlayın</value>
+  <data name="Blog" xml:space="preserve">
+    <value />
   </data>
-  <data name="Submit" xml:space="preserve">
-    <value>Göndər</value>
+  <data name="We Cook &amp; Blog to your liking" xml:space="preserve">
+    <value />
   </data>
-  <data name="EmailInput" xml:space="preserve">
-    <value>E-poçtunuz</value>
+  <data name="Categories" xml:space="preserve">
+    <value />
   </data>
-  <data name="MessageInput" xml:space="preserve">
-    <value>Mesajınız</value>
+  <data name="All" xml:space="preserve">
+    <value />
   </data>
-  <data name="Phone" xml:space="preserve">
-    <value>Telefon</value>
+  <data name="CHEF'S SPECIALITY" xml:space="preserve">
+    <value />
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>Adınız</value>
+  <data name="Drinks" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DAILY MENU" xml:space="preserve">
+    <value />
+  </data>
+  <data name="STARTERS" xml:space="preserve">
+    <value />
+  </data>
+  <data name="OFFERS" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DESERT" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Main" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Follow Us" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NEWSLETTER" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Subscribe &amp; receive 15% discount coupon" xml:space="preserve">
+    <value />
+  </data>
+  <data name="your.adress@gmail.com" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Leave a Reply" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Post Comment" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Prev" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value />
   </data>
 </root>

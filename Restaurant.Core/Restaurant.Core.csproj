@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Paging\" />
+    <Compile Remove="Paging\**" />
+    <EmbeddedResource Remove="Paging\**" />
+    <None Remove="Paging\**" />
   </ItemGroup>
 
   <ItemGroup>
