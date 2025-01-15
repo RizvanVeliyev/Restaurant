@@ -1,4 +1,5 @@
-﻿@model ShopDetailDto
+﻿@using System.Security.Claims
+@model ShopDetailDto
 @inject ShopLocalizer _localizer
 <main class="shop-detail">
     <section id="News-banner">
@@ -47,7 +48,7 @@
                         <h3>
                             @Model.Product.Name
                         </h3>
-                        <span class="price"> @Model.Product.Price</span>
+                        <span class="price"> @Model.Product.Price.ToString("C")</span>
                         <div class="single-shop-item-detail">
                             <h6>Ingredients</h6>
                             <p>
@@ -78,16 +79,29 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="description">
                             <h5>Product Description</h5>
+                            <p>@Model.Product.Description</p>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="reviews">
                             <h5>Leave a Reply</h5>
-                            <form id="commentForm" asp-action="CreateComment" asp-route-ProductId="@Model.Product.Id">
-                                <div class="form-group">
-                                    <label>Comment</label>
-                                    <textarea class="form-control" rows="3"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-default">Post Comment</button>
-                            </form>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <form id="commentForm" asp-action="CreateComment" asp-route-ProductId="@Model.Product.Id" method="post">
+                                    <div class="form-group">
+                                        <label>Comment</label>
+                                        <textarea class="form-control" name="Text" rows="3" placeholder="Write your comment here..." required></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Rating</label>
+                                        <input type="number" name="Rating" class="form-control" min="1" max="5" placeholder="Rate the product (1-5)" required />
+                                    </div>
+                                    <button type="submit" class="btn btn-default">Post Comment</button>
+                                </form>
+
+                            }
+                            else
+                            {
+                                <p>Please <a asp-controller="Account" asp-action="Login">log in</a> to leave a comment.</p>
+                            }
                             <h5 class="mt-4">Comments</h5>
                             @if (Model.Comments.Any())
                             {
@@ -97,6 +111,13 @@
                                         <li class="mb-3">
                                             <strong>@comment.AppUser.Name</strong> <small class="text-muted">(@comment.CreatedAt.ToString("g"))</small>
                                             <p>@comment.Text</p>
+                                            @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.FindFirstValue(ClaimTypes.NameIdentifier) == comment.AppUser.Id))
+                                            {
+                                                <form method="post" action="/Shop/DeleteComment">
+                                                    <input type="hidden" name="id" value="@comment.Id" />
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            }
                                         </li>
                                     }
                                 </ul>
