@@ -63,6 +63,7 @@ namespace Restaurant.DAL
             services.AddSingleton<LayoutLocalizer>();
             services.AddSingleton<ShopLocalizer>();
             services.AddSingleton<BlogLocalizer>();
+            services.AddSingleton<MenuLocalizer>();
 
         }
 

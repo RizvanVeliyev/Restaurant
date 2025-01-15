@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Restaurant.BLL.Dtos.CategoryDtos;
-using Restaurant.BLL.Dtos.ProductDtos;
+using Restaurant.BLL.Dtos.CommentDtos;
 using Restaurant.BLL.Services.Abstractions;
-using Restaurant.BLL.Services.Implementations;
 using Restaurant.BLL.UI.Dtos;
 using Restaurant.Core.Enums;
+using Restaurant.Extensions;
 
 namespace Restaurant.Controllers
 {
@@ -36,9 +35,42 @@ namespace Restaurant.Controllers
 
             return View(shopDto);
         }
-        public IActionResult Details()
+
+
+        public async Task<IActionResult> Details(int id)
         {
-            return View();
+            var product = await _productService.GetAsync(id, _language);
+            var comments = await _commentService.GetProductCommentsAsync(id);
+            var isAllowComment = await _commentService.CheckIsAllowCommentAsync(id);
+
+            ShopDetailDto dto = new()
+            {
+                Product = product,
+                Comments = comments,
+                IsAllowComment = isAllowComment
+            };
+
+            return View(dto);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> CreateComment(CommentCreateDto dto)
+        {
+            var result = await _commentService.CreateAsync(dto, ModelState);
+
+            string returnUrl = Request.GetReturnUrl();
+
+            return Redirect(returnUrl);
+        }
+
+        public async Task<IActionResult> DeleteComment(int id)
+        {
+            await _commentService.DeleteAsync(id);
+
+            string returnUrl = Request.GetReturnUrl();
+
+            return Redirect(returnUrl);
         }
     }
 }

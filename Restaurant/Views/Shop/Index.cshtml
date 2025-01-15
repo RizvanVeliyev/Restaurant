@@ -1,10 +1,12 @@
-﻿<main class="shop">
+﻿@model ShopDto
+@inject ShopLocalizer _localizer
+<main class="shop">
     <!-- Banner Start -->
     <section id="News-banner">
         <div class="banner-part">
             <div class="banner-content">
                 <h3>Restaurant</h3>
-                <h1>Shop</h1>
+                <h1>@_localizer.GetValue("Shop")</h1>
                 <p class="yellow">Danny's</p>
             </div>
             <div class="overlay"></div>
