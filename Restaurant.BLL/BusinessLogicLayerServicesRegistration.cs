@@ -42,6 +42,7 @@ namespace Restaurant.BLL
             services.AddScoped<ICheckoutService, CheckoutService>();
 
             services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IBlogCommentService, BlogCommentService>();
             services.AddScoped<ICloudinaryService, CloudinaryService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IEmailService, EmailService>();

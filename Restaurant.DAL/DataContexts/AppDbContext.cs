@@ -38,6 +38,7 @@ namespace Restaurant.DAL.DataContexts
         public DbSet<CategoryDetail> CategoryDetails { get; set; }
         public DbSet<Checkout> Checkouts { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<BlogComment> BlogComments { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<IngredientDetail> IngredientDetails { get; set; }
