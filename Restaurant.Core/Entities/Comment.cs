@@ -10,7 +10,7 @@ namespace Restaurant.Core.Entities
         public int? ProductId { get; set; }
         public Product? Product { get; set; } = null!;
         public int Rating { get; set; } 
-        public int? BlogId { get; set; }
-        public Blog? Blog { get; set; } = null!;
+        //public int? BlogId { get; set; }
+        //public Blog? Blog { get; set; } = null!;
     }
 }

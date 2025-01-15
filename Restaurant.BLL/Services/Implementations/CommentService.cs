@@ -54,12 +54,15 @@ namespace Restaurant.BLL.Services.Implementations
 
             var isBought = orders.Any(x => x.AppUserId == userId && x.OrderItems.Any(x => x.Product.Id == product.Id));
 
-            if (!isBought)
-                throw new UnAuthorizedException(_errorLocalizer.GetValue(nameof(UnAuthorizedException)));
+            //if (!isBought)
+            //    throw new UnAuthorizedException(_errorLocalizer.GetValue(nameof(UnAuthorizedException)));
 
             var comment = _mapper.Map<Comment>(dto);
 
             comment.AppUserId = userId;
+            comment.CreatedBy = _contextAccessor.HttpContext?.User.Identity?.Name ?? "System"; // İstifadəçi adı və ya "System"
+            comment.UpdatedBy = _contextAccessor.HttpContext?.User.Identity?.Name ?? "System"; // İstifadəçi adı və ya "System"
+
 
             await _repository.CreateAsync(comment);
             await _repository.SaveChangesAsync();
@@ -81,10 +84,10 @@ namespace Restaurant.BLL.Services.Implementations
             if (isExist)
                 return false;
 
-            var isBought = orders.Any(x => x.AppUserId == userId && x.OrderItems.Any(x => x.Product.Id == product.Id));
+            //var isBought = orders.Any(x => x.AppUserId == userId && x.OrderItems.Any(x => x.Product.Id == product.Id));
 
-            if (!isBought)
-                return false;
+            //if (!isBought)
+            //    return false;
 
             return true;
         }

@@ -109,7 +109,7 @@
                                     @foreach (var comment in Model.Comments)
                                     {
                                         <li class="mb-3">
-                                            <strong>@comment.AppUser.Name</strong> <small class="text-muted">(@comment.CreatedAt.ToString("g"))</small>
+                                            <strong>@comment.AppUser.Username</strong> <small class="text-muted">(@comment.CreatedAt.ToString("g"))</small>
                                             <p>@comment.Text</p>
                                             @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.FindFirstValue(ClaimTypes.NameIdentifier) == comment.AppUser.Id))
                                             {
