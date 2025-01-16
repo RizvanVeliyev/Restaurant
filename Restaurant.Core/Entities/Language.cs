@@ -8,7 +8,12 @@ namespace Restaurant.Core.Entities
         public string Code { get; set; } = null!;
         public string ImagePath { get; set; } = null!;
         public ICollection<CategoryDetail> CategoryDetails { get; set; } = [];
+        public ICollection<BlogCategoryDetail> BlogCategoryDetails { get; set; } = [];
+        public ICollection<BlogDetail> BlogDetails { get; set; } = [];
+        public ICollection<ProductDetail> ProductDetails { get; set; } = [];
+
+
     }
 
-    
+
 }

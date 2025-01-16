@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@inject ILayoutService _layoutService
+@inject LayoutLocalizer _localizer
+@{
+    var selectedLanguage = _layoutService.GetSelectedLanguage();
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -45,7 +50,27 @@
                                 <a asp-controller="Shop" asp-action="Index"> Shop </a>
                             </li>
                             <li>
-                                <a asp-controller="Contact" asp-action="Index"> Contact </a>
+                                <select class="changeCultureInput" style="text-decoration:none;-webkit-tap-highlight-color: transparent;">
+                                    @if (selectedLanguage == "en")
+                                    {
+                                        <option value="az">AZE</option>
+                                        <option value="en" selected>ENG</option>
+                                        <option value="ru">RUS</option>
+                                    }
+                                    else if (selectedLanguage == "ru")
+                                    {
+
+                                        <option value="az">AZE</option>
+                                        <option value="en">ENG</option>
+                                        <option value="ru" selected>RUS</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="az" selected>AZE</option>
+                                        <option value="en">ENG</option>
+                                        <option value="ru">RUS</option>
+                                    }
+                                </select>
                             </li>
                         </ul>
                     </nav>
@@ -221,6 +246,19 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <script>
+        const changeLangInput = document.querySelector('.changeCultureInput');
+        const changeLangInputMobile = document.querySelector('.changeCultureInputMobile');
+
+        changeLangInput.addEventListener('change', () => {
+            window.location.href = `/Home/SelectCulture?culture=${changeLangInput.value}`
+        })
+        changeLangInputMobile.addEventListener('change', () => {
+            window.location.href = `/Home/SelectCulture?culture=${changeLangInputMobile.value}`
+        })
+    </script>
+    <script src="~/assets/js/script.js"></script>
+    @await RenderSectionAsync("Scripts", false)
 </body>
 
 </html>
