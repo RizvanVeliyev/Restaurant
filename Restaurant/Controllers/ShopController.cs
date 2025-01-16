@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Restaurant.BLL.Dtos.CommentDtos;
 using Restaurant.BLL.Services.Abstractions;
 using Restaurant.BLL.UI.Dtos;
@@ -63,6 +64,19 @@ namespace Restaurant.Controllers
 
             return Redirect(returnUrl);
         }
+
+        [HttpPost]
+        //[Authorize]
+        public async Task<IActionResult> ReplyComment(CommentReplyDto dto)
+        {
+
+            var result = await _commentService.CreateReplyAsync(dto, ModelState);
+
+            string returnUrl = Request.GetReturnUrl();
+
+            return Redirect(returnUrl);
+        }
+
 
         public async Task<IActionResult> DeleteComment(int id)
         {

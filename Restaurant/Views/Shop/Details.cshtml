@@ -24,19 +24,14 @@
                                 <div class="cake-img-slider">
                                     @foreach (var imagePath in Model.Product.ImagePaths)
                                     {
-                                        <img class="sliderImg"
-                                             src="@imagePath"
-                                             alt="" />
+                                        <img class="sliderImg" src="@imagePath" alt="" />
                                     }
-
                                 </div>
                             </div>
                             <div class="col-lg-9 ordertwo">
                                 <div class="product-main">
                                     <div class="slider-img">
-                                        <img src="@Model.Product.MainImagePath"
-                                             alt=""
-                                             class="mainImg" />
+                                        <img src="@Model.Product.MainImagePath" alt="" class="mainImg" />
                                     </div>
                                 </div>
                             </div>
@@ -45,17 +40,11 @@
                 </div>
                 <div class="col-sm-6 col-md-6 mini-cont">
                     <div class="info">
-                        <h3>
-                            @Model.Product.Name
-                        </h3>
-                        <span class="price"> @Model.Product.Price.ToString("C")</span>
+                        <h3>@Model.Product.Name</h3>
+                        <span class="price">@Model.Product.Price.ToString("C")</span>
                         <div class="single-shop-item-detail">
                             <h6>Ingredients</h6>
-                            <p>
-                                Whole chicken breast marinated with lemon and garlic in a
-                                basil pesto and mascarpone sauce, with slow-roasted cherry
-                                tomatoes.
-                            </p>
+                            <p>Whole chicken breast marinated with lemon and garlic in a basil pesto and mascarpone sauce, with slow-roasted cherry tomatoes.</p>
                         </div>
                         <div class="single-cart">
                             <input type="number" />
@@ -81,6 +70,7 @@
                             <h5>Product Description</h5>
                             <p>@Model.Product.Description</p>
                         </div>
+
                         <div role="tabpanel" class="tab-pane" id="reviews">
                             <h5>Leave a Reply</h5>
                             @if (User.Identity.IsAuthenticated)
@@ -96,12 +86,12 @@
                                     </div>
                                     <button type="submit" class="btn btn-default">Post Comment</button>
                                 </form>
-
                             }
                             else
                             {
                                 <p>Please <a asp-controller="Account" asp-action="Login">log in</a> to leave a comment.</p>
                             }
+
                             <h5 class="mt-4">Comments</h5>
                             @if (Model.Comments.Any())
                             {
@@ -109,14 +99,44 @@
                                     @foreach (var comment in Model.Comments)
                                     {
                                         <li class="mb-3">
-                                            <strong>@comment.AppUser.Username</strong> <small class="text-muted">(@comment.CreatedAt.ToString("g"))</small>
+                                            <strong>@comment.AppUser.Username</strong>
+                                            <small class="text-muted">(@comment.CreatedAt.ToString("g"))</small>
                                             <p>@comment.Text</p>
+
                                             @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.FindFirstValue(ClaimTypes.NameIdentifier) == comment.AppUser.Id))
                                             {
                                                 <form method="post" action="/Shop/DeleteComment">
                                                     <input type="hidden" name="id" value="@comment.Id" />
                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                 </form>
+                                            }
+
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <button class="btn btn-link text-muted reply-button" data-comment-id="@comment.Id">Reply</button>
+
+                                                <form class="reply-form d-none" asp-action="ReplyComment" method="post">
+                                                    <input type="hidden" name="ParentId" value="@comment.Id" />
+                                                    <input type="hidden" name="ProductId" value="@Model.Product.Id" />
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" name="Text" rows="2" placeholder="Write your reply..." required></textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary btn-sm">Post Reply</button>
+                                                </form>
+                                            }
+
+                                            @if (comment.Children.Any())
+                                            {
+                                                <ul class="list-unstyled ml-4">
+                                                    @foreach (var reply in comment.Children)
+                                                    {
+                                                        <li class="mb-2">
+                                                            <strong>@reply.AppUser.UserName</strong>
+                                                            <small class="text-muted">(@reply.CreatedAt.ToString("g"))</small>
+                                                            <p>@reply.Text</p>
+                                                        </li>
+                                                    }
+                                                </ul>
                                             }
                                         </li>
                                     }
@@ -134,3 +154,12 @@
         </div>
     </div>
 </main>
+
+<script>
+    document.querySelectorAll('.reply-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const form = this.nextElementSibling;
+            form.classList.toggle('d-none');
+        });
+    });
+</script>

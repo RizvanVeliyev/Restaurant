@@ -2,12 +2,11 @@
 
 namespace Restaurant.BLL.Dtos.CommentDtos
 {
-    public class CommentCreateDto:IDto
+    public class CommentReplyDto : IDto
     {
+        public int ParentId { get; set; }
         public int ProductId { get; set; }
-        public string Text { get; set; } = null!;
-        public int Rating { get; set; }
 
+        public string Text { get; set; } = null!;
     }
-    
 }

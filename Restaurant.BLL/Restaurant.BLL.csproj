@@ -8,12 +8,14 @@
 
   <ItemGroup>
     <Compile Remove="Constants\**" />
+    <Compile Remove="Dtos\LanguageDtos\**" />
     <EmbeddedResource Remove="Constants\**" />
+    <EmbeddedResource Remove="Dtos\LanguageDtos\**" />
     <None Remove="Constants\**" />
+    <None Remove="Dtos\LanguageDtos\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dtos\LanguageDtos\" />
     <Folder Include="Validators\AvaiabletimeValidators\" />
     <Folder Include="Validators\CheckoutValidators\" />
     <Folder Include="Validators\ContactValidators\" />

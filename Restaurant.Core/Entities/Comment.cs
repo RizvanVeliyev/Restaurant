@@ -9,8 +9,9 @@ namespace Restaurant.Core.Entities
         public AppUser AppUser { get; set; } = null!;
         public int? ProductId { get; set; }
         public Product? Product { get; set; } = null!;
-        public int Rating { get; set; } 
-        //public int? BlogId { get; set; }
-        //public Blog? Blog { get; set; } = null!;
+        public int Rating { get; set; }
+        public int? ParentId { get; set; }
+        public Comment? Parent { get; set; } = null!;
+        public List<Comment> Children { get; set; } = [];
     }
 }

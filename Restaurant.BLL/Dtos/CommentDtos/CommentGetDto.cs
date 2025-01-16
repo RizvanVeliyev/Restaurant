@@ -1,5 +1,6 @@
 ﻿using Restaurant.BLL.Abstractions.Dtos;
 using Restaurant.BLL.Dtos.AppUserDtos;
+using Restaurant.Core.Entities;
 
 namespace Restaurant.BLL.Dtos.CommentDtos
 {
@@ -12,5 +13,7 @@ namespace Restaurant.BLL.Dtos.CommentDtos
         public int Rating { get; set; }
         public UserGetDto AppUser { get; set; } = null!;
         public DateTime CreatedAt { get; set; }
+        public List<Comment> Children { get; set; } = [];
+
     }
 }

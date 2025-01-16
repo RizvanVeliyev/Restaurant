@@ -47,12 +47,12 @@ namespace Restaurant.BLL.Services.Implementations
             var userId = _getUserId();
 
 
-            var isExist = await _repository.IsExistAsync(x => x.ProductId == dto.ProductId && x.AppUserId == userId);
+            //var isExist = await _repository.IsExistAsync(x => x.ProductId == dto.ProductId && x.AppUserId == userId);
 
-            if (isExist)
-                throw new AlreadyExistException(_errorLocalizer.GetValue(nameof(AlreadyExistException)));
+            //if (isExist)
+            //    throw new AlreadyExistException(_errorLocalizer.GetValue(nameof(AlreadyExistException)));
 
-            var isBought = orders.Any(x => x.AppUserId == userId && x.OrderItems.Any(x => x.Product.Id == product.Id));
+            //var isBought = orders.Any(x => x.AppUserId == userId && x.OrderItems.Any(x => x.Product.Id == product.Id));
 
             //if (!isBought)
             //    throw new UnAuthorizedException(_errorLocalizer.GetValue(nameof(UnAuthorizedException)));
@@ -66,6 +66,50 @@ namespace Restaurant.BLL.Services.Implementations
 
             await _repository.CreateAsync(comment);
             await _repository.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<bool> CreateReplyAsync(CommentReplyDto dto, ModelStateDictionary ModelState)
+        {
+            if (!ModelState.IsValid)
+                return false;
+
+            if (!_checkAuthorized())
+                throw new UnAuthorizedException(_errorLocalizer.GetValue(nameof(UnAuthorizedException)));
+
+            var product = await _productService.GetAsync(dto.ProductId);
+
+            var orders = await _orderService.GetAllAsync();
+
+            var userId = _getUserId();
+
+            
+
+
+            //var isExist = await _repository.IsExistAsync(x => x.ProductId == dto.ProductId && x.AppUserId == userId);
+
+            //if (isExist)
+            //    throw new AlreadyExistException(_errorLocalizer.GetValue(nameof(AlreadyExistException)));
+
+            //var isBought = orders.Any(x => x.AppUserId == userId && x.OrderItems.Any(x => x.Product.Id == product.Id));
+
+            //if (!isBought)
+            //    throw new UnAuthorizedException(_errorLocalizer.GetValue(nameof(UnAuthorizedException)));
+
+            var parentComment = await _repository.GetAsync(dto.ParentId);
+            if (parentComment == null) throw new NotFoundException("Parent comment not found");
+
+            var replyComment = _mapper.Map<Comment>(dto);
+            replyComment.AppUserId = userId;
+            replyComment.CreatedBy = _contextAccessor.HttpContext?.User.Identity?.Name ?? "System";
+            replyComment.UpdatedBy = _contextAccessor.HttpContext?.User.Identity?.Name ?? "System";
+
+            replyComment.Parent = parentComment;
+
+            await _repository.CreateAsync(replyComment);
+            await _repository.SaveChangesAsync();
+
 
             return true;
         }
@@ -110,8 +154,12 @@ namespace Restaurant.BLL.Services.Implementations
 
         public async Task<List<CommentGetDto>> GetProductCommentsAsync(int productId)
         {
-            var comments = await _repository.GetFilter(x => x.ProductId == productId, x => x.Include(x => x.AppUser)).ToListAsync();
-
+            var comments = await _repository.GetFilter(
+                   x => x.ProductId == productId && x.ParentId == null,
+                   x => x.Include(x => x.AppUser)
+                        .Include(x => x.Children) 
+                           .ThenInclude(child => child.AppUser) 
+               ).ToListAsync();
             var dtos = _mapper.Map<List<CommentGetDto>>(comments);
 
             return dtos;
