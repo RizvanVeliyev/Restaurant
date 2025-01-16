@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Restaurant.BLL.Dtos.BlogCommentDtos;
+using Restaurant.BLL.Dtos.CommentDtos;
 using Restaurant.BLL.Exceptions;
 using Restaurant.BLL.Services.Abstractions;
 using Restaurant.Core.Entities;
@@ -70,6 +71,51 @@ namespace Restaurant.BLL.Services.Implementations
             return true;
         }
 
+        public async Task<bool> CreateReplyAsync(BlogCommentReplyDto dto, ModelStateDictionary ModelState)
+        {
+            if (!ModelState.IsValid)
+                return false;
+
+            if (!_checkAuthorized())
+                throw new UnAuthorizedException(_errorLocalizer.GetValue(nameof(UnAuthorizedException)));
+
+            var blog = await _blogService.GetAsync(dto.ProductId);
+
+            var orders = await _orderService.GetAllAsync();
+
+            var userId = _getUserId();
+
+
+
+
+            //var isExist = await _repository.IsExistAsync(x => x.ProductId == dto.ProductId && x.AppUserId == userId);
+
+            //if (isExist)
+            //    throw new AlreadyExistException(_errorLocalizer.GetValue(nameof(AlreadyExistException)));
+
+            //var isBought = orders.Any(x => x.AppUserId == userId && x.OrderItems.Any(x => x.Product.Id == blog.Id));
+
+            //if (!isBought)
+            //    throw new UnAuthorizedException(_errorLocalizer.GetValue(nameof(UnAuthorizedException)));
+
+            var parentComment = await _repository.GetAsync(dto.ParentId);
+            if (parentComment == null) throw new NotFoundException("Parent comment not found");
+
+            var replyComment = _mapper.Map<BlogComment>(dto);
+            replyComment.AppUserId = userId;
+            replyComment.CreatedBy = _contextAccessor.HttpContext?.User.Identity?.Name ?? "System";
+            replyComment.UpdatedBy = _contextAccessor.HttpContext?.User.Identity?.Name ?? "System";
+
+            replyComment.Parent = parentComment;
+
+            await _repository.CreateAsync(replyComment);
+            await _repository.SaveChangesAsync();
+
+
+            return true;
+        }
+
+
         public async Task<bool> CheckIsAllowBlogCommentAsync(int blogId)
         {
             var blog = await _blogService.GetAsync(blogId);
@@ -110,9 +156,13 @@ namespace Restaurant.BLL.Services.Implementations
 
         public async Task<List<BlogCommentGetDto>> GetBlogCommentsAsync(int blogId)
         {
-            var comments = await _repository.GetFilter(x => x.BlogId == blogId, x => x.Include(x => x.AppUser)).ToListAsync();
-
-            var dtos = _mapper.Map<List<BlogCommentGetDto>>(comments);
+            var blogComments = await _repository.GetFilter(
+                              x => x.BlogId == blogId && x.ParentId == null,
+                              x => x.Include(x => x.AppUser)
+                                   .Include(x => x.Children)
+                                      .ThenInclude(child => child.AppUser)
+                          ).ToListAsync();
+            var dtos = _mapper.Map<List<BlogCommentGetDto>>(blogComments);
 
             return dtos;
         }

@@ -127,6 +127,34 @@
                                                     <button type="submit" class="btn btn-danger">Delete</button>
                                                 </form>
                                             }
+
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <button class="btn btn-link text-muted reply-button" data-comment-id="@comment.Id">Reply</button>
+
+                                                <form class="reply-form d-none" asp-action="ReplyComment" method="post">
+                                                    <input type="hidden" name="ParentId" value="@comment.Id" />
+                                                    <input type="hidden" name="ProductId" value="@Model.Blog.Id" />
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" name="Text" rows="2" placeholder="Write your reply..." required></textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary btn-sm">Post Reply</button>
+                                                </form>
+                                            }
+
+                                            @if (comment.Children.Any())
+                                            {
+                                                <ul class="list-unstyled ml-4">
+                                                    @foreach (var reply in comment.Children)
+                                                    {
+                                                        <li class="mb-2">
+                                                            <strong>@reply.AppUser.UserName</strong>
+                                                            <small class="text-muted">(@reply.CreatedAt.ToString("g"))</small>
+                                                            <p>@reply.Text</p>
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            }
                                         </li>
                                     }
                                 </ul>
@@ -274,4 +302,13 @@
         </div>
     </section>
 </main>
+
+<script>
+    document.querySelectorAll('.reply-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const form = this.nextElementSibling;
+            form.classList.toggle('d-none');
+        });
+    });
+</script>
 

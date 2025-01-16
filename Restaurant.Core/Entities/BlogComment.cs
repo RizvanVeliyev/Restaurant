@@ -10,5 +10,8 @@ namespace Restaurant.Core.Entities
         public int Rating { get; set; }
         public int? BlogId { get; set; }
         public Blog? Blog { get; set; } = null!;
+        public int? ParentId { get; set; }
+        public BlogComment? Parent { get; set; } = null!;
+        public List<BlogComment> Children { get; set; } = [];
     }
 }

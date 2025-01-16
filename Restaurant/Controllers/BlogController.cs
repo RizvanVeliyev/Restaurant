@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Restaurant.BLL.Dtos.BlogCommentDtos;
+using Restaurant.BLL.Dtos.CommentDtos;
 using Restaurant.BLL.Services.Abstractions;
 using Restaurant.BLL.UI.Dtos;
 using Restaurant.Core.Enums;
@@ -58,6 +59,18 @@ namespace Restaurant.Controllers
         public async Task<IActionResult> CreateBlogComment(BlogCommentCreateDto dto)
         {
             var result = await _commentService.CreateAsync(dto, ModelState);
+
+            string returnUrl = Request.GetReturnUrl();
+
+            return Redirect(returnUrl);
+        }
+
+        [HttpPost]
+        //[Authorize]
+        public async Task<IActionResult> ReplyComment(BlogCommentReplyDto dto)
+        {
+
+            var result = await _commentService.CreateReplyAsync(dto, ModelState);
 
             string returnUrl = Request.GetReturnUrl();
 

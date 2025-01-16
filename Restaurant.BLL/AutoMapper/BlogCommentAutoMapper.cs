@@ -11,6 +11,8 @@ namespace Restaurant.BLL.AutoMapper
             CreateMap<BlogComment, BlogCommentCreateDto>().ReverseMap();
             CreateMap<BlogComment, BlogCommentUpdateDto>().ReverseMap();
             CreateMap<BlogComment, BlogCommentGetDto>().ReverseMap();
+            CreateMap<BlogComment, BlogCommentReplyDto>().ReverseMap();
+
         }
     }
 }
