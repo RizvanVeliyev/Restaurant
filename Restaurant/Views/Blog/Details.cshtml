@@ -6,10 +6,11 @@
     <section id="News-banner">
         <div class="banner-part">
             <div class="banner-content">
-                <h3>Restaurant</h3>
+                <h3>@_localizer.GetValue("Restaurant")</h3>
                 <h1>@_localizer.GetValue("Blog")</h1>
-                <p class="white">We Cook & Blog to your liking</p>
-                <p class="yellow">Danny's</p>
+                <p class="white">@_localizer.GetValue("We Cook & Blog to your liking")</p>
+                <p class="yellow">@_localizer.GetValue("Master Yaver's")</p>
+
             </div>
             <div class="overlay"></div>
         </div>
@@ -43,13 +44,13 @@
                         <div class="detail-navigation">
                             <div class="nav-prev">
                                 <a href="">
-                                    <span class="nav-subtitle">prev</span>
+                                    <span class="nav-subtitle">@_localizer.GetValue("Prev")</span>
                                     <span class="nav-detail">i don’t know about you but this looks delicious</span>
                                 </a>
                             </div>
                             <div class="nav-next">
                                 <a href="">
-                                    <span class="nav-subtitle">next</span>
+                                    <span class="nav-subtitle">@_localizer.GetValue("Next")</span>
                                     <span class="nav-detail">sweet danny’s cherry pie dessert recipes</span>
                                 </a>
                             </div>
@@ -91,19 +92,21 @@
                             </div>
                         </div>
                         <div class="comment-part">
-                            <h5>Leave a Reply</h5>
+                            <h5>@_localizer.GetValue("Leave a Reply")</h5>
                             @if (User.Identity.IsAuthenticated)
                             {
                                 <form id="commentForm" asp-action="CreateBlogComment" asp-route-BlogId="@Model.Blog.Id" method="post">
                                     <div class="form-group">
-                                        <label>Comment</label>
-                                        <textarea class="form-control" name="Text" rows="3" placeholder="Write your comment here..." required></textarea>
+                                        <label>
+                                            @_localizer.GetValue("Comment")
+                                        </label>
+                                        <textarea class="form-control" name="Text" rows="3" placeholder="@_localizer.GetValue("Write your comment here...")" required></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label>Rating</label>
-                                        <input type="number" name="Rating" class="form-control" min="1" max="5" placeholder="Rate the product (1-5)" required />
+                                        <label>@_localizer.GetValue("Rating")</label>
+                                        <input type="number" name="Rating" class="form-control" min="1" max="5" placeholder="@_localizer.GetValue("Rate the product (1-5)")" required />
                                     </div>
-                                    <button type="submit" class="btn btn-default">Post Comment</button>
+                                    <button type="submit" class="btn btn-default">@_localizer.GetValue("Post Comment")</button>
                                 </form>
 
                             }
@@ -111,7 +114,7 @@
                             {
                                 <p>Please <a asp-controller="Account" asp-action="Login">log in</a> to leave a comment.</p>
                             }
-                            <h5 class="mt-4">Comments</h5>
+                            <h5 class="mt-4">@_localizer.GetValue("Comments")</h5>
                             @if (Model.BlogComments.Any())
                             {
                                 <ul class="list-unstyled">
@@ -124,21 +127,21 @@
                                             {
                                                 <form method="post" asp-action="DeleteBlogComment" asp-controller="Blog">
                                                     <input type="hidden" name="id" value="@comment.Id" />
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                    <button type="submit" class="btn btn-danger">@_localizer.GetValue("Delete")</button>
                                                 </form>
                                             }
 
                                             @if (User.Identity.IsAuthenticated)
                                             {
-                                                <button class="btn btn-link text-muted reply-button" data-comment-id="@comment.Id">Reply</button>
+                                                <button class="btn btn-link text-muted reply-button" data-comment-id="@comment.Id">@_localizer.GetValue("Reply")</button>
 
                                                 <form class="reply-form d-none" asp-action="ReplyComment" method="post">
                                                     <input type="hidden" name="ParentId" value="@comment.Id" />
                                                     <input type="hidden" name="ProductId" value="@Model.Blog.Id" />
                                                     <div class="form-group">
-                                                        <textarea class="form-control" name="Text" rows="2" placeholder="Write your reply..." required></textarea>
+                                                        <textarea class="form-control" name="Text" rows="2" placeholder="@_localizer.GetValue("Write your reply...")" required></textarea>
                                                     </div>
-                                                    <button type="submit" class="btn btn-primary btn-sm">Post Reply</button>
+                                                    <button type="submit" class="btn btn-primary btn-sm">@_localizer.GetValue("Post Reply")</button>
                                                 </form>
                                             }
 
@@ -169,31 +172,31 @@
                 <div class="col-12 col-md-3 col-lg-4 col-xs-12">
                     <div class="right-part">
                         <div class="categories-part">
-                            <h3>Categories</h3>
+                            <h3>@_localizer.GetValue("Categories")</h3>
                             <ul>
                                 <li>
-                                    <a href="">All</a>
+                                    <a href="">@_localizer.GetValue("All")</a>
                                 </li>
                                 <li>
-                                    <a href="">CHEF'S SPECIALITY</a>
+                                    <a href="">@_localizer.GetValue("CHEF'S SPECIALITY")</a>
                                 </li>
                                 <li>
-                                    <a href="">DRINKS</a>
+                                    <a href="">@_localizer.GetValue("Drinks")</a>
                                 </li>
                                 <li>
-                                    <a href="">DESERT</a>
+                                    <a href="">@_localizer.GetValue("DESERT")</a>
                                 </li>
                                 <li>
-                                    <a href="">MAIN</a>
+                                    <a href="">@_localizer.GetValue("Main")</a>
                                 </li>
                                 <li>
-                                    <a href="">OFFERS</a>
+                                    <a href="">@_localizer.GetValue("OFFERS")</a>
                                 </li>
                                 <li>
-                                    <a href="">STARTERS</a>
+                                    <a href="">@_localizer.GetValue("STARTERS")</a>
                                 </li>
                                 <li>
-                                    <a href="">DAILY MENU</a>
+                                    <a href="">@_localizer.GetValue("DAILY MENU")</a>
                                 </li>
                             </ul>
                         </div>
@@ -201,7 +204,9 @@
                             <img src="/assets/images/blog/banner.jpg" alt="">
                         </div>
                         <div class="follow-part">
-                            <h3>Follow Us</h3>
+                            <h3>
+                                <h3>@_localizer.GetValue("Follow Us")</h3>
+                            </h3>
                             <div class="text">
                                 <ul>
                                     <li>
@@ -225,12 +230,11 @@
                         </div>
                         <div class="newsletter">
                             <h3>
-                                NEWSLETTER
+                                @_localizer.GetValue("NEWSLETTER")
                             </h3>
                             <div class="dn-widgetNewsletter-intro">
-                                Subscribe &amp; receive
-                                15% discount
-                                coupon
+                                @_localizer.GetValue("Subscribe & receive 15% discount coupon")
+
                             </div>
                             <form method="post" class="js-mcForm dn-widgetNewsletter-form"
                                   data-url="https://demos.hogash.com/dannys/" name="newsletter_form">
@@ -242,58 +246,8 @@
                                 <input type="hidden" name="action" value="hg_mailchimp_register">
                                 <input type="submit" name="submit"
                                        class="dn-widgetNewsletter-submit btn btn-default btn-default--whover"
-                                       value="SUBSCRIBE">
+                                       value="@_localizer.GetValue("Subscribe")">
                             </form>
-                        </div>
-                        <div class="featured">
-                            <h3>FEATURED</h3>
-                            <ul>
-                                <li>
-                                    <div class="circle">
-                                        1
-                                    </div>
-                                    <a class="top" href="">Special deal if you order 3 or more pizza’s</a>
-                                    <p>
-                                        under <span>
-                                            <a href="">All</a>,
-                                            <a href="">Chef's Speciality</a>,
-                                            <a href="">Main</a>,
-                                            <a href="">Offers</a>,
-
-                                        </span>
-                                    </p>
-                                </li>
-                                <li>
-                                    <div class="circle">
-                                        2
-                                    </div>
-                                    <a class="top" href="">Special deal if you order 3 or more pizza’s</a>
-                                    <p>
-                                        under <span>
-                                            <a href="">All</a>,
-                                            <a href="">Chef's Speciality</a>,
-                                            <a href="">Main</a>,
-                                            <a href="">Offers</a>,
-
-                                        </span>
-                                    </p>
-                                </li>
-                                <li>
-                                    <div class="circle">
-                                        3
-                                    </div>
-                                    <a class="top" href="">Special deal if you order 3 or more pizza’s</a>
-                                    <p>
-                                        under <span>
-                                            <a href="">All</a>,
-                                            <a href="">Chef's Speciality</a>,
-                                            <a href="">Main</a>,
-                                            <a href="">Offers</a>,
-
-                                        </span>
-                                    </p>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>

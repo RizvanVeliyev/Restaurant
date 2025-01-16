@@ -4,10 +4,10 @@
     <section id="News-banner">
         <div class="banner-part">
             <div class="banner-content">
-                <h3>Restaurant</h3>
+                <h3>@_localizer.GetValue("Restaurant")</h3>
                 <h1>@_localizer.GetValue("Blog")</h1>
-                <p class="white">We Cook & Blog to your liking</p>
-                <p class="yellow">Danny's</p>
+                <p class="white">@_localizer.GetValue("We Cook & Blog to your liking")</p>
+                <p class="yellow">@_localizer.GetValue("Master Yaver's")</p>
             </div>
             <div class="overlay"></div>
         </div>
@@ -83,31 +83,31 @@
                 <div class="col-sm-4 col-md-4" style="width: 31%; margin: 0 !important;">
                     <div class="right-part">
                         <div class="categories-part">
-                            <h3>Categories</h3>
+                            <h3>@_localizer.GetValue("Categories")</h3>
                             <ul>
                                 <li>
-                                    <a href="">All</a>
+                                    <a href="">@_localizer.GetValue("All")</a>
                                 </li>
                                 <li>
-                                    <a href="">CHEF'S SPECIALITY</a>
+                                    <a href="">@_localizer.GetValue("CHEF'S SPECIALITY")</a>
                                 </li>
                                 <li>
-                                    <a href="">DRINKS</a>
+                                    <a href="">@_localizer.GetValue("Drinks")</a>
                                 </li>
                                 <li>
-                                    <a href="">DESERT</a>
+                                    <a href="">@_localizer.GetValue("DESERT")</a>
                                 </li>
                                 <li>
-                                    <a href="">MAIN</a>
+                                    <a href="">@_localizer.GetValue("Main")</a>
                                 </li>
                                 <li>
-                                    <a href="">OFFERS</a>
+                                    <a href="">@_localizer.GetValue("OFFERS")</a>
                                 </li>
                                 <li>
-                                    <a href="">STARTERS</a>
+                                    <a href="">@_localizer.GetValue("STARTERS")</a>
                                 </li>
                                 <li>
-                                    <a href="">DAILY MENU</a>
+                                    <a href="">@_localizer.GetValue("DAILY MENU")</a>
                                 </li>
                             </ul>
                         </div>
@@ -115,7 +115,7 @@
                             <img src="/assets/images/blog/banner.jpg" alt="">
                         </div>
                         <div class="follow-part">
-                            <h3>Follow Us</h3>
+                            <h3>@_localizer.GetValue("Follow Us")</h3>
                             <div class="text">
                                 <ul>
                                     <li>
@@ -139,12 +139,10 @@
                         </div>
                         <div class="newsletter">
                             <h3>
-                                NEWSLETTER
+                                @_localizer.GetValue("NEWSLETTER")
                             </h3>
                             <div class="dn-widgetNewsletter-intro">
-                                Subscribe &amp; receive
-                                15% discount
-                                coupon
+                                @_localizer.GetValue("Subscribe & receive 15% discount coupon")
                             </div>
                             <form method="post" class="js-mcForm dn-widgetNewsletter-form"
                                   data-url="https://demos.hogash.com/dannys/" name="newsletter_form">
@@ -156,7 +154,7 @@
                                 <input type="hidden" name="action" value="hg_mailchimp_register">
                                 <input type="submit" name="submit"
                                        class="dn-widgetNewsletter-submit btn btn-default btn-default--whover"
-                                       value="SUBSCRIBE">
+                                       value="@_localizer.GetValue("Subscribe")">
                             </form>
                         </div>
                         <div class="featured">

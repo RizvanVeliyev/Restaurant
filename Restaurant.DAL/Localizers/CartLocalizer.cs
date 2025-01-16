@@ -13,7 +13,7 @@ namespace Restaurant.DAL.Localizers
 
         public CartLocalizer(IStringLocalizerFactory factory)
         {
-            _localizer = factory.Create("Basket", "Restaurant");
+            _localizer = factory.Create("Cart", "Restaurant");
         }
 
         public string GetValue(string key)

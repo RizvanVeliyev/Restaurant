@@ -135,4 +135,13 @@
   <data name="Name" xml:space="preserve">
     <value>Your Name</value>
   </data>
+  <data name="Juicy Flavours" xml:space="preserve">
+    <value>Juicy Flavours</value>
+  </data>
+  <data name="Contact Details" xml:space="preserve">
+    <value>Contact Details</value>
+  </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Restaurant</value>
+  </data>
 </root>

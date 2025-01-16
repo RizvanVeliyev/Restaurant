@@ -141,4 +141,67 @@
   <data name="Next" xml:space="preserve">
     <value>Следующий</value>
   </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Ресторан</value>
+  </data>
+  <data name="Master Yaver's" xml:space="preserve">
+    <value>Мастера Явера</value>
+  </data>
+  <data name="Post Comment" xml:space="preserve">
+    <value>Оставить комментарий</value>
+  </data>
+  <data name="Post Reply" xml:space="preserve">
+    <value>Отправить ответ</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="Reviews" xml:space="preserve">
+    <value>Отзывы</value>
+  </data>
+  <data name="Write your comment here..." xml:space="preserve">
+    <value>Напишите ваш комментарий здесь...</value>
+  </data>
+  <data name="Write your reply..." xml:space="preserve">
+    <value>Напишите ваш ответ...</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Комментарии</value>
+  </data>
+  <data name="Leave a Reply" xml:space="preserve">
+    <value>Оставить ответ</value>
+  </data>
+  <data name="Rate the product (1-5)" xml:space="preserve">
+    <value>Оцените продукт (1-5)</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Рейтинг</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Ответить</value>
+  </data>
+  <data name="Ingredients" xml:space="preserve">
+    <value>Ингредиенты</value>
+  </data>
+  <data name="Please" xml:space="preserve">
+    <value>Пожалуйста</value>
+  </data>
+  <data name="to leave a comment." xml:space="preserve">
+    <value>чтобы оставить комментарий.</value>
+  </data>
+  <data name="log in" xml:space="preserve">
+    <value>войдите в систему</value>
+  </data>
+  <data name="Product Description" xml:space="preserve">
+    <value>Описание продукта</value>
+  </data>
+  <data name="We Cook &amp; Sell to your liking" xml:space="preserve">
+    <value>Мы готовим и продаём по вашему вкусу</value>
+  </data>
 </root>

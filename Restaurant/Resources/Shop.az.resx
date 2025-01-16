@@ -141,4 +141,67 @@
   <data name="Next" xml:space="preserve">
     <value>Sonrakı</value>
   </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Restoran</value>
+  </data>
+  <data name="Master Yaver's" xml:space="preserve">
+    <value>Yavər ustanın</value>
+  </data>
+  <data name="Post Comment" xml:space="preserve">
+    <value>Şərh Göndər</value>
+  </data>
+  <data name="Post Reply" xml:space="preserve">
+    <value>Cavabı göndər</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Təsvir</value>
+  </data>
+  <data name="Reviews" xml:space="preserve">
+    <value>Rəylər</value>
+  </data>
+  <data name="Write your comment here..." xml:space="preserve">
+    <value>Şərhinizi burada yazın...</value>
+  </data>
+  <data name="Write your reply..." xml:space="preserve">
+    <value>Cavabınızı yazın...</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Sil</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Şərh</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Şərhlər</value>
+  </data>
+  <data name="Leave a Reply" xml:space="preserve">
+    <value>Rəy yazın</value>
+  </data>
+  <data name="Rate the product (1-5)" xml:space="preserve">
+    <value>Məhsulu qiymətləndirin (1-5)</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Reytinq</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Cavab ver</value>
+  </data>
+  <data name="Ingredients" xml:space="preserve">
+    <value>Tərkibi</value>
+  </data>
+  <data name="Please" xml:space="preserve">
+    <value>Zəhmət olmasa</value>
+  </data>
+  <data name="to leave a comment." xml:space="preserve">
+    <value>şərh yazmaq üçün.</value>
+  </data>
+  <data name="log in" xml:space="preserve">
+    <value>daxil olun</value>
+  </data>
+  <data name="Product Description" xml:space="preserve">
+    <value>Məhsulun Təsviri</value>
+  </data>
+  <data name="We Cook &amp; Sell to your liking" xml:space="preserve">
+    <value>Sizin zövqünüzə uyğun bişiririk və satırıq</value>
+  </data>
 </root>

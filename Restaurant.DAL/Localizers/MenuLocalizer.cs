@@ -12,7 +12,7 @@ namespace Restaurant.DAL.Localizers
         private readonly IStringLocalizer _localizer;
         public MenuLocalizer(IStringLocalizerFactory factory)
         {
-            _localizer = factory.Create("Shop", "Restaurant");
+            _localizer = factory.Create("Menu", "Restaurant");
         }
 
         public string GetValue(string key)

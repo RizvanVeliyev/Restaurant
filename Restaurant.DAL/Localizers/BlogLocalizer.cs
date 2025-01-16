@@ -9,7 +9,7 @@ namespace Restaurant.DAL.Localizers
 
         public BlogLocalizer(IStringLocalizerFactory factory)
         {
-            _localizer = factory.Create("Basket", "Restaurant");
+            _localizer = factory.Create("Blog", "Restaurant");
         }
 
         public string GetValue(string key)

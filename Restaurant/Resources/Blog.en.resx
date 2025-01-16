@@ -180,4 +180,34 @@
   <data name="Next" xml:space="preserve">
     <value>Next</value>
   </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Restaurant</value>
+  </data>
+  <data name="Master Yaver's" xml:space="preserve">
+    <value>Master Yaver's</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Reply</value>
+  </data>
+  <data name="Post Reply" xml:space="preserve">
+    <value>Post Reply</value>
+  </data>
+  <data name="Write your reply..." xml:space="preserve">
+    <value>Write your reply...</value>
+  </data>
+  <data name="Write your comment here..." xml:space="preserve">
+    <value>Write your comment here...</value>
+  </data>
+  <data name="Rate the product (1-5)" xml:space="preserve">
+    <value>Rate the product (1-5)</value>
+  </data>
 </root>

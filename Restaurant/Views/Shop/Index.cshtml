@@ -5,9 +5,9 @@
     <section id="News-banner">
         <div class="banner-part">
             <div class="banner-content">
-                <h3>Restaurant</h3>
+                <h3>@_localizer.GetValue("Restaurant")</h3>
                 <h1>@_localizer.GetValue("Shop")</h1>
-                <p class="yellow">Danny's</p>
+                <p class="yellow">@_localizer.GetValue("Master Yaver's")</p>
             </div>
             <div class="overlay"></div>
         </div>
@@ -18,17 +18,17 @@
     <div class="content ">
         <div class="container">
             <div class="full-shop-header">
-                <h2>Shop</h2>
+                <h2>@_localizer.GetValue("Shop")</h2>
                 <div class="filter-section">
-                    <p>SHOWING 1–11 OF 14 RESULTS</p>
-                    <div class="right-filter">
+@*                     <p>SHOWING 1–11 OF 14 RESULTS</p>
+ *@                    <div class="right-filter">
                         <form action="">
                             <select class="form-control">
-                                <option>Default sorting</option>
-                                <option>Sort by popularity</option>
-                                <option>Sort by average rating </option>
-                                <option>Sort by price: low to high</option>
-                                <option>Sort by price: high to low </option>
+                                <option>@_localizer.GetValue("Default Sorting")</option>
+                                <option>@_localizer.GetValue("Sort by Popularity")</option>
+                                <option>@_localizer.GetValue("Sort by Average Rating")</option>
+                                <option>@_localizer.GetValue("Sort by Price: Low to High")</option>
+                                <option>@_localizer.GetValue("Sort by Price: High to Low")</option>
 
                             </select>
                         </form>
@@ -45,7 +45,7 @@
                                     <img class="img-responsive" src="@product.MainImagePath" alt="@product.Name">
                                     <div class="info-wrapper">
                                         <div class="btn-add-to-cart">
-                                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id"> Add to cart</a>
+                                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id"> @_localizer.GetValue("Add to Cart")</a>
                                         </div>
                                         <h2 class="product-title">@product.Name</h2>
                                         <span class="price">$@product.Price</span>
@@ -57,7 +57,7 @@
                             <div class="fancy-inner-block">
                                 <div class="pag-arrows">
                                     <a href="">
-                                        <h2>NEXT</h2>
+                                        <h2>@_localizer.GetValue("Next")</h2>
 
                                     </a>
                                 </div>

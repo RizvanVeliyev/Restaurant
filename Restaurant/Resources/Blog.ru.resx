@@ -180,4 +180,34 @@
   <data name="Next" xml:space="preserve">
     <value>Следующий</value>
   </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Ресторан</value>
+  </data>
+  <data name="Master Yaver's" xml:space="preserve">
+    <value> Мастера Явера</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Рейтинг</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Комментарии</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Ответить</value>
+  </data>
+  <data name="Post Reply" xml:space="preserve">
+    <value>Отправить ответ</value>
+  </data>
+  <data name="Write your reply..." xml:space="preserve">
+    <value>Напишите ваш ответ...</value>
+  </data>
+  <data name="Write your comment here..." xml:space="preserve">
+    <value>Напишите ваш комментарий здесь...</value>
+  </data>
+  <data name="Rate the product (1-5)" xml:space="preserve">
+    <value>Оцените продукт (1-5)</value>
+  </data>
 </root>
