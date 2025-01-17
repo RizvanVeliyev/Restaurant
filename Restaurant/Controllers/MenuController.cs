@@ -29,6 +29,7 @@ namespace Restaurant.Controllers
             {
                 Products = products,
                 Categories = categories
+                
             };
 
             return View(menuDto);

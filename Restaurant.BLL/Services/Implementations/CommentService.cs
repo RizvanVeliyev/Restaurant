@@ -148,8 +148,25 @@ namespace Restaurant.BLL.Services.Implementations
             if (comment.AppUserId != userId && !_isAdmin())
                 throw new UnAuthorizedException(_errorLocalizer.GetValue(nameof(UnAuthorizedException)));
 
+            await DeleteChildCommentsAsync(comment);
+
+
+
             _repository.Delete(comment);
             await _repository.SaveChangesAsync();
+        }
+
+
+        private async Task DeleteChildCommentsAsync(Comment parentComment)
+        {
+            if (parentComment.Children != null && parentComment.Children.Any())
+            {
+                foreach (var child in parentComment.Children.ToList()) // Şərhləri təkrarlayın
+                {
+                    await DeleteChildCommentsAsync(child); // Rekursiv olaraq bağlı şərhləri silin
+                    _repository.Delete(child); // Şərhi silin
+                }
+            }
         }
 
         public async Task<List<CommentGetDto>> GetProductCommentsAsync(int productId)

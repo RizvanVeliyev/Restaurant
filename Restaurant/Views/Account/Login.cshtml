@@ -23,14 +23,10 @@
                         <label asp-for="Password" class="form-label">Your Password</label>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
-
-                    <div class="form-submit mt-4">
-                        <input type="submit" value="Login" class="btn btn-primary" />
-                        <div class="form-check mt-3">
-                            <input asp-for="RememberMe" class="form-check-input" type="checkbox" />
-                            <label asp-for="RememberMe" class="form-check-label">Remember Me</label>
-                        </div>
-                        <a href="#" class="vertify-booking mt-2 d-block">Verify your booking info from your phone</a>
+                    <div class="form-submit">
+                        <input type="submit" value="Login" class="submit" id="submit" name="submit" />
+                        <p> <input type="checkbox" name="submit" /> Remember Me</p>
+                        <a href="#" class="vertify-booking">Verify your booking info from your phone</a>
                     </div>
                 </form>
 

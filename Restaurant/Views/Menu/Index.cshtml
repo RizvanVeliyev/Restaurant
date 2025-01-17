@@ -16,210 +16,156 @@
     <section id="Menu">
         <div class="container">
             <div class="row">
-                <div class="menu1">
-                    <div class="menu-left col-lg-4 col-12">
-                        <div class="wrapper-img">
-                            <img src="/assets/images/menu/img_10.jpg" alt="" />
-                            <div class="overlay"></div>
-                            <div class="wrapper-content">
-                                <h3>Asparagus &amp; Halloumi Salad</h3>
-                                <div class="empty">(250 G)</div>
-                                <p>
-                                    Beans / Halloumi cheese / Asparagus / Courgettes / Cherry
-                                    tomatoes
-                                </p>
-                                <div class="price">18.90</div>
+
+                @for (int i = 0; i < Model.Categories.Count; i++)
+                {
+                    @if (i % 2 == 0)
+                    {
+                        <div class="menu1">
+                            <div class="menu-left col-lg-4 col-12">
+                                <div class="wrapper-img">
+                                    @for (int j = 0; i < Model.Products.Count; j++)
+                                    {
+                                        @if (Model.Categories[i].Id == Model.Products[j].CategoryId)
+                                        {
+                                            <img src="@Model.Products[j].MainImagePath" alt="" />
+                                            <div class="overlay"></div>
+                                            <div class="wrapper-content">
+                                                <h3>@Model.Products[j].Name</h3>
+                                                <div class="empty">(250 G)</div>
+                                                <p>
+                                                    Beans / Halloumi cheese / Asparagus / Courgettes / Cherry
+                                                    tomatoes
+                                                </p>
+                                                <div class="price">@Model.Products[j].Price</div>
+                                            </div>
+                                            break;
+                                        }
+                                    }
+
+
+                                </div>
+                            </div>
+                            <div class="menu-right col-lg-8 col-12">
+                                <div class="inner-content">
+                                    <h2>@Model.Categories[i].Name</h2>
+                                    @{
+                                        //Starters yerine kateqoriya adi yazilacag, ve o kateqoriyada olan productlar gelecek asagida
+                                    }
+                                </div>
+                                <div class="menu-starter col-12">
+                                    <ul>
+
+                                        @foreach (var product in Model.Products)
+                                        {
+                                            @if (Model.Categories[i].Id == product.CategoryId)
+                                            {
+                                                <li>
+                                                    <a asp-action="Details" asp-controller="Shop" asp-route-id="@product.Id">
+                                                        <div class="item-main">
+                                                            <h4>
+                                                                @product.Name
+                                                                <small>(250 G)</small>
+                                                            </h4>
+                                                            <div class="zn-priceList-dottedSeparator"></div>
+                                                            <div class="itemPrice">$@product.Price</div>
+                                                        </div>
+                                                        <div class="item-desc">
+                                                            @foreach (var ingredient in product.Ingredients)
+                                                            {
+                                                                @ingredient.Name
+                                                            }
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            }
+
+
+                                        }
+
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="menu-right col-lg-8 col-12">
-                        <div class="inner-content">
-                            <h5>Tasty</h5>
-                            <h2>Starters</h2>
-                            @{
-                                //Starters yerine kateqoriya adi yazilacag, ve o kateqoriyada olan productlar gelecek asagida
-                            }
-                        </div>
-                        <div class="menu-starter col-12">
-                            <ul>
-                                @foreach (var product in Model.Products)
-                                {
-                                    <li>
-                                            <a asp-action="Details" asp-controller="Shop" asp-route-id="@product.Id">
-                                            <div class="item-main">
-                                                <h4>
-                                                    @product.Name
-                                                    <small>(250 G)</small>
-                                                </h4>
-                                            <div class="zn-priceList-dottedSeparator"></div>
-                                            <div class="itemPrice">$@product.Price</div>
+                    }
+                    else
+                    {
+                        <div class="menu2">
+                            <div class="menu-left col-lg-4 col-12">
+                                <div class="wrapper-img">
+                                    @for (int j = 0; i < Model.Products.Count; j++)
+                                    {
+                                        @if (Model.Categories[i].Id == Model.Products[j].CategoryId)
+                                        {
+                                            <img src="@Model.Products[j].MainImagePath" alt="" />
+                                            <div class="overlay"></div>
+                                            <div class="wrapper-content">
+                                                <h3>@Model.Products[j].Name</h3>
+                                                <div class="empty">(250 G)</div>
+                                                <p>
+                                                    Beans / Halloumi cheese / Asparagus / Courgettes / Cherry
+                                                    tomatoes
+                                                </p>
+                                                <div class="price">@Model.Products[j].Price</div>
                                             </div>
-                                            <div class="item-desc">
-                                                @foreach (var ingredient in product.Ingredients)
-                                                {
-                                                    @ingredient.Name 
-                                                }
-                                            </div>
-                                        </a>
-                                    </li>
+                                            break;
+                                        }
+                                    }
 
-                                }
-                                
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu2">
-                    <div class="menu-left col-lg-4 col-12">
-                        <div class="wrapper-img">
-                            <img src="/assets/images/menu/img_10.jpg" alt="" />
-                            <div class="overlay"></div>
-                            <div class="wrapper-content">
-                                <h3>Asparagus &amp; Halloumi Salad</h3>
-                                <div class="empty">(250 G)</div>
-                                <p>
-                                    Beans / Halloumi cheese / Asparagus / Courgettes / Cherry
-                                    tomatoes
-                                </p>
-                                <div class="price">18.90</div>
+
+                                </div>
+                            </div>
+                            <div class="menu-right col-lg-8 col-12">
+                                <div class="inner-content">
+                                    <h2>@Model.Categories[i].Name</h2>
+                                    @{
+                                        //Starters yerine kateqoriya adi yazilacag, ve o kateqoriyada olan productlar gelecek asagida
+                                    }
+                                </div>
+                                <div class="menu-starter col-12">
+                                    <ul>
+
+                                        @foreach (var product in Model.Products)
+                                        {
+                                            @if (Model.Categories[i].Id == product.CategoryId)
+                                            {
+                                                <li>
+                                                    <a asp-action="Details" asp-controller="Shop" asp-route-id="@product.Id">
+                                                        <div class="item-main">
+                                                            <h4>
+                                                                @product.Name
+                                                                <small>(250 G)</small>
+                                                            </h4>
+                                                            <div class="zn-priceList-dottedSeparator"></div>
+                                                            <div class="itemPrice">$@product.Price</div>
+                                                        </div>
+                                                        <div class="item-desc">
+                                                            @foreach (var ingredient in product.Ingredients)
+                                                            {
+                                                                @ingredient.Name
+                                                            }
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                            }
+
+
+                                        }
+
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="menu-right col-lg-8 col-12">
-                        <div class="inner-content">
-                            <h5>Tasty</h5>
-                            <h2>Starters</h2>
-                        </div>
-                        <div class="menu-starter col-12">
-                            <ul>
-                                @foreach (var product in Model.Products)
-                                {
-                                    <li>
-                                        <a asp-action="Details" asp-controller="Shop" asp-route-id="@product.Id">
-                                            <div class="item-main">
-                                                <h4>
-                                                    @product.Name
-                                                    <small>(250 G)</small>
-                                                </h4>
-                                            <div class="zn-priceList-dottedSeparator"></div>
-                                            <div class="itemPrice">$@product.Price</div>
-                                            </div>
-                                            <div class="item-desc">
-                                                @foreach (var ingredient in @product.Ingredients)
-                                                {
-                                                    @ingredient.Name 
-                                                }
-                                            </div>
-                                        </a>
-                                    </li>
+                    }
 
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu1">
-                    <div class="menu-left col-lg-4 col-12">
-                        <div class="wrapper-img">
-                            <img src="/assets/images/menu/img_10.jpg" alt="" />
-                            <div class="overlay"></div>
-                            <div class="wrapper-content">
-                                <h3>Asparagus &amp; Halloumi Salad</h3>
-                                <div class="empty">(250 G)</div>
-                                <p>
-                                    Beans / Halloumi cheese / Asparagus / Courgettes / Cherry
-                                    tomatoes
-                                </p>
-                                <div class="price">18.90</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-right col-lg-8 col-12">
-                        <div class="inner-content">
-                            <h5>Tasty</h5>
-                            <h2>Starters</h2>
-                        </div>
-                        <div class="menu-starter col-12">
-                            <ul>
-                                @foreach (var product in Model.Products)
-                                {
-                                    <li>
-                                        <a asp-action="Details" asp-controller="Shop" asp-route-id="@product.Id">
-                                            <div class="item-main">
-                                                <h4>
-                                                    @product.Name
-                                                    <small>(250 G)</small>
-                                                </h4>
-                                            <div class="zn-priceList-dottedSeparator"></div>
-                                            <div class="itemPrice">$@product.Price</div>
-                                            </div>
-                                            <div class="item-desc">
-                                                @foreach (var ingredient in @product.Ingredients)
-                                                {
-                                                    @ingredient.Name 
-                                                }
-                                            </div>
-                                        </a>
-                                    </li>
 
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="menu2">
-                    <div class="menu-left col-lg-4 col-12">
-                        <div class="wrapper-img">
-                            <img src="/assets/images/menu/img_10.jpg" alt="" />
-                            <div class="overlay"></div>
-                            <div class="wrapper-content">
-                                <h3>Asparagus &amp; Halloumi Salad</h3>
-                                <div class="empty">(250 G)</div>
-                                <p>
-                                    Beans / Halloumi cheese / Asparagus / Courgettes / Cherry
-                                    tomatoes
-                                </p>
-                                <div class="price">18.90</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="menu-right col-lg-8 col-12">
-                        <div class="inner-content">
-                            <h5>Tasty</h5>
-                            <h2>Starters</h2>
-                        </div>
-                        <div class="menu-starter col-12">
-                            <ul>
-                                @foreach (var product in Model.Products)
-                                {
-                                        <li>
-                                            <a asp-action="Details" asp-controller="Shop" asp-route-id="@product.Id">
-                                                <div class="item-main">
-                                                    <h4>
-                                                    @product.Name
-                                                        <small>(250 G)</small>
-                                                    </h4>
-                                                <div class="zn-priceList-dottedSeparator"></div>
-                                                <div class="itemPrice">$@product.Price</div>
-                                                </div>
-                                                <div class="item-desc">
-                                                @foreach (var ingredient in @product.Ingredients)
-                                                {
-                                                    @ingredient.Name 
+                }
 
-                                                }
 
-                                                </div>
-                                            </a>
-                                        </li>
-
-                                }
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>
+
     <!-- MenuPart End -->
 </main>

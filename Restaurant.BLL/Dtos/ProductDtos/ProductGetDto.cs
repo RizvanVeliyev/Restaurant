@@ -13,6 +13,8 @@ namespace Restaurant.BLL.Dtos.ProductDtos
         public List<CategoryGetDto> Categories { get; set; } = null!;
         public string MainImagePath { get; set; } = null!;
         public List<string> ImagePaths { get; set; } = [];
+        public int CategoryId { get; set; } 
+
 
         public List<IngredientGetDto> Ingredients { get; set; } = [];
         public List<ProductGetDto> Products { get; set; } = [];

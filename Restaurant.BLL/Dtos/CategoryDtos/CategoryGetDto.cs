@@ -1,4 +1,5 @@
 ﻿using Restaurant.BLL.Abstractions.Dtos;
+using Restaurant.BLL.Dtos.ProductDtos;
 
 namespace Restaurant.BLL.Dtos.CategoryDtos
 {
@@ -8,6 +9,6 @@ namespace Restaurant.BLL.Dtos.CategoryDtos
        
         public string Name { get; set; } = null!;
         
-        //public List<ProductGetDto> Products { get; set; } = [];
+        public List<ProductGetDto> Products { get; set; } = [];
     }
 }

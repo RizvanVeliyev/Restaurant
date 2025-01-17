@@ -22,6 +22,12 @@ namespace Restaurant.DAL.DataContexts
             modelBuilder.Entity<Comment>().HasQueryFilter(x => !x.IsDeleted);
             modelBuilder.Entity<Category>().HasQueryFilter(x => !x.IsDeleted);
 
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.Parent)
+                .WithMany(c => c.Children)
+                .HasForeignKey(c => c.ParentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -53,7 +59,7 @@ namespace Restaurant.DAL.DataContexts
         public DbSet<Status> Statuses { get; set; }
         public DbSet<StatusDetail> StatusDetails { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
-       
+
 
 
 
