@@ -10,6 +10,7 @@ namespace Restaurant.BLL.Dtos.BlogDtos
         //public List<BlogCategoryGetDto> BlogCategories { get; set; }
         public int BlogCategoryId { get; set; }
         public IFormFile Image { get; set; } = null!;
+        public string Author { get; set; } = null!;
         public List<BlogDetailCreateDto> BlogDetails { get; set; } = [];
         public List<BlogCategoryGetDto>? BlogCategories { get; set; } = [];
 

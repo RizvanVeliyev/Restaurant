@@ -4,8 +4,8 @@ namespace Restaurant.Core.Entities
 {
     public class Blog:BaseEntity
     {
-       
-        public DateTime CreatedAt { get; set; }
+
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public string Author { get; set; } = null!;
         public BlogCategory BlogCategory { get; set; } = null!;
         public int BlogCategoryId { get; set; }

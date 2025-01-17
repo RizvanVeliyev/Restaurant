@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Restaurant.BLL.Dtos.BlogCategoryDtos;
+using Restaurant.BLL.Dtos.CategoryDtos;
 using Restaurant.Core.Entities;
 
 namespace Restaurant.BLL.AutoMapper
@@ -13,10 +14,9 @@ namespace Restaurant.BLL.AutoMapper
                                 .ForMember(x => x.Name, x => x.MapFrom(x => x.BlogCategoryDetails.FirstOrDefault() != null ? x.BlogCategoryDetails.FirstOrDefault()!.Name : string.Empty));
 
 
-            ;
 
-            CreateMap<BlogCategory, BlogCategoryGetDto>()
-                .ForMember(x => x.Name, x => x.MapFrom(x => x.BlogCategoryDetails.FirstOrDefault() != null ? x.BlogCategoryDetails.FirstOrDefault()!.Name : string.Empty));
+
+            CreateMap<BlogCategory, BlogCategoryUpdateDto>().ReverseMap();
         }
     }
 }

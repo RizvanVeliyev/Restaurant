@@ -24,10 +24,17 @@ namespace Restaurant.Controllers
             _languageService = languageService;
             _language = _languageService.RenderSelectedLanguage();
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? categoryId)
         {
             var blogs = await _blogService.GetAllAsync(_language);
+
             var blogCategories = await _blogCategoryService.GetAllAsync(_language);
+
+            if (categoryId.HasValue && categoryId > 0)
+            {
+                blogs = blogs.Where(b => b.BlogCategoryId == categoryId.Value).ToList();
+            }
+
             var blogDto = new BlogDto
             {
                 Blogs= blogs,
@@ -43,11 +50,21 @@ namespace Restaurant.Controllers
             var comments = await _commentService.GetBlogCommentsAsync(id);
             var isAllowBlogComment = await _commentService.CheckIsAllowBlogCommentAsync(id);
 
+            var allBlogs = await _blogService.GetAllAsync(_language);
+            var currentIndex = allBlogs.FindIndex(b => b.Id == id);
+
+            // Növbəti və əvvəlki blogları tapın
+            var nextBlogId = currentIndex < allBlogs.Count - 1 ? allBlogs[currentIndex + 1].Id : (int?)null;
+            var prevBlogId = currentIndex > 0 ? allBlogs[currentIndex - 1].Id : (int?)null;
+
+
             BlogDetailDto dto = new()
             {
                 Blog = blog,
                 BlogComments = comments,
-                IsAllowBlogComment = isAllowBlogComment
+                IsAllowBlogComment = isAllowBlogComment,
+                NextBlogId = nextBlogId,
+                PrevBlogId = prevBlogId
             };
 
             return View(dto);
@@ -84,6 +101,27 @@ namespace Restaurant.Controllers
             string returnUrl = Request.GetReturnUrl();
 
             return Redirect(returnUrl);
+        }
+
+
+
+
+
+        [HttpPost]
+        public IActionResult SubscribeNewsletter(string mc_email)
+        {
+            if (string.IsNullOrEmpty(mc_email))
+            {
+                // Əgər e-poçt boşdursa, istifadəçini səhifəyə yenidən qaytarın və xəbərdarlıq göstərin
+                TempData["Error"] = "Please enter a valid email address.";
+                return Redirect(Request.Headers["Referer"].ToString() + "#newsletter"); // Səhifəyə geri dön və `newsletter` hissəsinə fokuslan
+            }
+
+            // Newsletter üçün əlavə məntiq (məsələn, email saxlama və ya API çağırışı)
+            TempData["Success"] = "Thank you for subscribing to our newsletter!";
+
+            // İstifadəçini yenidən səhifəyə yönləndir və `newsletter` hissəsinə fokuslan
+            return Redirect(Request.Headers["Referer"].ToString() + "#newsletter");
         }
 
 

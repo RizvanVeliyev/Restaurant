@@ -1,6 +1,13 @@
 ﻿@using System.Security.Claims
 @model BlogDetailDto
 @inject BlogLocalizer _localizer
+<style>
+    .detail-navigation .disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
+</style>
+
 
 <main class="blog-detail">
     <section id="News-banner">
@@ -25,7 +32,7 @@
                         <div class="detial-header">
                             <h2>@Model.Blog.Name</h2>
                             <div class="detail-meta">
-                                <p>JUNE 15, 2016 by <a href="#">@Model.Blog.Author </a>in PHOTOGRAPHY</p>
+                                <p>@Model.CreatedAt<a href="#">BY @Model.Blog.Author </a>in PHOTOGRAPHY</p>
                             </div>
                         </div>
                         <div class="detail-img">
@@ -42,55 +49,40 @@
 
                         </div>
                         <div class="detail-navigation">
-                            <div class="nav-prev">
-                                <a href="">
+                            @if (Model.PrevBlogId.HasValue)
+                            {
+                                <div class="nav-prev">
+                                    <a asp-action="Details" asp-route-id="@Model.PrevBlogId.Value">
+                                        <span class="nav-subtitle">@_localizer.GetValue("Prev")</span>
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="nav-prev disabled">
                                     <span class="nav-subtitle">@_localizer.GetValue("Prev")</span>
-                                    <span class="nav-detail">i don’t know about you but this looks delicious</span>
-                                </a>
-                            </div>
-                            <div class="nav-next">
-                                <a href="">
+                                    <span class="nav-detail">@_localizer.GetValue("No Previous Blog")</span>
+                                </div>
+                            }
+
+                            @if (Model.NextBlogId.HasValue)
+                            {
+                                <div class="nav-next">
+                                    <a asp-action="Details" asp-route-id="@Model.NextBlogId.Value">
+                                        <span class="nav-subtitle">@_localizer.GetValue("Next")</span>
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="nav-next disabled">
                                     <span class="nav-subtitle">@_localizer.GetValue("Next")</span>
-                                    <span class="nav-detail">sweet danny’s cherry pie dessert recipes</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="detail-author">
-                            <div class="row">
-                                <div class="col-sm-2 col-md-3 col-lg-2">
-                                    <div class="author-img">
-                                        <img src="/assets/images/blog/authour-img.jpg" alt="">
-                                    </div>
+                                    <span class="nav-detail">@_localizer.GetValue("No Next Blog")</span>
                                 </div>
-                                <div class="col-sm-10 col-md-9 col-lg-8">
-                                    <div class="author-detail">
-                                        <h5>Pam Andersson</h5>
-                                        <a href="#" class="author-link">http://pamandersson.com</a>
-                                        <p>
-                                            Quisque placerat risus non ornare posuere. Cras pretium volutpat
-                                            pulvinar. Morbi imperdiet lectus vitae lorem semper, non iaculis nulla
-                                            finibus. Suspendisse iaculis orci enim, ut posuere magna sodales ut.
-                                        </p>
-                                        <div class="author-sosials">
-                                            <ul>
-                                                <li>
-                                                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="#"><i class="fa fa-bell" aria-hidden="true"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         </div>
+
+                       
                         <div class="comment-part">
                             <h5>@_localizer.GetValue("Leave a Reply")</h5>
                             @if (User.Identity.IsAuthenticated)
@@ -112,7 +104,7 @@
                             }
                             else
                             {
-                                <p>Please <a asp-controller="Account" asp-action="Login">log in</a> to leave a comment.</p>
+                                <p>@_localizer.GetValue("Please") <a asp-controller="Account" asp-action="Login">@_localizer.GetValue("log in")</a> @_localizer.GetValue("to leave a comment.")</p>
                             }
                             <h5 class="mt-4">@_localizer.GetValue("Comments")</h5>
                             @if (Model.BlogComments.Any())
@@ -171,41 +163,12 @@
                 </div>
                 <div class="col-12 col-md-3 col-lg-4 col-xs-12">
                     <div class="right-part">
-                        <div class="categories-part">
-                            <h3>@_localizer.GetValue("Categories")</h3>
-                            <ul>
-                                <li>
-                                    <a href="">@_localizer.GetValue("All")</a>
-                                </li>
-                                <li>
-                                    <a href="">@_localizer.GetValue("CHEF'S SPECIALITY")</a>
-                                </li>
-                                <li>
-                                    <a href="">@_localizer.GetValue("Drinks")</a>
-                                </li>
-                                <li>
-                                    <a href="">@_localizer.GetValue("DESERT")</a>
-                                </li>
-                                <li>
-                                    <a href="">@_localizer.GetValue("Main")</a>
-                                </li>
-                                <li>
-                                    <a href="">@_localizer.GetValue("OFFERS")</a>
-                                </li>
-                                <li>
-                                    <a href="">@_localizer.GetValue("STARTERS")</a>
-                                </li>
-                                <li>
-                                    <a href="">@_localizer.GetValue("DAILY MENU")</a>
-                                </li>
-                            </ul>
-                        </div>
                         <div class="kallyas-part">
                             <img src="/assets/images/blog/banner.jpg" alt="">
                         </div>
                         <div class="follow-part">
                             <h3>
-                                <h3>@_localizer.GetValue("Follow Us")</h3>
+                                @_localizer.GetValue("Follow Us")
                             </h3>
                             <div class="text">
                                 <ul>
@@ -236,8 +199,7 @@
                                 @_localizer.GetValue("Subscribe & receive 15% discount coupon")
 
                             </div>
-                            <form method="post" class="js-mcForm dn-widgetNewsletter-form"
-                                  data-url="https://demos.hogash.com/dannys/" name="newsletter_form">
+                            <form method="post" asp-action="SubscribeNewsletter">
                                 <input type="email" name="mc_email"
                                        class="form-control dn-widgetNewsletter-email js-mcForm-email" value=""
                                        placeholder="your.address@email.com">
@@ -255,6 +217,18 @@
             </div>
         </div>
     </section>
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success"]
+        </div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["Error"]
+        </div>
+    }
 </main>
 
 <script>

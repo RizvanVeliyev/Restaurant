@@ -22,16 +22,13 @@
                 <div class="filter-section">
 @*                     <p>SHOWING 1–11 OF 14 RESULTS</p>
  *@                    <div class="right-filter">
-                        <form action="">
-                            <select class="form-control">
-                                <option>@_localizer.GetValue("Default Sorting")</option>
-                                <option>@_localizer.GetValue("Sort by Popularity")</option>
-                                <option>@_localizer.GetValue("Sort by Average Rating")</option>
-                                <option>@_localizer.GetValue("Sort by Price: Low to High")</option>
-                                <option>@_localizer.GetValue("Sort by Price: High to Low")</option>
-
+                        <form method="get" action="@Url.Action("Index", "Shop")">
+                            <select name="sortOrder" class="form-control" onchange="this.form.submit()">
+                                <option value="Default">@_localizer.GetValue("Default Sorting")</option>
+                                <option value="PriceLowToHigh">@_localizer.GetValue("Sort by Price: Low to High")</option>
+                                <option value="PriceHighToLow">@_localizer.GetValue("Sort by Price: High to Low")</option>
                             </select>
-                        </form>
+                        </form> 
                     </div>
                 </div>
             </div>

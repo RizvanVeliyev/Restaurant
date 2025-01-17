@@ -210,4 +210,19 @@
   <data name="Rate the product (1-5)" xml:space="preserve">
     <value>Оцените продукт (1-5)</value>
   </data>
+  <data name="log in" xml:space="preserve">
+    <value>войдите в систему</value>
+  </data>
+  <data name="Please" xml:space="preserve">
+    <value>Пожалуйста</value>
+  </data>
+  <data name="to leave a comment." xml:space="preserve">
+    <value>чтобы оставить комментарий.</value>
+  </data>
+  <data name="No Next Blog" xml:space="preserve">
+    <value>Следующего блога нет</value>
+  </data>
+  <data name="No Previous Blog" xml:space="preserve">
+    <value>Предыдущего блога нет</value>
+  </data>
 </root>
