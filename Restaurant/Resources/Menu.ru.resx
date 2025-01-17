@@ -120,4 +120,10 @@
   <data name="Menu" xml:space="preserve">
     <value>Меню</value>
   </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Ресторан</value>
+  </data>
+  <data name="Juicy Flavours" xml:space="preserve">
+    <value>Сочные вкусы</value>
+  </data>
 </root>

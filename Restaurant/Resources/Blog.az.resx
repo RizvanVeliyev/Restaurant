@@ -225,4 +225,7 @@
   <data name="No Previous Blog" xml:space="preserve">
     <value>blog mövcud deyil</value>
   </data>
+  <data name="No comments yet. Be the first to leave a reply!" xml:space="preserve">
+    <value>Hələ şərh yoxdur. Şərh yazan ilk siz olun!</value>
+  </data>
 </root>

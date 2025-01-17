@@ -204,4 +204,7 @@
   <data name="We Cook &amp; Sell to your liking" xml:space="preserve">
     <value>Sizin zövqünüzə uyğun bişiririk və satırıq</value>
   </data>
+  <data name="No comments yet. Be the first to leave a reply!" xml:space="preserve">
+    <value>Hələ şərh yoxdur. Şərh yazan ilk siz olun!</value>
+  </data>
 </root>
