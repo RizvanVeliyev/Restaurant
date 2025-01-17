@@ -1,13 +1,14 @@
-﻿<main class="reservation">
+﻿@inject ReservationLocalizer _localizer
+<main class="reservation">
     <section id="News-banner">
         <div class="banner-part">
             <div class="banner-content">
-                <h3>make an online</h3>
-                <h1 class="bannerTitle">Reservation</h1>
+                <h3>@_localizer.GetValue("make an online")</h3>
+                <h1 class="bannerTitle">@_localizer.GetValue("Reservation")</h1>
                 <p class="connection">
-                    Or call us at
+                    @_localizer.GetValue("Or call us at")
                     <span>00 40 555 1234</span>
-                    any day from
+                    @_localizer.GetValue("any day from")
                 </p>
                 <p class="yellow">10:00 AM - 07:00 PM</p>
             </div>
@@ -24,24 +25,24 @@
                     </div>
                     <div class="booking-form">
                         <form id="booking-form" asp-action="ReserveTable" asp-controller="Reservation" method="post">
-                            <h2>Booking place for your dinner!</h2>
+                            <h2>@_localizer.GetValue("Booking place for your dinner!")</h2>
                             <div class="form-group form-input">
                                 <input type="text" name="Name" id="name" value="" required />
-                                <label for="name" class="form-label">Your name</label>
+                                <label for="name" class="form-label">@_localizer.GetValue("Your Name")</label>
                             </div>
                             <div class="form-group form-input">
                                 <input type="number" name="PhoneNumber" id="phone" value="" required />
-                                <label for="phone" class="form-label">Your phone number</label>
+                                <label for="phone" class="form-label">@_localizer.GetValue("Your Phone Number")</label>
                             </div>
                             <div class="form-group form-input">
-                                <input type="date" name="Date" id="date" required />
-                                <label for="date" class="form-label">Reservation Date</label>
+                                <input type="date" name="Date" id="date" value="" required />
+                                <label for="date" class="form-label"></label>
                             </div>
 
                             <div class="form-group">
                                 <div class="select-list">
                                     <select name="Time" id="time" required>
-                                        <option value="">Time</option>
+                                        <option value="">@_localizer.GetValue("Time")</option>
                                         <option value="6pm">6:00 PM</option>
                                         <option value="7pm">7:00 PM</option>
                                     </select>
@@ -50,14 +51,14 @@
                             <div class="form-group">
                                 <div class="select-list">
                                     <select name="Food" id="food" required>
-                                        <option value="">Food</option>
+                                        <option value="">@_localizer.GetValue("Food")</option>
                                         <option value="seasonalfish">Seasonal steamed fish</option>
                                         <option value="assortedmushrooms">Assorted mushrooms</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-radio">
-                                <label class="label-radio"> Select Your Dining Space</label>
+                                <label class="label-radio"> @_localizer.GetValue("Select Your Dining Space")</label>
                                 <div class="radio-item-list">
                                     <span class="radio-item">
                                         <input type="radio" name="NumberOfPeople" value="2" id="number_people_2" />
@@ -82,7 +83,7 @@
                                 </div>
                             </div>
                             <div class="form-submit">
-                                <input type="submit" value="Book now" class="submit" id="submit" name="submit" />
+                                <input type="submit" value="@_localizer.GetValue("Book now")" class="submit" id="submit" name="submit" />
                             </div>
                         </form>
 

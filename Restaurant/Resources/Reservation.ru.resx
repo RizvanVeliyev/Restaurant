@@ -144,4 +144,16 @@
   <data name="Verify your booking info from your phone" xml:space="preserve">
     <value>Проверьте информацию о бронировании с вашего телефона</value>
   </data>
+  <data name="Select Your Dining Space" xml:space="preserve">
+    <value>Выберите ваше место для обеда</value>
+  </data>
+  <data name="make an online" xml:space="preserve">
+    <value>выполните онлайн</value>
+  </data>
+  <data name="Or call us at" xml:space="preserve">
+    <value>Или позвоните нам по номеру</value>
+  </data>
+  <data name="any day from" xml:space="preserve">
+    <value>любой день с</value>
+  </data>
 </root>

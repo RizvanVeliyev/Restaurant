@@ -144,4 +144,16 @@
   <data name="Verify your booking info from your phone" xml:space="preserve">
     <value>Sifariş məlumatınızı telefonunuzdan yoxlayın</value>
   </data>
+  <data name="Select Your Dining Space" xml:space="preserve">
+    <value>Yemək Məkanınızı Seçin</value>
+  </data>
+  <data name="make an online" xml:space="preserve">
+    <value>onlayn edin</value>
+  </data>
+  <data name="Or call us at" xml:space="preserve">
+    <value>Və ya bizə zəng edin</value>
+  </data>
+  <data name="any day from" xml:space="preserve">
+    <value>hər hansı bir gündən</value>
+  </data>
 </root>

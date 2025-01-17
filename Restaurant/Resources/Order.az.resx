@@ -138,4 +138,47 @@
   <data name="Price" xml:space="preserve">
     <value>Qiymət</value>
   </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Restoran</value>
+  </data>
+  <data name="Shop" xml:space="preserve">
+    <value>Mağaza</value>
+  </data>
+  <data name="Master Yaver's" xml:space="preserve">
+    <value>Yavər ustanın</value>
+  </data>
+  <data name="BillingDetails" xml:space="preserve">
+    <value>Ödəniş Təfərrüatları</value>
+  </data>
+  <data name="First Name" xml:space="preserve">
+    <value>Ad</value>
+  </data>
+  <data name="Last Name" xml:space="preserve">
+    <value>Soyad</value>
+  </data>
+  <data name="CompanyName (optional)" xml:space="preserve">
+    <value>Şirkət Adı (isteğe bağlı)</value>
+  </data>
+  <data name="StreetAddress" xml:space="preserve">
+    <value>Küçə Ünvanı</value>
+  </data>
+  <data name="Apartment (optional)" xml:space="preserve">
+    <value>Mənzil (isteğe bağlı)</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Şəhər
+</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>E-poçt Ünvanı</value>
+  </data>
+  <data name="OrderReview" xml:space="preserve">
+    <value>Sifarişin Baxışı</value>
+  </data>
+  <data name="PlaceOrder" xml:space="preserve">
+    <value>Sifarişi Yerləşdir</value>
+  </data>
 </root>

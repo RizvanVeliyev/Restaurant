@@ -138,4 +138,46 @@
   <data name="Price" xml:space="preserve">
     <value>Price</value>
   </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Restaurant</value>
+  </data>
+  <data name="Shop" xml:space="preserve">
+    <value>Shop</value>
+  </data>
+  <data name="Master Yaver's" xml:space="preserve">
+    <value>Master Yaver's</value>
+  </data>
+  <data name="BillingDetails" xml:space="preserve">
+    <value>BillingDetails</value>
+  </data>
+  <data name="First Name" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="Last Name" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="CompanyName (optional)" xml:space="preserve">
+    <value>CompanyName (optional)</value>
+  </data>
+  <data name="StreetAddress" xml:space="preserve">
+    <value>StreetAddress</value>
+  </data>
+  <data name="Apartment (optional)" xml:space="preserve">
+    <value>Apartment (optional)</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>EmailAddress</value>
+  </data>
+  <data name="OrderReview" xml:space="preserve">
+    <value>OrderReview</value>
+  </data>
+  <data name="PlaceOrder" xml:space="preserve">
+    <value>PlaceOrder</value>
+  </data>
 </root>

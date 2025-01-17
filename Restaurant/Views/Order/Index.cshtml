@@ -6,9 +6,9 @@
     <section id="News-banner">
         <div class="banner-part">
             <div class="banner-content">
-                <h3>Restaurant</h3>
-                <h1>Shop</h1>
-                <p class="yellow">Danny's</p>
+                <h3>@_localizer.GetValue("Restaurant")</h3>
+                <h1>@_localizer.GetValue("Shop")</h1>
+                <p class="yellow">@_localizer.GetValue("Master Yaver's")</p>
             </div>
             <div class="overlay"></div>
         </div>
@@ -24,7 +24,7 @@
                                 <div class="field">
                                     <p style="flex: 0 0 50%; max-width: 50%"
                                        class="form-row form-row-first validate-required">
-                                        <label for="Name">@_localizer.GetValue("FirstName")&nbsp;<abbr class="required" title="required">*</abbr></label>
+                                        <label for="Name">@_localizer.GetValue("First Name")&nbsp;<abbr class="required" title="required">*</abbr></label>
                                         <span class="woocommerce-input-wrapper">
                                             <input type="text" asp-for="Name" class="input-text" required />
                                             <span asp-validation-for="Name" class="text-danger"></span>
@@ -32,14 +32,14 @@
                                     </p>
                                     <p style="flex: 0 0 50%; max-width: 50%"
                                        class="form-row form-row-last validate-required">
-                                        <label for="Surname">@_localizer.GetValue("LastName")&nbsp;<abbr class="required" title="required">*</abbr></label>
+                                        <label for="Surname">@_localizer.GetValue("Last Name")&nbsp;<abbr class="required" title="required">*</abbr></label>
                                         <span class="woocommerce-input-wrapper">
                                             <input type="text" asp-for="Surname" class="input-text" required />
                                             <span asp-validation-for="Surname" class="text-danger"></span>
                                         </span>
                                     </p>
                                     <p class="form-row form-row-wide">
-                                        <label for="CompanyName">@_localizer.GetValue("CompanyName")&nbsp;<span class="optional">(optional)</span></label>
+                                        <label for="CompanyName">@_localizer.GetValue("CompanyName (optional)")&nbsp;<span class="optional"></span></label>
                                         <span class="woocommerce-input-wrapper">
                                             <input type="text" asp-for="CompanyName" class="input-text" />
                                         </span>
@@ -52,7 +52,7 @@
                                         </span>
                                     </p>
                                     <p class="form-row address-field form-row-wide">
-                                        <label for="Apartment">@_localizer.GetValue("Apartment")&nbsp;<span class="optional">(optional)</span></label>
+                                        <label for="Apartment">@_localizer.GetValue("Apartment (optional)")&nbsp;<span class="optional"></span></label>
                                         <span class="woocommerce-input-wrapper">
                                             <input type="text" asp-for="Apartment" class="input-text" />
                                         </span>

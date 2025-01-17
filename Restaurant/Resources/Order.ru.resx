@@ -138,4 +138,46 @@
   <data name="Price" xml:space="preserve">
     <value>Цена</value>
   </data>
+  <data name="Restaurant" xml:space="preserve">
+    <value>Ресторан</value>
+  </data>
+  <data name="Shop" xml:space="preserve">
+    <value>Магазин</value>
+  </data>
+  <data name="Master Yaver's" xml:space="preserve">
+    <value>Мастера Явера</value>
+  </data>
+  <data name="BillingDetails" xml:space="preserve">
+    <value>Детали оплаты</value>
+  </data>
+  <data name="First Name" xml:space="preserve">
+    <value>Имя</value>
+  </data>
+  <data name="Last Name" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="CompanyName (optional)" xml:space="preserve">
+    <value>Название компании (необязательно)</value>
+  </data>
+  <data name="StreetAddress" xml:space="preserve">
+    <value> Уличный адрес</value>
+  </data>
+  <data name="Apartment (optional)" xml:space="preserve">
+    <value>Квартира (необязательно)</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Адрес электронной почты</value>
+  </data>
+  <data name="OrderReview" xml:space="preserve">
+    <value>Обзор заказа</value>
+  </data>
+  <data name="PlaceOrder" xml:space="preserve">
+    <value>Разместить заказ</value>
+  </data>
 </root>

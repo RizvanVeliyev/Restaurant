@@ -1,5 +1,5 @@
 ﻿@inject ILayoutService _layoutService
-@inject LayoutLocalizer _localizer;
+@inject CartLocalizer _localizer
 @{
     var basket = await _layoutService.GetCartAsync();
 }
@@ -29,10 +29,10 @@
                         <tr>
                             <th class="product-thumbnail"></th>
                             <th class="product-thumbnail"></th>
-                            <th class="product-name">Product</th>
-                            <th class="product-price">Price</th>
-                            <th class="product-quantity">Quantity</th>
-                            <th class="product-subtotal">Total</th>
+                            <th class="product-name">@_localizer.GetValue("Product")</th>
+                            <th class="product-price">@_localizer.GetValue("Price")</th>
+                            <th class="product-quantity">@_localizer.GetValue("Quantity")</th>
+                            <th class="product-subtotal">@_localizer.GetValue("Total")</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -80,15 +80,15 @@
                                            class="input-text"
                                            id="coupon_code"
                                            value=""
-                                           placeholder="Coupon code" />
+                                           placeholder="@_localizer.GetValue("Coupon Code")" />
                                     <input type="submit"
                                            class="btn"
                                            name="apply_coupon"
-                                           value="Apply coupon" />
+                                           value="@_localizer.GetValue("Apply Coupon")" />
                                 </div>
 
                                 <div class="update-cart">
-                                    <a asp-action="GetCartSection" asp-controller="Cart" class="btn btn-default">Update Cart</a>
+                                    <a asp-action="GetCartSection" asp-controller="Cart" class="btn btn-default">@_localizer.GetValue("Update Cart")</a>
                                 </div>
                             </td>
                         </tr>
@@ -100,17 +100,17 @@
         <div class="row">
             <div class="col-sm-push-4 col-sm-8 col-md-push-6 col-md-6 col-lg-4 col-lg-push-8">
                 <div class="cart-totals calculated-shipping">
-                    <h2>Cart totals</h2>
+                    <h2>@_localizer.GetValue("Cart totals")</h2>
                     <table class="shop-table shop-table-responsive">
                         <tbody>
                             <tr class="cart-subtotal">
-                                <th>Subtotal</th>
+                                <th>@_localizer.GetValue("Subtotal")</th>
                                 <td data-title="Subtotal">
                                     <span class="woocommerce-Price-amount amount">@_localizer.GetValue("Subtotal"):</span>
                                 </td>
                             </tr>
                             <tr class="order-total">
-                                <th>Total</th>
+                                <th>@_localizer.GetValue("Total")</th>
                                 <td data-title="Total">
                                     <strong>
                                         <span class="woocommerce-Price-amount amount">
@@ -122,7 +122,7 @@
                         </tbody>
                     </table>
                     <div class="proceed-to-checkout">
-                        <a asp-action="Index" asp-controller="Order" class="btn btn-default">Proceed to checkout</a>
+                        <a asp-action="Index" asp-controller="Order" class="btn btn-default">@_localizer.GetValue("Proceed to checkout")</a>
                     </div>
                 </div>
             </div>

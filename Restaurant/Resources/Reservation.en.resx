@@ -145,4 +145,16 @@
   <data name="Verify your booking info from your phone" xml:space="preserve">
     <value>Verify your booking info from your phone</value>
   </data>
+  <data name="Select Your Dining Space" xml:space="preserve">
+    <value>Select Your Dining Space</value>
+  </data>
+  <data name="make an online" xml:space="preserve">
+    <value>make an online</value>
+  </data>
+  <data name="Or call us at" xml:space="preserve">
+    <value>Or call us at</value>
+  </data>
+  <data name="any day from" xml:space="preserve">
+    <value>any day from</value>
+  </data>
 </root>
