@@ -120,10 +120,10 @@
   <data name="Welcome at" xml:space="preserve">
     <value>Добро пожаловать в</value>
   </data>
-  <data name="Danny's Restaurant" xml:space="preserve">
-    <value>Ресторан Дэнни</value>
-  </data>
   <data name="About us" xml:space="preserve">
     <value>о нас</value>
+  </data>
+  <data name="Master Yaver's" xml:space="preserve">
+    <value>Мастера Явера</value>
   </data>
 </root>

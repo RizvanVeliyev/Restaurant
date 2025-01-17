@@ -117,13 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Welcome at" xml:space="preserve">
-    <value>Xoş gəldiniz</value>
+  <data name="Menu" xml:space="preserve">
+    <value>Меню</value>
   </data>
-  <data name="About us" xml:space="preserve">
-    <value>Haqqımızda</value>
+  <data name="Contact" xml:space="preserve">
+    <value>Свяжитесь с нами</value>
   </data>
-  <data name="Master Yaver's" xml:space="preserve">
-    <value>Yavər ustanın</value>
+  <data name="Blog" xml:space="preserve">
+    <value>Блог</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Войти</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Зарегистрироваться</value>
+  </data>
+  <data name="Reservation" xml:space="preserve">
+    <value>Бронирование</value>
+  </data>
+  <data name="Shop" xml:space="preserve">
+    <value>Магазин</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Общий</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Товары</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Главная
+</value>
+  </data>
+  <data name="Adminpanel" xml:space="preserve">
+    <value>Админ-панель</value>
   </data>
 </root>

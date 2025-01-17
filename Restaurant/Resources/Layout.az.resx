@@ -117,13 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Welcome at" xml:space="preserve">
-    <value>Xoş gəldiniz</value>
+  <data name="Menu" xml:space="preserve">
+    <value>Menyu</value>
   </data>
-  <data name="About us" xml:space="preserve">
-    <value>Haqqımızda</value>
+  <data name="Contact" xml:space="preserve">
+    <value>Bizimlə Əlaqə Saxlayın</value>
   </data>
-  <data name="Master Yaver's" xml:space="preserve">
-    <value>Yavər ustanın</value>
+  <data name="Blog" xml:space="preserve">
+    <value>Bloq</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Daxil ol</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Qeydiyyatdan keçin</value>
+  </data>
+  <data name="Reservation" xml:space="preserve">
+    <value>Rezervasiya</value>
+  </data>
+  <data name="Shop" xml:space="preserve">
+    <value>Mağaza</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Cəmi</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Məhsullar</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Çıxış</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Ana Səhifə</value>
+  </data>
+  <data name="Adminpanel" xml:space="preserve">
+    <value>İdarə Paneli</value>
   </data>
 </root>

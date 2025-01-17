@@ -1,10 +1,12 @@
 ﻿@model HomeDto
+@inject AboutLocalizer _localizer
+
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <main class="home">
-    <section id="Home-banner" style="background-image: url(/assets/images/home/slide_02.jpg)">
+    <section id="Home-banner" style="background-image: url( /assets/images/home/slide_02.jpg)">
         <div class="home-slider">
             <div class="slider-item">
                 <img src="~/assets/images/home/slide_logo.png" alt="" />
@@ -39,8 +41,8 @@
                 <div class="part col-sm-12 col-md-6">
                     <div class="right-part">
                         <div class="section-title">
-                            <h2>Welcome at</h2>
-                            <h3>danny’s restaurant</h3>
+                            <h2>@_localizer.GetValue("Welcome at")</h2>
+                            <h3>@_localizer.GetValue("Master Yaver's")</h3>
                         </div>
                         <h6 class="small-headline">
                            @Model.About.Name
@@ -48,7 +50,7 @@
                         <p>
                             @Model.About.Description
                         </p>
-                        <a href="#dannys" class="btn btn-primary scroll">about us</a>
+                        <a href="#dannys" class="btn btn-primary scroll">@_localizer.GetValue("About us")</a>
                     </div>
                 </div>
             </div>

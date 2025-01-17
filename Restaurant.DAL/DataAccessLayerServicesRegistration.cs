@@ -71,6 +71,7 @@ namespace Restaurant.DAL
             services.AddSingleton<MenuLocalizer>();
             services.AddSingleton<ReservationLocalizer>();
             services.AddSingleton<AccountLocalizer>();
+            services.AddSingleton<AboutLocalizer>();
 
         }
 
