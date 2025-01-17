@@ -7,7 +7,6 @@ namespace Restaurant.BLL.UI.Dtos
     {
         public List<ProductGetDto> Products { get; set; } = new();
         public List<CategoryGetDto> Categories { get; set; } = new();
-        //public List<CategoryWithProductsDto> CategoriesWithProducts { get; set; } = new();
 
     }
 }
