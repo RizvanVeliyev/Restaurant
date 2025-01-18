@@ -9,18 +9,22 @@
   <ItemGroup>
     <Compile Remove="Constants\**" />
     <Compile Remove="Dtos\LanguageDtos\**" />
+    <Compile Remove="Validators\IngredientDetailValidators\**" />
+    <Compile Remove="Validators\IngredientValidators\**" />
     <EmbeddedResource Remove="Constants\**" />
     <EmbeddedResource Remove="Dtos\LanguageDtos\**" />
+    <EmbeddedResource Remove="Validators\IngredientDetailValidators\**" />
+    <EmbeddedResource Remove="Validators\IngredientValidators\**" />
     <None Remove="Constants\**" />
     <None Remove="Dtos\LanguageDtos\**" />
+    <None Remove="Validators\IngredientDetailValidators\**" />
+    <None Remove="Validators\IngredientValidators\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Validators\AvaiabletimeValidators\" />
     <Folder Include="Validators\CheckoutValidators\" />
     <Folder Include="Validators\ContactValidators\" />
-    <Folder Include="Validators\IngredientValidators\" />
-    <Folder Include="Validators\IngredientDetailValidators\" />
     <Folder Include="Validators\SubscribeValidators\" />
     <Folder Include="Validators\ReservationValidators\" />
   </ItemGroup>

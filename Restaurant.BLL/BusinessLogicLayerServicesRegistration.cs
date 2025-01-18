@@ -47,7 +47,6 @@ namespace Restaurant.BLL
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<ICartService, CartService>();
-            services.AddScoped<IIngredientService, IngredientService>();
             services.AddScoped<IReservationService, ReservationService>();
 
             services.AddScoped<ISubscribeService, SubscribeService>();

@@ -47,7 +47,6 @@ namespace Restaurant.DAL
             services.AddScoped<ICommentRepository, CommentRepository>();
             services.AddScoped<IBlogCommentRepository, BlogCommentRepository>();
             services.AddScoped<IContactRepository, ContactRepository>();
-            services.AddScoped<IIngredientRepository, IngredientRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();

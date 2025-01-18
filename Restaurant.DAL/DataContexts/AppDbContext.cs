@@ -46,15 +46,13 @@ namespace Restaurant.DAL.DataContexts
         public DbSet<Comment> Comments { get; set; }
         public DbSet<BlogComment> BlogComments { get; set; }
         public DbSet<Contact> Contacts { get; set; }
-        public DbSet<Ingredient> Ingredients { get; set; }
-        public DbSet<IngredientDetail> IngredientDetails { get; set; }
+
         public DbSet<Language> Languages { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductDetail> ProductDetails { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
-        public DbSet<ProductIngredient> ProductIngredients { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<StatusDetail> StatusDetails { get; set; }

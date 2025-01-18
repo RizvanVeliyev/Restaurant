@@ -1,6 +1,5 @@
 ﻿using Restaurant.BLL.Abstractions.Dtos;
 using Restaurant.BLL.Dtos.CategoryDtos;
-using Restaurant.BLL.Dtos.IngredientDtos;
 
 namespace Restaurant.BLL.Dtos.ProductDtos
 {
@@ -16,7 +15,6 @@ namespace Restaurant.BLL.Dtos.ProductDtos
         public int CategoryId { get; set; } 
 
 
-        public List<IngredientGetDto> Ingredients { get; set; } = [];
         public List<ProductGetDto> Products { get; set; } = [];
 
 

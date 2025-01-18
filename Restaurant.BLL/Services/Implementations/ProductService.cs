@@ -349,11 +349,11 @@ namespace Restaurant.BLL.Services.Implementations
         private Func<IQueryable<Product>, IIncludableQueryable<Product, object>> _getIncludeFunc(Languages language)
         {
             LanguageHelper.CheckLanguageId(ref language);
-            return x => x.Include(x => x.ProductDetails.Where(x => x.LanguageId == (int)language)).Include(x => x.ProductImages).Include(x => x.Category.CategoryDetails.Where(x => x.LanguageId == (int)language)).Include(p => p.Ingredients!);
+            return x => x.Include(x => x.ProductDetails.Where(x => x.LanguageId == (int)language)).Include(x => x.ProductImages).Include(x => x.Category.CategoryDetails.Where(x => x.LanguageId == (int)language));
         }
         private Func<IQueryable<Product>, IIncludableQueryable<Product, object>> _getIncludeFunc()
         {
-            return x => x.Include(x => x.ProductDetails).Include(x => x.ProductImages).Include(x => x.Category).Include(p => p.Ingredients!);
+            return x => x.Include(x => x.ProductDetails).Include(x => x.ProductImages).Include(x => x.Category);
         }
     }
 }
