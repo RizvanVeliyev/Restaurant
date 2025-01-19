@@ -1,4 +1,4 @@
-﻿@model CartGetDto
+﻿@* @model CartGetDto
 @inject CartLocalizer _localizer
 <div class="product-wishlist">
     <h2>@_localizer.GetValue("Cart")</h2>
@@ -27,13 +27,17 @@
                                  alt="@cartItem.Product.Name" />
                         </div>
                         <div class="wishlist-info">
-                            <a asp-action="Detail" asp-controller="Shop" asp-route-id="@cartItem.Product.Id">@cartItem.Product.Name</a>
-                            <a asp-action="Detail" asp-controller="Shop" asp-route-id="@cartItem.Product.Id"><span>@cartItem.Product.Categories.FirstOrDefault()?.Name</span></a>
+                            <a asp-action="Detail" asp-controller="Shop" asp-route-id="@cartItem.Product?.Id">
+                                @cartItem.Product?.Name ?? "Məhsul yoxdur"
+                            </a>
+                            <a asp-action="Detail" asp-controller="Shop" asp-route-id="@cartItem.Product?.Id">
+                                <span>@(cartItem.Product?.Categories?.FirstOrDefault()?.Name ?? "Kateqoriya yoxdur")</span>
+                            </a>
                         </div>
                     </td>
                     <td class="right-side-wishlist" style="display:flex; justify-content:space-around; text-align:center;">
                         <div class="product-price" style="width:200px">
-                            <span>₼<span class="productSizePrice">@cartItem.Product.Price</span></span>
+                            <span>₼<span class="productPrice">@cartItem.Product.Price</span></span>
                         </div>
 
                         <div class="counter-container" style="min-width:200px;display:flex;justify-content:space-around">
@@ -48,7 +52,7 @@
 
                         <div class="right-side-wishlist" style="width:200px">
                             <div class="mx-5 product-price">
-                                <span>₼<span class="productSizeTotalPrice">@(cartItem.Count * cartItem.Product.Price)</span></span>
+                                <span>₼<span class="ProductTotalPrice">@(cartItem.Count * cartItem.Product.Price)</span></span>
                             </div>
                         </div>
                     </td>
@@ -129,3 +133,4 @@
     renderCartSection();
 </script>
 
+ *@

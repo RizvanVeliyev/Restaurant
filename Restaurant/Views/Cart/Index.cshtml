@@ -5,89 +5,13 @@
 </div>
 
 <div class="wishlist-items" id="wishlist-container">
-    @if (Model.Count == 0)
-    {
-        <div class="wishlist-title text-center py-4 border border-top-1 border-bottom-1">
-            <p class="m-0 fw-bold">@_localizer.GetValue("NotFoundProduct")</p>
-        </div>
-        <!-- <><><><><><> -->
-    }
-    else
-    {
-        <table class="wishlist-table" style="width: 100%; border-collapse: collapse;">
-            @foreach (var cartItem in Model.Items)
-            {
-                <tr class=" wishlist-item">
-                    <td class="left-side-wishlist">
-                        <a asp-action="RemoveToCart" asp-route-id="@cartItem.ProductId" class="removeToCartButton">
-                            <i class="fa-solid fa-xmark"></i>
-                        </a>
-                        <div class="wishlist-img">
-                            <img src="@cartItem.Product.MainImagePath"
-                                 alt="@cartItem.Product.Name" />
-                        </div>
-                        <div class="wishlist-info">
-                            <a asp-action="Detail" asp-controller="Shop" asp-route-id="@cartItem.Product.Id">@cartItem.Product.Name</a>
-                            <a asp-action="Detail" asp-controller="Shop" asp-route-id="@cartItem.Product.Id"><span>@cartItem.Product.Categories.FirstOrDefault()?.Name</span></a>
-                        </div>
-                    </td>
-                    <td class="right-side-wishlist" style="display:flex; justify-content:space-around; text-align:center;">
-                        <div class="product-price" style="width:200px">
-                            <span>₼<span class="productSizePrice">@cartItem.Product.Price</span></span>
-                        </div>
+    <partial name="_cartSectionPartial" model="@Model"></partial>
 
-                        <div class="counter-container" style="min-width:200px;display:flex;justify-content:space-around">
-                            <a class="plus-btn" asp-action="DecreaseToCart" asp-controller="Cart" asp-route-id="@cartItem.ProductId" id="decrement">
-                                <i class="fa-solid fa-minus"></i>
-                            </a>
-                            <span id="value">@cartItem.Count</span>
-                            <a class="plus-btn" asp-action="AddToCart" asp-controller="Cart" asp-route-id="@cartItem.ProductId" id="increment">
-                                <i class="fa-solid fa-plus"></i>
-                            </a>
-                        </div>
-
-                        <div class="right-side-wishlist" style="width:200px">
-                            <div class="mx-5 product-price">
-                                <span>₼<span class="productSizeTotalPrice">@(cartItem.Count * cartItem.Product.Price)</span></span>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </table>
-
-        <div class="container my-5">
-            <div class="cart-totals">
-                <h2>@_localizer.GetValue("CartTotals")</h2>
-
-                <!-- Subtotal -->
-                <div class="totals-item">
-                    <span class="label">@_localizer.GetValue("Subtotal")</span>
-                    <span class="value">₼<span class="subtotalOutput">@Model.Subtotal</span></span>
-                </div>
-
-                <!-- Subtotal -->
-                <div class="totals-item">
-                    <span class="label">@_localizer.GetValue("Discount")</span>
-                    <span class="value">₼@(Model.Subtotal - Model.Discount)</span>
-                </div>
-
-                <!-- Total -->
-                <div class="totals-item">
-                    <span class="label">@_localizer.GetValue("Total")</span>
-                    <span class="value"><strong>₼<span class="totalOutput">@Model.Discount</span></strong></span>
-                </div>
-
-                <a asp-action="Index" asp-controller="Order" class="btn-checkout">@_localizer.GetValue("SubmitOrder")</a>
-            </div>
-        </div>
-
-    }
 
 
 </div>
 
-<script>
+@* <script>
     function renderCartSection(){
         const decreaseButtons=document.querySelectorAll('#decrement')
         const increaseButtons=document.querySelectorAll('#increment')
@@ -127,4 +51,4 @@
         })
     }
     renderCartSection();
-</script>
+</script> *@

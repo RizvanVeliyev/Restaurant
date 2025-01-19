@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Restaurant.DAL.DataContexts;
 
@@ -11,9 +12,11 @@ using Restaurant.DAL.DataContexts;
 namespace Restaurant.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250119061313_addConfigToCartItem")]
+    partial class addConfigToCartItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -950,24 +953,6 @@ namespace Restaurant.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Statuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1
-                        },
-                        new
-                        {
-                            Id = 2
-                        },
-                        new
-                        {
-                            Id = 3
-                        },
-                        new
-                        {
-                            Id = 4
-                        });
                 });
 
             modelBuilder.Entity("Restaurant.Core.Entities.StatusDetail", b =>
@@ -995,92 +980,6 @@ namespace Restaurant.DAL.Migrations
                     b.HasIndex("StatusId");
 
                     b.ToTable("StatusDetails");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            LanguageId = 1,
-                            Name = "Sifariş edilib",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            LanguageId = 2,
-                            Name = "Ordered",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            LanguageId = 3,
-                            Name = "Заказал",
-                            StatusId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            LanguageId = 1,
-                            Name = "Yolda",
-                            StatusId = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            LanguageId = 2,
-                            Name = "On the Way",
-                            StatusId = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            LanguageId = 3,
-                            Name = "В пути",
-                            StatusId = 2
-                        },
-                        new
-                        {
-                            Id = 7,
-                            LanguageId = 1,
-                            Name = "Sifariş tamamlandı",
-                            StatusId = 3
-                        },
-                        new
-                        {
-                            Id = 8,
-                            LanguageId = 2,
-                            Name = "Order Is Done",
-                            StatusId = 3
-                        },
-                        new
-                        {
-                            Id = 9,
-                            LanguageId = 3,
-                            Name = "Заказ выполнен",
-                            StatusId = 3
-                        },
-                        new
-                        {
-                            Id = 10,
-                            LanguageId = 1,
-                            Name = "Ləğv edildi",
-                            StatusId = 4
-                        },
-                        new
-                        {
-                            Id = 11,
-                            LanguageId = 2,
-                            Name = "Cancelled",
-                            StatusId = 4
-                        },
-                        new
-                        {
-                            Id = 12,
-                            LanguageId = 3,
-                            Name = "Отменено",
-                            StatusId = 4
-                        });
                 });
 
             modelBuilder.Entity("Restaurant.Core.Entities.Subscribe", b =>

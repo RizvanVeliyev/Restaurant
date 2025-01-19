@@ -17,6 +17,7 @@ namespace Restaurant.DAL.DataContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.AddSeedData();
 
             modelBuilder.Entity<Product>().HasQueryFilter(x => !x.IsDeleted);
             modelBuilder.Entity<Comment>().HasQueryFilter(x => !x.IsDeleted);

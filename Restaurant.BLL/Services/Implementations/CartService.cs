@@ -14,7 +14,7 @@ using System.Security.Claims;
 
 namespace Restaurant.BLL.Services.Implementations
 {
-    internal class CartService : ICartService
+    public class CartService : ICartService
     {
         private readonly ICartItemRepository _repository;
         private readonly IMapper _mapper;
@@ -34,9 +34,9 @@ namespace Restaurant.BLL.Services.Implementations
 
         public async Task<bool> AddToCartAsync(int id, int count = 1)
         {
-            var isExistProductSize = await _productService.IsExistAsync(id);
+            var isExistProduct = await _productService.IsExistAsync(id);
 
-            if (isExistProductSize is false)
+            if (isExistProduct is false)
                 throw new NotFoundException(_errorLocalizer.GetValue(nameof(NotFoundException)));
 
 
@@ -90,9 +90,9 @@ namespace Restaurant.BLL.Services.Implementations
 
         public async Task<bool> DecreaseToCartAsync(int id)
         {
-            var isExistProductSize = await _productService.IsExistAsync(id);
+            var isExistProduct = await _productService.IsExistAsync(id);
 
-            if (isExistProductSize is false)
+            if (isExistProduct is false)
                 throw new NotFoundException(_errorLocalizer.GetValue(nameof(NotFoundException)));
 
             if (_checkAuthorized())
@@ -137,9 +137,9 @@ namespace Restaurant.BLL.Services.Implementations
 
         public async Task RemoveToCartAsync(int id)
         {
-            var isExistProductSize = await _productService.IsExistAsync(id);
+            var isExistProduct = await _productService.IsExistAsync(id);
 
-            if (isExistProductSize is false)
+            if (isExistProduct is false)
                 throw new NotFoundException(_errorLocalizer.GetValue(nameof(NotFoundException)));
 
             if (_checkAuthorized())
@@ -185,14 +185,17 @@ namespace Restaurant.BLL.Services.Implementations
 
                 var dtos = _mapper.Map<List<CartItemGetDto>>(cartItems);
 
-                decimal totalPrice = dtos.Sum(x => x.Count * x.Product.Price);
+                decimal subtotal = dtos.Sum(x => x.Count * x.Product.Price);
+                decimal discount = subtotal * 0.20m; 
+                decimal total = subtotal - discount;
+
                 var cartDto = new CartGetDto()
                 {
                     Items = dtos,
                     Count = dtos.Count,
-                    Subtotal = totalPrice,
-                    Total = totalPrice,
-                    Discount = 0,
+                    Subtotal = subtotal,
+                    Total = total,
+                    Discount = discount,
                 };
 
                 return cartDto;

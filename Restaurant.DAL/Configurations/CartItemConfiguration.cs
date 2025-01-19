@@ -11,7 +11,7 @@ namespace Restaurant.DAL.Configurations
         {
             builder.Property(x => x.Count).IsRequired();
 
-            builder.HasIndex(x => new {  x.ProductId }).IsUnique();
+            builder.HasIndex(x => new { x.AppUserId, x.ProductId }).IsUnique();
 
         }
     }

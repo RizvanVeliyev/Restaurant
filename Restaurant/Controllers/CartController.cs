@@ -37,23 +37,30 @@ namespace Restaurant.Controllers
             return Redirect(returnUrl);
         }
 
-        public async Task<IActionResult> AddToCart(int id, int count = 1)
-        {
-            await _service.AddToCartAsync(id, count);
-
-            return RedirectToAction(nameof(RedirectForCart));
-        }
+        
         public IActionResult RedirectForCart()
         {
             _languageService.RenderSelectedLanguage();
             return PartialView("_cartModalPartial");
         }
 
+
+        public async Task<IActionResult> AddToCart(int id, int count = 1)
+        {
+            await _service.AddToCartAsync(id, count);
+
+            return RedirectToAction(nameof(RedirectForCart));
+        }
         public async Task<IActionResult> DecreaseToCart(int id)
         {
             await _service.DecreaseToCartAsync(id);
 
             return RedirectToAction(nameof(RedirectForCart));
         }
+
+
+
+        
+
     }
 }

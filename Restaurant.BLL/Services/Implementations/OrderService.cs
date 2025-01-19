@@ -103,6 +103,12 @@ namespace Restaurant.BLL.Services.Implementations
 
             var order = _mapper.Map<Order>(dto);
 
+            string? userName = _contextAccessor.HttpContext?.User.Identity?.Name;
+
+            // `CreatedBy` və `UpdatedBy` doldurulur
+            order.CreatedBy = userName ?? "Unknown";
+            order.UpdatedBy = userName ?? "Unknown";
+
             var status = await _statusService.GetFirstAsync();
             order.StatusId = status.Id;
 

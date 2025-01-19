@@ -39,7 +39,7 @@ namespace Restaurant.Controllers
                 return View(dto);
             }
 
-            return RedirectToAction("Index", "Shop");
+            return RedirectToAction("List", "Order");
         }
         //[Authorize]
         public async Task<IActionResult> List()
