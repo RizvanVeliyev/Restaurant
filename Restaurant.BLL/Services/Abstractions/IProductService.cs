@@ -13,5 +13,6 @@ namespace Restaurant.BLL.Services.Abstractions
         //Task DecreaseSalesCountAsync(int productSizeId, int count = 1);
         Task<bool> IsExistAsync(int id);
 
+
     }
 }

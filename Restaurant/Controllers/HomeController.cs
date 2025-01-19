@@ -23,13 +23,16 @@ namespace Restaurant.Controllers
             _language = _languageService.RenderSelectedLanguage();
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? categoryId)
         {
 
-            var dto = await _homeService.GetHomeDtoAsync(_language);
+            var dto = await _homeService.GetHomeDtoAsync(_language,categoryId);
 
             return View(dto);
         }
+
+
+
 
         public IActionResult SelectCulture(string culture)
         {

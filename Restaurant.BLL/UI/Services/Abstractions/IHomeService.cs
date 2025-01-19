@@ -5,6 +5,6 @@ namespace Restaurant.BLL.UI.Services.Abstractions
 {
     public interface IHomeService
     {
-        Task<HomeDto> GetHomeDtoAsync(Languages language = Languages.Azerbaijan);
+        Task<HomeDto> GetHomeDtoAsync(Languages language = Languages.Azerbaijan, int? categoryId = null);
     }
 }
