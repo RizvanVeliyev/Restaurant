@@ -9,6 +9,7 @@ using Restaurant.DAL.Localizers;
 using Restaurant.DAL.Repositories.Abstractions;
 using Restaurant.DAL.Repositories.Implementations;
 
+
 namespace Restaurant.DAL
 {
     public static class DataAccessLayerServicesRegistration
@@ -53,13 +54,14 @@ namespace Restaurant.DAL
             services.AddScoped<IReservationRepository, ReservationRepository>();
             services.AddScoped<ISubscribeRepository, SubscribeRepository>();
             services.AddScoped<IStatusRepository, StatusRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
 
 
         }
 
         private static void _addLocalizers(IServiceCollection services)
         {
-            
+
             services.AddSingleton<ErrorLocalizer>();
             services.AddSingleton<ContactLocalizer>();
             services.AddSingleton<OrderLocalizer>();

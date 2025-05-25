@@ -8,6 +8,7 @@ namespace Restaurant.BLL.Services.Abstractions
     {
         Task<List<CommentGetDto>> GetProductCommentsAsync(int productId);
         Task<bool> CheckIsAllowCommentAsync(int productId);
+        Task<List<CommentGetDto>> GetAllAsync(int productId);
 
         Task<bool> CreateReplyAsync(CommentReplyDto dto, ModelStateDictionary ModelState);
     }

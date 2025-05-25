@@ -11,6 +11,8 @@ namespace Restaurant.Core.Entities
         public string Time { get; set; } = null!;
         public ICollection<Product> Products { get; set; } = [];
         public int NumberOfPeople { get; set; }
+        public string ReservationNumber { get; set; } = null!;
+
 
     }
 }

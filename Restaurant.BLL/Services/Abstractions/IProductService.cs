@@ -1,5 +1,7 @@
-﻿using Restaurant.BLL.Dtos.ProductDtos;
+﻿using Restaurant.BLL.Dtos.CommonDtos;
+using Restaurant.BLL.Dtos.ProductDtos;
 using Restaurant.BLL.Services.Abstractions.Generics;
+using Restaurant.Core.Enums;
 
 namespace Restaurant.BLL.Services.Abstractions
 {
@@ -11,6 +13,10 @@ namespace Restaurant.BLL.Services.Abstractions
         //Task<PaginateDto<ProductGetDto>> GetAllWithPageAsync(Languages language = Languages.Azerbaijan, int page = 1);
         //Task IncreaseSalesCountAsync(int productSizeId, int count = 1);
         //Task DecreaseSalesCountAsync(int productSizeId, int count = 1);
+
+        Task<PaginateDto<ProductGetDto>> GetAllWithPageAsync(Languages language = Languages.Azerbaijan, int page = 1);
+
+       
         Task<bool> IsExistAsync(int id);
 
 

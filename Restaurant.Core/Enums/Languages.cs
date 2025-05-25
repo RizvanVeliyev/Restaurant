@@ -1,9 +1,7 @@
-﻿namespace Restaurant.Core.Enums
+﻿namespace Restaurant.Core.Enums;
+public enum Languages
 {
-    public enum Languages
-    {
-        Azerbaijan = 1,
-        English,
-        Russian
-    }
+    Azerbaijan = 1,
+    English,
+    Russian
 }

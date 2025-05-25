@@ -5,6 +5,7 @@ namespace Restaurant.BLL.Dtos.ReservationDtos
 {
     public class ReservationCreateDto
     {
+
         public string Name { get; set; } = null!;
         public string PhoneNumber { get; set; } = null!;
         public DateTime Date { get; set; } 

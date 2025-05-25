@@ -11,18 +11,21 @@ namespace Restaurant.BLL.UI.Services.Implementations
         private readonly ICategoryService _categoryService;
         private readonly IProductService _productService;
         private readonly IAboutService _aboutService;
-        public HomeService( ICategoryService categoryService, IProductService productService, IAboutService aboutService)
+        private readonly ICommentService _commentService;
+        public HomeService(ICategoryService categoryService, IProductService productService, IAboutService aboutService, ICommentService commentService)
         {
-          
+
             _categoryService = categoryService;
             _productService = productService;
             _aboutService = aboutService;
+            _commentService = commentService;
         }
 
         public async Task<HomeDto> GetHomeDtoAsync(Languages language = Languages.Azerbaijan,int ? categoryId = null)
         {
             var categories = await _categoryService.GetAllAsync(language);
             var products = await _productService.GetAllAsync(language);
+            var comments = await _commentService.GetAllAsync(7);
             var about = (await _aboutService.GetAllAsync(language)).FirstOrDefault();
 
 
@@ -35,7 +38,8 @@ namespace Restaurant.BLL.UI.Services.Implementations
             {
                 Products = products,
                 Categories=categories,
-                About = about
+                About = about,
+                Comments = comments
             };
 
             return dto;

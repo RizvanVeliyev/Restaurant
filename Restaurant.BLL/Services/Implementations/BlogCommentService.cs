@@ -48,10 +48,10 @@ namespace Restaurant.BLL.Services.Implementations
             var userId = _getUserId();
 
 
-            var isExist = await _repository.IsExistAsync(x => x.BlogId == dto.BlogId && x.AppUserId == userId);
+            //var isExist = await _repository.IsExistAsync(x => x.BlogId == dto.BlogId && x.AppUserId == userId);
 
-            if (isExist)
-                throw new AlreadyExistException(_errorLocalizer.GetValue(nameof(AlreadyExistException)));
+            //if (isExist)
+            //    throw new AlreadyExistException(_errorLocalizer.GetValue(nameof(AlreadyExistException)));
 
             //var isBought = orders.Any(x => x.AppUserId == userId && x.OrderItems.Any(x => x.Blog.Id == blog.Id));
 
@@ -104,7 +104,7 @@ namespace Restaurant.BLL.Services.Implementations
             var replyComment = _mapper.Map<BlogComment>(dto);
             replyComment.AppUserId = userId;
             replyComment.CreatedBy = _contextAccessor.HttpContext?.User.Identity?.Name ?? "System";
-            replyComment.UpdatedBy = _contextAccessor.HttpContext?.User.Identity?.Name ?? "System";
+            replyComment.UpdatedBy = _contextAccessor.HttpContext?.User.Identity?.Name ?? "System"; 
 
             replyComment.Parent = parentComment;
 

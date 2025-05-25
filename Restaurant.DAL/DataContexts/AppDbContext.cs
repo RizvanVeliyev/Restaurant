@@ -47,6 +47,7 @@ namespace Restaurant.DAL.DataContexts
         public DbSet<Comment> Comments { get; set; }
         public DbSet<BlogComment> BlogComments { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         public DbSet<Language> Languages { get; set; }
         public DbSet<Order> Orders { get; set; }

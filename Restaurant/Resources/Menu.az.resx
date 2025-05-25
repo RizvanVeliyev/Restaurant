@@ -126,4 +126,70 @@
   <data name="Juicy Flavours" xml:space="preserve">
     <value>Şirəli ləzzətlər</value>
   </data>
+  <data name="What’s on the menu?" xml:space="preserve">
+    <value>Menyuda nə var?</value>
+  </data>
+  <data name="View all" xml:space="preserve">
+    <value>Hamısına bax</value>
+  </data>
+  <data name="Variety" xml:space="preserve">
+    <value>Fərqli çeşid</value>
+  </data>
+  <data name="Blogs" xml:space="preserve">
+    <value>Bloglar</value>
+  </data>
+  <data name="Today’s specialty" xml:space="preserve">
+    <value>Bugünkü xüsusi təklif</value>
+  </data>
+  <data name="Read More" xml:space="preserve">
+    <value>Daha çox oxu</value>
+  </data>
+  <data name="In our venue" xml:space="preserve">
+    <value>Məkanımızda</value>
+  </data>
+  <data name="NEWSLETTER" xml:space="preserve">
+    <value>Xəbərlər</value>
+  </data>
+  <data name="Subscribe &amp; receive 15% discount coupon" xml:space="preserve">
+    <value>Abunə olun və 15% endirim kuponu əldə edin</value>
+  </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value>Abunə ol</value>
+  </data>
+  <data name="Subscribe to our" xml:space="preserve">
+    <value>Abunə olun</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>endirim</value>
+  </data>
+  <data name="desc1" xml:space="preserve">
+    <value>Restoranımızın menyusunda hər zövqə uyğun dadlı və ləzzətli yeməklər sizi gözləyir! Təzə və keyfiyyətli məhsullardan hazırlanan milli və beynəlxalq mətbəxin ən gözəl nümunələrini təqdim edirik. İstər ət yeməkləri, istər dəniz məhsulları, istərsə də veqan seçimlər — hər biri öz xüsusi dadı ilə sizin zövqünüzü oxşayacaq. Gözəl bir dad təcrübəsi üçün bizi seçin!</value>
+  </data>
+  <data name="desc2" xml:space="preserve">
+    <value>Menyumuzda həmçinin özəl günlərinizi daha da unudulmaz edəcək şirniyyatlar və desertlər mövcuddur. Təzə bişmiş kruvasanlar, kremli tortlar və aromatik qəhvə ilə dad hisslərinizi oyadın. Əlavə olaraq, seçilmiş içkilərdən ibarət menyumuzla yeməyinizə xoş bir toxunuş qatırıq. Hər loxmada sevgi və qayğı hiss edəcəyiniz bir dad səyahətinə dəvət edirik!</value>
+  </data>
+  <data name="desc3" xml:space="preserve">
+    <value>Bizim menyumuz zəngin çeşidləri ilə seçilir və hər bir zövqə uyğun dadlar təqdim edir. Burada ənənəvi milli mətbəx nümunələrindən tutmuş beynəlxalq mətbəxin sevilən yeməklərinə qədər hər şeyi tapa bilərsiniz. Ətsevərlər üçün xüsusi marinadla hazırlanmış kabablar, ədviyyatlı və şirəli ət yeməkləri, dəniz məhsulları sevənlər üçün isə təzə balıq və digər dəniz nemətləri ilə hazırlanmış ləziz təamlar menyumuzun əsasını təşkil edir.</value>
+  </data>
+  <data name="desc4" xml:space="preserve">
+    <value>Veqan və sağlam qidalanan qonaqlarımız üçün təbii və yüngül yeməklər, təravətləndirici salatlar xüsusi olaraq düşünülüb. Təzə tərəvəzlər, seçilmiş souslar və xüsusi reseptlərlə hazırlanan salatlarımız həm ləzzətli, həm də gözoxşayan təqdimatla süfrənizə gəlir. Hər yeməyimiz sevgi və qayğı ilə hazırlanır, belə ki, restoranımızda keçirdiyiniz hər an sizin üçün unudulmaz olacaq!</value>
+  </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Müştərilər</value>
+  </data>
+  <data name="Reservation" xml:space="preserve">
+    <value>Rezervasiya</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>Onlayn</value>
+  </data>
+  <data name="Follow Us" xml:space="preserve">
+    <value>Bizi İzləyin</value>
+  </data>
+  <data name="Chef" xml:space="preserve">
+    <value>Aşpaz Taylor Bonnyman, Baş aşpaz Marguerite Keogh ilə birgə, zərif və oynaq müasir Britaniya mətbəxini təqdim edir.</value>
+  </data>
+  <data name="Online Reservation" xml:space="preserve">
+    <value>Onlayn Rezervasiya</value>
+  </data>
 </root>

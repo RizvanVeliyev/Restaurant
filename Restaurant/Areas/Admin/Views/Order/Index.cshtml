@@ -26,6 +26,9 @@
                                         <th>
                                             Proseslər
                                         </th>
+                                        <th>
+                                            Odenis statusu
+                                        </th>
 
                                     </tr>
                                 </thead>
@@ -33,7 +36,7 @@
                                     @foreach (var order in Model)
                                     {
                                         <tr>
-                                            
+
                                             <td>
                                                 @order.CreatedAt.ToString("yyyy, MM MMMM")
                                             </td>
@@ -44,6 +47,17 @@
                                             <td>
                                                 @order.Status.Name
                                             </td>
+
+                                            @if (order.IsPaid == true)
+                                            {
+                                                <td> Odenilib </td>
+                                            }
+                                            else
+                                            {
+                                                <td> Odenilmeyib </td>
+
+                                            }
+
 
                                             <td>
                                                 @if (order.Status.Id == 4)

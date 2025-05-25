@@ -24,30 +24,31 @@ namespace Restaurant.Controllers
             _languageService = languageService;
             _language = _languageService.RenderSelectedLanguage();
         }
-        public async Task<IActionResult> Index(string sortOrder)
+        public async Task<IActionResult> Index(int page=1)//string order gelirdi 
         {
-            var products = await _productService.GetAllAsync(_language);
-            var categories=await _categoryService.GetAllAsync(_language);
+            var products = await _productService.GetAllWithPageAsync(page: page);
 
-            sortOrder ??= "Default";
+            //var categories=await _categoryService.GetAllAsync(_language);
 
-            products = sortOrder switch
-            {
-                "PriceLowToHigh" => products.OrderBy(p => p.Price).ToList(), 
-                "PriceHighToLow" => products.OrderByDescending(p => p.Price).ToList(), 
-                _ => products.OrderBy(p => p.Name).ToList(), 
-            };
+            //sortOrder ??= "Default";
 
-            ViewData["SelectedSort"] = sortOrder;
+            //products = sortOrder switch
+            //{
+            //    "PriceLowToHigh" => products.OrderBy(p => p.Price).ToList(), 
+            //    "PriceHighToLow" => products.OrderByDescending(p => p.Price).ToList(), 
+            //    _ => products.OrderBy(p => p.Name).ToList(), 
+            //};
+
+            //ViewData["SelectedSort"] = sortOrder;
 
 
-            var shopDto = new ShopDto
-            {
-                Products = products,
-                Categories = categories
-            };
+            //var shopDto = new ShopDto
+            //{
+            //    Products = products,
+            //    Categories = categories
+            //};
 
-            return View(shopDto);
+            return View(products);
         }
 
 

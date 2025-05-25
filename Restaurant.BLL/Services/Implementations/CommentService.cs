@@ -182,9 +182,15 @@ namespace Restaurant.BLL.Services.Implementations
             return dtos;
         }
 
-        public Task<List<CommentGetDto>> GetAllAsync()
+        public async Task<List<CommentGetDto>> GetAllAsync(int productId)
         {
-            throw new NotImplementedException();
+            var comments = await _repository.GetFilter(
+                   x => x.ProductId == productId && x.ParentId == null,
+                   x => x.Include(x => x.AppUser)).ToListAsync();
+
+            var dtos = _mapper.Map<List<CommentGetDto>>(comments);
+
+            return dtos;
         }
 
         public Task<CommentGetDto> GetAsync(int id)
@@ -215,6 +221,11 @@ namespace Restaurant.BLL.Services.Implementations
         private bool _isAdmin()
         {
             return _contextAccessor.HttpContext?.User.IsInRole(IdentityRoles.Admin.ToString()) ?? false;
+        }
+
+        public Task<List<CommentGetDto>> GetAllAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

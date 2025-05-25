@@ -36,9 +36,9 @@ namespace Restaurant.BLL.Services.Implementations
                 var uploadParams = new ImageUploadParams
                 {
                     File = new FileDescription(fileName, stream),
-                    Folder = "Restaurant.az"
+                    Folder = "Restaurant.az" 
                 };
-                uploadResult = await _cloudinary.UploadAsync(uploadParams);
+                uploadResult = await _cloudinary.UploadAsync(uploadParams);  
             }
             string url = uploadResult.SecureUrl.ToString();
 

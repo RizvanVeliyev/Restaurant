@@ -17,6 +17,7 @@ namespace Restaurant.BLL.Dtos.OrderDtos
         public string Street { get; set; } = null!;
         public string PhoneNumber { get; set; } = null!;
         public string Email { get; set; } = null!;
+        public bool IsPaid { get; set; } 
         public StatusGetDto Status { get; set; } = null!;
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public UserGetDto AppUser { get; set; } = null!;

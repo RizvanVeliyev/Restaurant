@@ -95,7 +95,6 @@ namespace Restaurant.BLL.Services.Implementations
             if (!ModelState.IsValid)
                 return false;
 
-
             var isExist = await _userManager.Users.AnyAsync(x => x.NormalizedEmail == dto.Email.ToUpper());
 
             if (isExist)
@@ -114,8 +113,6 @@ namespace Restaurant.BLL.Services.Implementations
 
             var user = _mapper.Map<AppUser>(dto);
 
-            user.EmailConfirmed = true;
-
             var result = await _userManager.CreateAsync(user, dto.Password);
 
             if (!result.Succeeded)
@@ -127,7 +124,11 @@ namespace Restaurant.BLL.Services.Implementations
             await _userManager.AddToRoleAsync(user, IdentityRoles.Member.ToString());
 
 
-            await _signInManager.SignInAsync(user, isPersistent: false);
+            await _sendConfirmEmailToken(user);
+
+            //await _signInManager.SignInAsync(user, isPersistent: false);
+
+
 
             return true;
         }

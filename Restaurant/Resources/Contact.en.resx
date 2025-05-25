@@ -144,4 +144,10 @@
   <data name="Restaurant" xml:space="preserve">
     <value>Restaurant</value>
   </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>Thank You</value>
+  </data>
+  <data name="Go Back Main Page" xml:space="preserve">
+    <value>Go Back Main Page</value>
+  </data>
 </root>

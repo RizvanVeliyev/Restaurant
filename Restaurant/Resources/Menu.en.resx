@@ -126,4 +126,70 @@
   <data name="Juicy Flavours" xml:space="preserve">
     <value>Juicy Flavours</value>
   </data>
+  <data name="What’s on the menu?" xml:space="preserve">
+    <value>What’s on the menu?</value>
+  </data>
+  <data name="View all" xml:space="preserve">
+    <value>View all</value>
+  </data>
+  <data name="Variety" xml:space="preserve">
+    <value>Variety</value>
+  </data>
+  <data name="Blogs" xml:space="preserve">
+    <value>Blogs</value>
+  </data>
+  <data name="Today’s specialty" xml:space="preserve">
+    <value>Today’s specialty</value>
+  </data>
+  <data name="Read More" xml:space="preserve">
+    <value>Read More</value>
+  </data>
+  <data name="In our venue" xml:space="preserve">
+    <value>In our venue</value>
+  </data>
+  <data name="NEWSLETTER" xml:space="preserve">
+    <value>NEWSLETTER</value>
+  </data>
+  <data name="Subscribe &amp; receive 15% discount coupon" xml:space="preserve">
+    <value>Subscribe &amp; receive 15% discount coupon</value>
+  </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value>Subscribe</value>
+  </data>
+  <data name="Subscribe to our" xml:space="preserve">
+    <value>Subscribe to our</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="desc1" xml:space="preserve">
+    <value>Our restaurant’s menu offers a wide variety of delicious dishes to suit every taste! From fresh and high-quality ingredients, we bring you the finest examples of both local and international cuisine. Whether it’s meat dishes, seafood, or vegan options — each one is crafted to delight your palate. Choose us for an unforgettable dining experience!</value>
+  </data>
+  <data name="desc2" xml:space="preserve">
+    <value>Our menu also includes desserts and pastries to make your special moments even more unforgettable. Indulge in freshly baked croissants, creamy cakes, and aromatic coffee that awaken your senses. Additionally, our carefully curated drink selection adds the perfect touch to your meal. We invite you to a flavorful journey where every bite is crafted with love and care!</value>
+  </data>
+  <data name="desc3" xml:space="preserve">
+    <value>Our menu stands out with its rich variety and offers flavors to suit every taste. Here, you can find everything from traditional local cuisine to beloved dishes of international gastronomy. For meat lovers, we offer specially marinated kebabs, spicy and juicy meat dishes, and for seafood enthusiasts, our menu features fresh fish and other delightful seafood delicacies</value>
+  </data>
+  <data name="desc4" xml:space="preserve">
+    <value>For our vegan and health-conscious guests, we’ve crafted natural and light dishes, as well as refreshing salads. Our salads, prepared with fresh vegetables, selected sauces, and unique recipes, are not only delicious but also visually appealing. Every dish is prepared with love and care, ensuring that every moment spent at our restaurant becomes unforgettable for you!</value>
+  </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Clients</value>
+  </data>
+  <data name="Reservation" xml:space="preserve">
+    <value>Reservation</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="Follow Us" xml:space="preserve">
+    <value>Follow Us</value>
+  </data>
+  <data name="Chef" xml:space="preserve">
+    <value>Chef Taylor Bonnyman, working in collaboration with Head Chef Marguerite Keogh, offers elegant &amp; playful modern British cooking.</value>
+  </data>
+  <data name="Online Reservation" xml:space="preserve">
+    <value>Online Reservation</value>
+  </data>
 </root>

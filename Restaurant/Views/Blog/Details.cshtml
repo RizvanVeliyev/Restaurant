@@ -115,6 +115,21 @@
                                         <li class="mb-3">
                                             <strong>@comment.AppUser.Username</strong> <small class="text-muted">(@comment.CreatedAt.ToString("g"))</small>
                                             <p>@comment.Text</p>
+
+                                            <div class="rating">
+                                                @for (var i = 1; i <= 5; i++) 
+                                                {
+                                                    if (i <= comment.Rating)
+                                                    {
+                                                        <span class="star filled">&#9733;</span> <!-- Dolu ulduz -->
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="star">&#9734;</span> <!-- Boş ulduz -->
+                                                    }
+                                                }
+                                                <span class="rating-text">(@comment.Rating)</span>
+                                            </div>
                                             @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.FindFirstValue(ClaimTypes.NameIdentifier) == comment.AppUser.Id))
                                             {
                                                 <form method="post" asp-action="DeleteBlogComment" asp-controller="Blog">

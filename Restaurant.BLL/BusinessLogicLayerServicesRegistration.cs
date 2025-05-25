@@ -4,12 +4,7 @@ using Restaurant.BLL.Services.Abstractions;
 using Restaurant.BLL.Services.Implementations;
 using Restaurant.BLL.UI.Services.Abstractions;
 using Restaurant.BLL.UI.Services.Implementations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Restaurant.BLL
 {
@@ -24,6 +19,8 @@ namespace Restaurant.BLL
             services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             services.AddHttpContextAccessor();
 
+
+            services.AddHttpClient();
             //services.AddFluentValidationAutoValidation();
             //services.AddValidatorsFromAssemblyContaining(typeof(ProductCreateDtoValidator));
 
@@ -57,6 +54,7 @@ namespace Restaurant.BLL
             services.AddScoped<IHomeService, HomeService>();
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<ILayoutService, LayoutService>();
+            services.AddScoped<IPaymentService, PaymentService>();
         }
     }
 }

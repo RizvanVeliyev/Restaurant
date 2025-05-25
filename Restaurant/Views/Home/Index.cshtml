@@ -4,6 +4,7 @@
 
 @{
     ViewData["Title"] = "Home Page";
+    var count = 0;
 }
 
 <main class="home">
@@ -46,7 +47,7 @@
                             <h3>@_localizer.GetValue("Master Yaver's")</h3>
                         </div>
                         <h6 class="small-headline">
-                           @Model.About.Name
+                            @Model.About.Name
                         </h6>
                         <p>
                             @Model.About.Description
@@ -65,26 +66,24 @@
                 <div class="menu-left   col-sm-12 col-md-6">
                     <div class="menu-inner-left padding-right-90">
                         <div class="section-title">
-                            <h2>Restaurant</h2>
-                            <h3 style="color:white" class="white">menu</h3>
+                            <h2>@_menuLocalizer.GetValue("Restaurant")</h2>
+                            <h3 style="color:white" class="white">@_menuLocalizer.GetValue("Menu")</h3>
                         </div>
                         <div class="row">
                             <div class="col-sm-6 col-md-6">
                                 <p class="gray">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                                    @_menuLocalizer.GetValue("desc1")
+
                                 </p>
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <p class="gray">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+                                    @_menuLocalizer.GetValue("desc2")
+
                                 </p>
                             </div>
                         </div>
-                        <a href="menu–stretched.html" class="btn btn-secondary">what’s on the menu</a>
+                        <a asp-controller="Menu" asp-action="Index" class="btn btn-secondary">@_menuLocalizer.GetValue("What’s on the menu?")</a>
                     </div>
                 </div>
 
@@ -114,26 +113,23 @@
                 <div class="col-sm-12 col-md-6">
                     <div class="right-part">
                         <div class="section-title">
-                            <h2>Chinese</h2>
-                            <h3>specialties</h3>
+                            <h2>@_menuLocalizer.GetValue("Variety")</h2>
+                            <h3>@_menuLocalizer.GetValue("Blogs")</h3>
                         </div>
                         <div class="row">
                             <div class="col-sm-6 col-md-6">
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                    nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                                    @_menuLocalizer.GetValue("desc3")
+
                                 </p>
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                    nisi ut aliquip ex ea commodo consequat.
+                                    @_menuLocalizer.GetValue("desc4")
                                 </p>
                             </div>
                         </div>
-                        <a href="" class="btn btn-primary">view all</a>
+                        <a asp-controller="Blog" asp-action="Index" class="btn btn-primary">@_menuLocalizer.GetValue("View all")</a>
                     </div>
                 </div>
             </div>
@@ -145,13 +141,13 @@
             <div class="main-part">
                 <div class="writings">
                     <div class="section-title">
-                        <h2>La creme de la creme</h2>
-                        <h3 class="white">today’s specialty</h3>
+                        <h2>@_menuLocalizer.GetValue("In our venue")</h2>
+                        <h3 class="white">@_menuLocalizer.GetValue("Today’s specialty")</h3>
                     </div>
                     <div class="specialties-over-detail">
                         <p>Oven Roasted duck with special sousage</p>
                         <span class="price">$25.00</span>
-                        <a href="menu–stretched.html" class="btn read-more">read more</a>
+                        <a href="menu–stretched.html" class="btn read-more">@_menuLocalizer.GetValue("Read More")</a>
                     </div>
                 </div>
             </div>
@@ -183,6 +179,7 @@
                         <ul class="products-list">
                             @foreach (var product in Model.Products)
                             {
+                                count++;
                                 <li class="products-block">
                                     <a asp-action="Details" asp-controller="Shop" asp-route-id="@product.Id" class="product-link">
                                         <img class="img-responsive" src="@product.MainImagePath" alt="">
@@ -195,6 +192,10 @@
                                         </div>
                                     </a>
                                 </li>
+                                if (count==9)
+                                {
+                                    break;
+                                }
                             }
                         </ul>
                     </div>
@@ -207,42 +208,24 @@
             <div class="row">
                 <div class="col-sm-12 col-md-8 col-centered">
                     <div class="testimonial-slider">
-                        <div class="slider-item">
-                            <div class="section-title">
-                                <h2>Clients</h2>
-                                <h3>testimonials</h3>
+                        @foreach (var comment in Model.Comments)
+                        {
+                            <div class="slider-item">
+                                <div class="section-title">
+                                    <h2>
+                                        @_menuLocalizer.GetValue("Clients")
+                                    </h2>
+                                    <h3>@comment.AppUser.Username</h3>
+                                </div>
+                                <p>
+                                    @comment.Text
+                                </p>
+                                <div class="text-center testi-icon">“</div>
+                                <h4>@comment.CreatedAt</h4>
                             </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua.
-                            </p>
-                            <div class="text-center testi-icon">“</div>
-                            <h4>james de franco</h4>
-                        </div>
-                        <div class="slider-item">
-                            <div class="section-title">
-                                <h2>Clients</h2>
-                                <h3>testimonials</h3>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua.
-                            </p>
-                            <div class="text-center testi-icon">“</div>
-                            <h4>james de franco</h4>
-                        </div>
-                        <div class="slider-item">
-                            <div class="section-title">
-                                <h2>Clients</h2>
-                                <h3>testimonials</h3>
-                            </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                                et dolore magna aliqua.
-                            </p>
-                            <div class="text-center testi-icon">“</div>
-                            <h4>james de franco</h4>
-                        </div>
+                        }
+
+
                     </div>
                 </div>
             </div>
@@ -258,11 +241,13 @@
                     </div>
                 </div>
                 <div class="detail-block">
-                    <h3 class="white">reservations</h3>
+                    <h3 class="white">
+                        @_menuLocalizer.GetValue("Reservation")
+                    </h3>
                     <p class="white">
                         49 Featherstone Street LONDON EC1Y 8SY UNITED KINGDOM <br>+4 1800 555 1234 <br><a class="white" href="#">bookatable@restaurant.com</a>
                     </p>
-                    <a href="reservation-form.html" class="btn btn-secondary">ONLINE</a>
+                    <a asp-controller="Reservation" asp-action="ReserveTable" class="btn btn-secondary">@_menuLocalizer.GetValue("Online")</a>
                 </div>
             </div>
             <!-- </div> -->

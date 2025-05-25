@@ -9,6 +9,11 @@ namespace Restaurant.DAL.Repositories.Implementations
     {
         public ProductRepository(AppDbContext context) : base(context)
         {
+
+
         }
+
+
+
     }
 }

@@ -1,5 +1,38 @@
-﻿@model ShopDto
+﻿@using Restaurant.BLL.Dtos.CommonDtos
+@using Restaurant.BLL.Dtos.ProductDtos
+@model PaginateDto<ProductGetDto>
 @inject ShopLocalizer _localizer
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+        .pagination a, .pagination span {
+            padding: 10px 20px;
+            margin: 0 5px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #333;
+            border-radius: 5px;
+        }
+
+        .pagination .disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .pagination .prev, .pagination .next {
+            font-weight: bold;
+        }
+</style>
+
+
+
+
 <main class="shop">
     <!-- Banner Start -->
     <section id="News-banner">
@@ -19,30 +52,30 @@
         <div class="container">
             <div class="full-shop-header">
                 <h2>@_localizer.GetValue("Shop")</h2>
-                <div class="filter-section">
-@*                     <p>SHOWING 1–11 OF 14 RESULTS</p>
- *@                    <div class="right-filter">
+                @* <div class="filter-section">
+                                       <div class="right-filter">
                         <form method="get" action="@Url.Action("Index", "Shop")">
                             <select name="sortOrder" class="form-control" onchange="this.form.submit()">
                                 <option value="Default">@_localizer.GetValue("Default Sorting")</option>
                                 <option value="PriceLowToHigh">@_localizer.GetValue("Sort by Price: Low to High")</option>
                                 <option value="PriceHighToLow">@_localizer.GetValue("Sort by Price: High to Low")</option>
                             </select>
-                        </form> 
+                        </form>
                     </div>
-                </div>
+                </div> *@
             </div>
             <div class="menu-list">
                 <div class="menu-list-right">
                     <ul class="products-list">
-                        @foreach (var product in Model.Products)
+                        @foreach (var product in Model.Items)
                         {
                             <li class="products-block">
                                 <a asp-action="Details" asp-controller="Shop" asp-route-id="@product.Id" class="product-link">
                                     <img class="img-responsive" src="@product.MainImagePath" alt="@product.Name">
                                     <div class="info-wrapper">
+
                                         <div class="btn-add-to-cart">
-                                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id"> @_localizer.GetValue("Add to Cart")</a>
+                                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@product.Id" class="btn cart-btn"> Add to cart</a>
                                         </div>
                                         <h2 class="product-title">@product.Name</h2>
                                         <span class="price">$@product.Price</span>
@@ -50,18 +83,31 @@
                                 </a>
                             </li>
                         }
-                        <li class="products-block fancy-pag visible-lg visible-md">
-                            <div class="fancy-inner-block">
-                                <div class="pag-arrows">
-                                    <a href="">
-                                        <h2>@_localizer.GetValue("Next")</h2>
 
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
 
                     </ul>
+
+                </div>
+                <div class="pagination">
+                    @if (Model.CurrentPage > 1)
+                    {
+                        <a href="@Url.Action("Index", "Shop", new { page = Model.CurrentPage - 1 })" class="prev">@_localizer.GetValue("Previous")</a>
+                    }
+                    else
+                    {
+                        <span class="prev disabled">@_localizer.GetValue("Previous")</span>
+                    }
+
+                    <span class="page-info">@_localizer.GetValue("Page") @Model.CurrentPage @_localizer.GetValue("of") @Model.PageCount</span>
+
+                    @if (Model.CurrentPage < Model.PageCount)
+                    {
+                        <a href="@Url.Action("Index", "Shop", new { page = Model.CurrentPage + 1 })" class="next">@_localizer.GetValue("Next")</a>
+                    }
+                    else
+                    {
+                        <span class="next disabled">@_localizer.GetValue("Next")</span>
+                    }
                 </div>
             </div>
         </div>
@@ -70,3 +116,11 @@
 
     </div>
 </main>
+
+
+
+
+
+
+
+

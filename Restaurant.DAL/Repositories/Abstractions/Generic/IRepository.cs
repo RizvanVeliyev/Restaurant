@@ -10,6 +10,7 @@ namespace Restaurant.DAL.Repositories.Abstractions.Generic
         IQueryable<T> GetFilter(Expression<Func<T,bool>> expression,Func<IQueryable<T>,IIncludableQueryable<T,object>>? include=null);
         Task<T?> GetAsync(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
         Task<T?> GetAsync(int id, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
+
         Task<bool> IsExistAsync(Expression<Func<T, bool>> expression, Func<IQueryable<T>, IIncludableQueryable<T, object>>? include = null);
         Task<T> CreateAsync(T entity);
         T Update(T entity);

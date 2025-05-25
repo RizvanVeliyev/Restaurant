@@ -116,5 +116,7 @@ namespace Restaurant.DAL.Repositories.Implementations.Generic
 
             return query;
         }
+
+       
     }
 }

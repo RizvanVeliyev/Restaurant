@@ -18,8 +18,9 @@ namespace Restaurant.BLL.Services.Implementations
             _configuration = configuration;
             _configurationDto = _configuration.GetSection("MailkitOptions").Get<MailKitConfigurationDto>() ?? new();
 
-        }
 
+        }
+        
         public async Task SendEmailAsync(EmailSendDto dto)
         {
             var email = new MimeMessage();

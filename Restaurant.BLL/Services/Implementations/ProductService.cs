@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
-using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.Extensions.Configuration;
+using Restaurant.BLL.Dtos.CommonDtos;
 using Restaurant.BLL.Dtos.ProductDtos;
 using Restaurant.BLL.Exceptions;
 using Restaurant.BLL.Extensions;
@@ -10,7 +12,6 @@ using Restaurant.Core.Entities;
 using Restaurant.Core.Enums;
 using Restaurant.DAL.Localizers;
 using Restaurant.DAL.Repositories.Abstractions;
-using Microsoft.Extensions.Configuration;
 
 namespace Restaurant.BLL.Services.Implementations
 {
@@ -187,6 +188,46 @@ namespace Restaurant.BLL.Services.Implementations
 
             return dto;
         }
+
+
+
+        public async Task<PaginateDto<ProductGetDto>> GetAllWithPageAsync(Languages language = Languages.Azerbaijan, int page = 1)
+        {
+            var query = _repository.GetAll(_getIncludeFunc(language));
+
+            query = _repository.OrderByDescending(query, x => x.UpdatedAt);
+
+
+            int count = await query.CountAsync();
+
+            int pageCount = (int)Math.Ceiling((decimal)count / 8);
+
+            if (page > pageCount)
+                page = pageCount;
+
+            if (page < 1)
+                page = 1;
+
+
+            query = _repository.Paginate(query, 8, page);
+
+            var products = await query.ToListAsync();
+
+            var dtos = _mapper.Map<List<ProductGetDto>>(products);
+
+            PaginateDto<ProductGetDto> dto = new()
+            {
+                Items = dtos,
+                CurrentPage = page,
+                PageCount = pageCount,
+            };
+
+
+            return dto;
+        }
+
+
+        
 
         public async Task<ProductUpdateDto> GetUpdatedDtoAsync(int id)
         {

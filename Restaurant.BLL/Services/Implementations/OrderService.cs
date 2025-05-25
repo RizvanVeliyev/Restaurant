@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using Newtonsoft.Json.Linq;
+using Restaurant.BLL.Dtos;
 using Restaurant.BLL.Dtos.OrderDtos;
 using Restaurant.BLL.Dtos.OrderItemDtos;
 using Restaurant.BLL.Exceptions;
@@ -26,8 +28,9 @@ namespace Restaurant.BLL.Services.Implementations
         private readonly ErrorLocalizer _errorLocalizer;
         private readonly IMapper _mapper;
         private readonly IAuthService _authService;
+        private readonly IPaymentService _paymentService;
 
-        public OrderService(IOrderRepository repository, IMapper mapper, ICartService cartService, IHttpContextAccessor contextAccessor, ErrorLocalizer errorLocalizer, IStatusService statusService, IProductService productService, IAuthService authService)
+        public OrderService(IOrderRepository repository, IMapper mapper, ICartService cartService, IHttpContextAccessor contextAccessor, ErrorLocalizer errorLocalizer, IStatusService statusService, IProductService productService, IAuthService authService, IPaymentService paymentService)
         {
             _repository = repository;
             _mapper = mapper;
@@ -37,6 +40,7 @@ namespace Restaurant.BLL.Services.Implementations
             _statusService = statusService;
             _productService = productService;
             _authService = authService;
+            _paymentService = paymentService;
         }
 
 
@@ -120,6 +124,26 @@ namespace Restaurant.BLL.Services.Implementations
 
             //foreach (var item in dto.OrderItems)
             //    await _productService.IncreaseSalesCountAsync(item.ProductId, item.Count);
+
+            PaymentCreateDto paymentDto = new()
+            {
+                Description = "Dannys Odenis",
+                Amount = order.TotalPrice,
+                OrderId = order.Id,
+            };
+
+            var responseDto = await _paymentService.CreateAsync(paymentDto);
+
+
+            _repository.Update(order);
+            await _repository.SaveChangesAsync();
+
+            if (_contextAccessor.HttpContext is not null)
+            {
+                string paymentUrl = $"{responseDto.Order.HppUrl}?id={responseDto.Order.Id}&password={responseDto.Order.Password}";
+                _contextAccessor.HttpContext.Response.Cookies.Append("paymentUrl", paymentUrl, new CookieOptions() { Expires = DateTime.UtcNow.AddMinutes(1) });
+            }
+
 
             await _cartService.ClearCartAsync();
 

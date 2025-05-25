@@ -24,64 +24,77 @@
                 <div class="accordion" id="accordionExample">
                     @foreach (var order in Model)
                     {
-                        <div class="accordion-item">
-                            <div class="accordion-header" id="heading@order.Id">
-                                <div class="accordion-button collapsed"
-                                     type="button"
-                                     data-bs-toggle="collapse"
-                                     data-bs-target="#collapse@order.Id"
-                                     aria-expanded="false"
-                                     aria-controls="collapse@order.Id">
-                                    <a>
-                                        <p>@_localizer.GetValue("OrderNo"): @order.Id</p>
-                                        <p>@_localizer.GetValue("OrderedTime"): @order.CreatedAt.ToString("dd/MM/yyyy")</p>
-                                        <p>@_localizer.GetValue("TotalPrice"): ₼@order.TotalPrice.ToString("F2")</p>
-                                    </a>
+                        @if (order.Status.Id != 4)
+                        {
+
+
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="heading@order.Id">
+                                    <div class="accordion-button collapsed"
+                                         type="button"
+                                         data-bs-toggle="collapse"
+                                         data-bs-target="#collapse@order.Id"
+                                         aria-expanded="false"
+                                         aria-controls="collapse@order.Id">
+                                        <a>
+                                            <p>@_localizer.GetValue("OrderNo"): @order.Id</p>
+                                            <p>@_localizer.GetValue("OrderedTime"): @order.CreatedAt.ToString("dd/MM/yyyy")</p>
+                                            <p>@_localizer.GetValue("TotalPrice"): ₼@order.TotalPrice.ToString("F2")</p>
+
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="collapse@order.Id"
-                                 class="accordion-collapse collapse"
-                                 aria-labelledby="heading@order.Id"
-                                 data-bs-parent="#accordionExample">
-                                <div class="accordion-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>@_localizer.GetValue("Image")</th>
-                                                    <th>@_localizer.GetValue("Name")</th>
-                                                    <th>@_localizer.GetValue("Count")</th>
-                                                    <th>@_localizer.GetValue("Price")</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in order.OrderItems)
-                                                {
-                                                    <tr class="orderRow">
-                                                        <td>@item.Id</td>
-                                                        <td>
-                                                            <a href="@Url.Action("Detail", "Shop", new { id = item.Product.Id })">
-                                                                <img class="orderImg" src="@item.Product.MainImagePath" alt="@item.Product.Name" />
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <a href="@Url.Action("Detail", "Shop", new { id = item.Product.Id })">
-                                                                @item.Product.Name
-                                                            </a>
-                                                        </td>
-                                                        <td>@item.Count</td>
-                                                        <td>₼@item.TotalPrice.ToString("F2")</td>
+                                <div id="collapse@order.Id"
+                                     class="accordion-collapse collapse"
+                                     aria-labelledby="heading@order.Id"
+                                     data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>@_localizer.GetValue("Image")</th>
+                                                        <th>@_localizer.GetValue("Name")</th>
+                                                        <th>@_localizer.GetValue("Count")</th>
+                                                        <th>@_localizer.GetValue("Price")</th>
                                                     </tr>
-                                                }
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in order.OrderItems)
+                                                    {
+                                                        <tr class="orderRow">
+                                                            <td>@item.Id</td>
+                                                            <td>
+                                                                <a href="@Url.Action("Detail", "Shop", new { id = item.Product.Id })">
+                                                                    <img class="orderImg" src="@item.Product.MainImagePath" alt="@item.Product.Name" />
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="@Url.Action("Detail", "Shop", new { id = item.Product.Id })">
+                                                                    @item.Product.Name
+                                                                </a>
+                                                            </td>
+                                                            <td>@item.Count</td>
+                                                            <td>₼@item.TotalPrice.ToString("F2")</td>
+                                                        </tr>
+
+                                                    }
+
+
+                                                </tbody>
+                                                <a asp-action="CancelOrder" asp-route-id="@order.Id" class="btn btn-danger ">Cancel</a>
+
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+
+                        }
                     }
                 </div>
+
             }
         </div>
     </div>

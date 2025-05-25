@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Restaurant.BLL.Dtos.ReservationDtos;
 using Restaurant.BLL.Services.Abstractions;
+using Restaurant.BLL.UI.Services.Abstractions;
 
 namespace Restaurant.Controllers
 {
@@ -34,6 +35,9 @@ namespace Restaurant.Controllers
 
             if (latestReservation == null)
                 return RedirectToAction(nameof(ReserveTable)); // Əgər tapılmadısa, rezervasiya səhifəsinə geri qayıt
+
+            var result2 = await _service.SendEmailAsync(dto, ModelState);
+
 
             return RedirectToAction(nameof(ConfirmReservation), new { id = latestReservation.ReservationNumber });
         }

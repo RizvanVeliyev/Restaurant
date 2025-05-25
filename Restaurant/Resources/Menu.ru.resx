@@ -126,4 +126,70 @@
   <data name="Juicy Flavours" xml:space="preserve">
     <value>Сочные вкусы</value>
   </data>
+  <data name="What’s on the menu?" xml:space="preserve">
+    <value>Что в меню?</value>
+  </data>
+  <data name="View all" xml:space="preserve">
+    <value>Смотреть всё</value>
+  </data>
+  <data name="Variety" xml:space="preserve">
+    <value>Разнообразие</value>
+  </data>
+  <data name="Blogs" xml:space="preserve">
+    <value> Блоги</value>
+  </data>
+  <data name="Today’s specialty" xml:space="preserve">
+    <value>Сегодняшнее специальное предложение</value>
+  </data>
+  <data name="Read More" xml:space="preserve">
+    <value>Читать дальше</value>
+  </data>
+  <data name="In our venue" xml:space="preserve">
+    <value>В нашем заведении</value>
+  </data>
+  <data name="NEWSLETTER" xml:space="preserve">
+    <value>ИНФОРМАЦИОННЫЙ</value>
+  </data>
+  <data name="Subscribe &amp; receive 15% discount coupon" xml:space="preserve">
+    <value>Подпишитесь и получите купон на скидку 15%</value>
+  </data>
+  <data name="Subscribe" xml:space="preserve">
+    <value>Подписаться</value>
+  </data>
+  <data name="Subscribe to our" xml:space="preserve">
+    <value>Подпишитесь на нашу</value>
+  </data>
+  <data name="Off" xml:space="preserve">
+    <value>скидка</value>
+  </data>
+  <data name="desc1" xml:space="preserve">
+    <value>Меню нашего ресторана предлагает широкий выбор вкусных блюд на любой вкус! Мы готовим из свежих и качественных продуктов лучшие блюда национальной и международной кухни. Мясные блюда, морепродукты или веганские опции — всё создано, чтобы радовать ваш вкус. Выбирайте нас для незабываемого гастрономического удовольствия!</value>
+  </data>
+  <data name="desc2" xml:space="preserve">
+    <value>В нашем меню также представлены десерты и выпечка, которые сделают ваши особые моменты ещё более незабываемыми. Побалуйте себя свежими круассанами, нежными тортами и ароматным кофе, которые пробудят ваши чувства. Кроме того, наша тщательно подобранная карта напитков идеально дополнит ваш обед. Приглашаем вас в кулинарное путешествие, где каждая деталь пропитана любовью и заботой!</value>
+  </data>
+  <data name="desc3" xml:space="preserve">
+    <value>Наше меню отличается богатым выбором и предлагает блюда на любой вкус. Здесь вы найдете всё: от традиционной национальной кухни до популярных блюд международной гастрономии. Для любителей мяса мы предлагаем специально маринованные шашлыки, острые и сочные мясные блюда, а для любителей морепродуктов — свежую рыбу и другие изысканные морские деликатесы.</value>
+  </data>
+  <data name="desc4" xml:space="preserve">
+    <value>Для наших веганов и приверженцев здорового питания мы подготовили натуральные и легкие блюда, а также освежающие салаты. Наши салаты, приготовленные из свежих овощей, отборных соусов и уникальных рецептов, не только вкусные, но и радующие глаз. Каждое блюдо готовится с любовью и заботой, чтобы каждый момент, проведённый в нашем ресторане, стал для вас незабываемым!</value>
+  </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Клиенты</value>
+  </data>
+  <data name="Reservation" xml:space="preserve">
+    <value>Бронирование</value>
+  </data>
+  <data name="Online" xml:space="preserve">
+    <value>Онлайн</value>
+  </data>
+  <data name="Follow Us" xml:space="preserve">
+    <value>Подписывайтесь на нас</value>
+  </data>
+  <data name="Chef" xml:space="preserve">
+    <value>Шеф-повар Тейлор Бонниман, в сотрудничестве с шеф-поваром Маргерит Киох, предлагает элегантную и игривую современную британскую кухню.</value>
+  </data>
+  <data name="Online Reservation" xml:space="preserve">
+    <value>Онлайн-бронирование</value>
+  </data>
 </root>

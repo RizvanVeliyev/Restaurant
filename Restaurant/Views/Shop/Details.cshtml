@@ -32,6 +32,7 @@
                         <div class="row g-2">
                             <div class="col-lg-2 orderone">
                                 <div class="cake-img-slider">
+                                        <img class="sliderImg" src="@Model.Product.MainImagePath" alt="" />
                                     @foreach (var imagePath in Model.Product.ImagePaths)
                                     {
                                         <img class="sliderImg" src="@imagePath" alt="" />
@@ -54,12 +55,20 @@
                         <span class="price">@Model.Product.Price.ToString("C")</span>
                         <div class="single-shop-item-detail">
                             <h6>@_localizer.GetValue("Ingredients")</h6>
-                            <p>Whole chicken breast marinated with lemon and garlic in a basil pesto and mascarpone sauce, with slow-roasted cherry tomatoes.</p>
+                            <p>@Model.Product.Description</p>
                         </div>
                         <div class="single-cart">
-                            <input type="number" />
-                            <a href="" class="btn btn-default">@_localizer.GetValue("Add to Cart")</a>
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                <input type="hidden" name="id" value="@Model.Product.Id" />
+                                <div class="form-group">
+                                    <input type="number" name="count" min="1" value="1" class="form-control" style="width: 80px; display: inline-block;" />
+                                    <button type="submit" class="btn btn-primary cart-btn">
+                                        @_localizer.GetValue("Add to Cart")
+                                    </button>
+                                </div>
+                            </form>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -187,4 +196,14 @@
             form.classList.toggle('d-none');
         });
     });
+
+    const sliderImages = document.querySelectorAll(".sliderImg");
+    const mainImage = document.querySelector(".mainImg");
+
+    sliderImages.forEach(img=>{
+        img.addEventListener("click", (e) => {
+            e.preventDefault();
+            mainImage.src=img.src
+        })
+    })
 </script>

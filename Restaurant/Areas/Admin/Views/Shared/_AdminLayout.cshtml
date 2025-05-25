@@ -1,4 +1,23 @@
-﻿﻿
+﻿
+<style>
+    .btn-back-to-home {
+        display: inline-block;
+        background-color: red;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-align: center;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-back-to-home:hover {
+            background-color: darkred;
+        }
+</style>
+
+﻿
 <!DOCTYPE html>
 <html lang="en">
 
@@ -211,12 +230,12 @@
                             <span class="menu-title">Product</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                   @*  <li class="nav-item">
                         <a class="nav-link" asp-controller="Reservation" asp-action="Index">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
                             <span class="menu-title">Reservation</span>
                         </a>
-                    </li>
+                    </li> *@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Subscribe" asp-action="Index">
                             <i class="mdi mdi-file-document-box-outline menu-icon"></i>
@@ -225,6 +244,9 @@
                     </li>
 
                 </ul>
+
+                <a asp-controller="Home" asp-action="Index" asp-area="" class="btn-back-to-home">Back to Home</a>
+
             </nav>
 
             @RenderBody()

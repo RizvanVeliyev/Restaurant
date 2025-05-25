@@ -1,7 +1,14 @@
 ﻿@inject ILayoutService _layoutService
 @inject LayoutLocalizer _localizer
+@inject MenuLocalizer _menuLocalizer
 @{
     var selectedLanguage = _layoutService.GetSelectedLanguage();
+    var cart = await _layoutService.GetCartAsync();
+    var count = 0;
+    foreach (var item in cart.Items)
+    {
+        count += item.Count;
+    }
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -87,12 +94,12 @@
                             </span>
                             <span class="cart-btn-block cart-btn-item">
                                 <span class="cart-btn-item-title"> @_localizer.GetValue("Items") </span>
-                                <span class="cart-btn-item-count"> 1 </span>
+                                <span class="cart-btn-item-count"> @count </span>
                             </span>
                             <span class="cart-btn-block cart-btn-total">
                                 <div class="cart-left">
                                     <span class="cart-btn-total-title"> @_localizer.GetValue("Total") </span>
-                                    <span class="cart-btn-total-count"> $111.00 </span>
+                                    <span class="cart-btn-total-count"> @cart.Subtotal.ToString("F2") </span>
                                 </div>
                                 <div class="cart-right">
                                     <i class="fa-solid fa-caret-down"></i>
@@ -123,27 +130,26 @@
             </div>
         </div>
     </header>
-            @RenderBody()
+    @RenderBody()
     <footer>
         <section id="Subscribe">
             <div class="container">
                 <div class="row">
                     <div class="section-title">
                         <div class="discount">
-                            <h5>15% <br />OFF</h5>
+                            <h5>15% <br />@_menuLocalizer.GetValue("Off")</h5>
                         </div>
-                        <h2>Subscribe to our</h2>
-                        <h3>newsletter</h3>
+                        <h2>@_menuLocalizer.GetValue("Subscribe to our")</h2>
+                        <h3>@_menuLocalizer.GetValue("NEWSLETTER")</h3>
                     </div>
                     <h5>
-                        Subscribe to our newsletter and receive 15% discount from your
-                        order.
+                        @_menuLocalizer.GetValue("Subscribe & receive 15% discount coupon")
                     </h5>
-                    <form method="post" name="mc-embedded-subscribe-form" novalidate="" class="mail-box clearfix">
+                    <form method="post" name="mc-embedded-subscribe-form" novalidate="" class="mail-box clearfix" enctype="multipart/form-data">
                         <div class="input-group stylish-input-group">
-                            <input type="text" class="form-control" placeholder="Your@mail.com" />
+                            <input type="text" class="form-control" required name="Email" placeholder="Your@mail.com" />
                             <div class="btn-default">
-                                <button type="submit" asp-controller="Home" asp-action="AddSubscriber">subscribe</button>
+                                <button type="submit" asp-controller="Home" asp-action="AddSubscriber">@_menuLocalizer.GetValue("Subscribe")</button>
                             </div>
                         </div>
                         <div class="dn__newsletter-message"></div>
@@ -158,9 +164,7 @@
                         <div class="col-sm-12 col-md-3 col-lg-3">
                             <div class="head-chef">
                                 <p>
-                                    Chef Taylor Bonnyman, working in collaboration with Head
-                                    Chef Marguerite Keogh, offer elegant &amp; playful modern
-                                    British cooking.
+                                    @_menuLocalizer.GetValue("Chef")
                                 </p>
                             </div>
                         </div>
@@ -190,9 +194,9 @@
                         </div>
                         <div class="col-sm-12 col-md-4 col-lg-4">
                             <div class="f-social-follower">
-                                <a class="btn btn-default" asp-controller="Reservation" asp-action="ReserveTable" role="button">online reservation</a>
+                                <a class="btn btn-default" asp-controller="Reservation" asp-action="ReserveTable" role="button">@_menuLocalizer.GetValue("Online Reservation")</a>
                                 <div class="f-follower">
-                                    <h6>follow</h6>
+                                    <h6>@_menuLocalizer.GetValue("Follow Us")</h6>
                                     <ul>
                                         <li>
                                             <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook-f"></i></a>
@@ -261,6 +265,20 @@
         changeLangInputMobile.addEventListener('change', () => {
             window.location.href = `/Home/SelectCulture?culture=${changeLangInputMobile.value}`
         })
+    </script>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            sessionStorage.setItem(`scrollPosition-${window.location.   }`, window.scrollY);
+
+        });
+
+        window.addEventListener('load', () => {
+            const scrollPosition = sessionStorage.getItem(`scrollPosition-${window.location.pathname}`);
+            if (scrollPosition) {
+                window.scrollTo(0, parseInt(scrollPosition, 10));
+            }
+        });
     </script>
 
     <script src="~/assets/js/script.js"></script>

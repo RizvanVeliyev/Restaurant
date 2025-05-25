@@ -37,7 +37,7 @@ namespace Restaurant.Controllers
             return Redirect(returnUrl);
         }
 
-        
+
         public IActionResult RedirectForCart()
         {
             _languageService.RenderSelectedLanguage();
@@ -49,7 +49,10 @@ namespace Restaurant.Controllers
         {
             await _service.AddToCartAsync(id, count);
 
-            return RedirectToAction(nameof(RedirectForCart));
+
+            string returnUrl = Request.GetReturnUrl();
+
+            return Redirect(returnUrl);
         }
         public async Task<IActionResult> DecreaseToCart(int id)
         {
@@ -60,7 +63,7 @@ namespace Restaurant.Controllers
 
 
 
-        
+
 
     }
 }
